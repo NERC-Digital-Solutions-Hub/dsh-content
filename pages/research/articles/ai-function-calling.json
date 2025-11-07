@@ -1,0 +1,11 @@
+{
+    "title": "AI Function Calling",
+    "description": "Demonstrates using AI function calling in our UPRN service application.",
+    "date": "2025-11-07",
+    "tags": [
+        "AI",
+        "Function Calling",
+        "UPRN"
+    ],
+    "source": "./ai-function-calling.md"
+}
