@@ -1,0 +1,13 @@
+{
+    "title": "AI Agents for Geospatial Data",
+    "description": "An exploration of using AI agents to query the Esri API and answer questions about ClimateJust data.",
+    "date": "2025-11-10",
+    "tags": [
+        "AI",
+        "Agents",
+        "Esri",
+        "ClimateJust",
+        "API",
+    ],
+    "source": "./article.md"
+}
