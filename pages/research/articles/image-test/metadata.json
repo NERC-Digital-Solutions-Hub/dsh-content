@@ -1,0 +1,9 @@
+{
+    "title": "Image Test",
+    "description": "Tests image display functionality.",
+    "date": "2025-11-10",
+    "tags": [
+        "Test"
+    ],
+    "source": "./article.md"
+}

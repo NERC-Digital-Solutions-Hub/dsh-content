@@ -1,1 +1,2 @@
 ai-function-calling/metadata.json
+image-test/metadata.json
