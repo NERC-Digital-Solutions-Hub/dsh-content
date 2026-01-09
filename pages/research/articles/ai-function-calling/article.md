@@ -33,7 +33,7 @@ This experiment helped us evaluate how function calling performs when the user�
 
 ## Experiment 4: completing an end-to-end workflow with download
 
-Finally, we tested whether the same interface could support a complete workflow: apply filters and then export the resulting dataset. This brings together several steps that users often complete manually—refining results, confirming scope, and retrieving data—in a single conversational interaction that triggers explicit actions in the service.
+Finally, we tested whether the same interface could support a complete workflow: apply filters and then export the resulting dataset. This brings together several steps that users often complete manually-refining results, confirming scope, and retrieving data—in a single conversational interaction that triggers explicit actions in the service.
 
 [Filter by pollutants then download](https://github.com/NERC-Digital-Solutions-Hub/dsh-content-videos/raw/refs/heads/dev/videos/llm/func-call/llm-func-call-poc-pollutants-filter-download.mp4)
 
@@ -41,7 +41,7 @@ Finally, we tested whether the same interface could support a complete workflow:
 
 Across these experiments, function calling looks promising for reducing friction in common tasks: users can describe what they want, and the service can respond by executing explicit, auditable actions on the underlying data.
 
-This is still early-stage work, but it suggests that function calling can provide a practical bridge between natural-language intent and structured geospatial operations—particularly for workflows currently split between UI interactions and query building.
+This is still early-stage work, but it suggests that function calling can provide a practical bridge between natural-language intent and structured geospatial operations, particularly for workflows currently split between UI interactions and query building.
 
 Next, we plan to focus on robustness (handling ambiguity and edge cases), transparency (showing what was executed and why), and safety/constraints (ensuring the model can only take permitted actions with validated parameters).
 
