@@ -1,0 +1,47 @@
+name: Build UPRN Service Config
+on:
+  push:
+    paths:
+      - 'pages/apps/uprn-service/config.xlsx'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: |
+          pip install pandas openpyxl
+
+      - name: Export sheets + update manifest
+        run: |
+          python .github/scripts/build-uprn-service-config.py \
+            --excel pages/apps/uprn-service/config.xlsx \
+            --outdir pages/apps/uprn-service/generated/csv \
+            --manifest pages/apps/uprn-service/generated/manifest.json
+
+      - name: Commit changes (if any)
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add pages/apps/uprn-service/generated
+            git commit -m "Update CSV exports and manifest"
+            git push
+          else
+            echo "No changes to commit."
+          fi

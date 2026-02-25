@@ -1,0 +1,11 @@
+{
+    "title": "AI-Powered Document Insights",
+    "description": "Using AI to make documents more accessible through automated summarisation and question-answering (RAG).",
+    "date": "2025-11-10",
+    "tags": [
+        "AI",
+        "RAG",
+        "Summarisation"
+    ],
+    "source": "./article.md"
+}
