@@ -1,0 +1,3 @@
+DbId,Org,UriPattern
+1,CEH,https://catalogue.ceh.ac.uk/id/{id}.xml?format=gemini
+2,DSH,https://nercdsh.dev.azure.manchester.ac.uk/portal/sharing/rest/content/items/{id}/data

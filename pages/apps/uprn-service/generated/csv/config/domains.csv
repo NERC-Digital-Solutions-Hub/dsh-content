@@ -1,0 +1,7 @@
+Id,Sheets,Column,TextValue,IntValue
+1,"dataset,variables",WmLayerType,ArcGISFeatureLayer,1
+2,"dataset,variables",WmLayerType,ArcGISMapServiceLayer,2
+3,"dataset,variables",TreeviewId,area,1
+4,"dataset,variables",TreeviewId,data,2
+5,"dataset,variables",TvType,VectorDataset,1
+6,"dataset,variables",TvType,RasterDataset,2

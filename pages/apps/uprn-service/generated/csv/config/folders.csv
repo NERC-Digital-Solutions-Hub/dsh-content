@@ -1,0 +1,8 @@
+DbId,FolderName,IsListed,IsEnabled,TvPath,TvTitle,Order,MetadataConfigUrl,TreeviewId,IsOpenOnInit,DisabledReason,Description
+,Ordnance Survey National Grid,True,True,/,Ordnance Survey National Grid,0,,1,False,,
+,Administrative Areas,True,True,/,Administrative Areas,1,,1,False,,
+,ClimateJust,True,True,/,ClimateJust,2000,,2,True,,
+,Noise Levels,True,True,/,Noise Levels,3000,,2,False,,
+,UK Air - Modelled Background Pollution,True,True,/,UK Air - Modelled Background Pollution,4000,https://nerc-digital-solutions-hub.github.io/dsh-metadata/UPRN/DEFRA/ModelledBackgroundPollution/info.json,2,False,,
+,AQREAN Surface Level,True,True,/,AQREAN Surface Level,7000,,2,False,,
+,AQREAN Surface Level - Bias Corrected,True,True,/,AQREAN Surface Level - Bias Corrected,8000,,2,False,,
