@@ -2,8 +2,7 @@ name: Build UPRN Service Config
 on:
   push:
     paths:
-      - '**/*.xlsx'
-      - '**/*.xlsm'
+      - 'pages/apps/uprn-service/config.xlsx'
   workflow_dispatch:
 
 permissions:
