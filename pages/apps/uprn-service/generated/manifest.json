@@ -1,15 +1,15 @@
 {
-  "version": 7,
+  "version": 8,
   "generated_dir": "pages/apps/uprn-service/generated/csv",
   "source": {
     "path": "pages/apps/uprn-service/config.xlsx",
-    "sha256": "ab849fb139674716cf870a056459a432fd6f9ac5ec32f0a4410dc2c97f41eb84"
+    "sha256": "31da28e8c1a29c5634e65fac35259975d90660566b73c4229713cda530da6898"
   },
   "output": [
     {
       "sheet_name": "datasets",
       "csv_path": "pages/apps/uprn-service/generated/csv/config/datasets.csv",
-      "sha256": "63737eb5dce2967f4f61f327a56404e906f68844b2f6f65913c4ac7076565613"
+      "sha256": "c03f60f6a7028924fd34b383fbf530cfa767461eafa4b4790b6cce973297b4e8"
     },
     {
       "sheet_name": "domains",
@@ -19,7 +19,7 @@
     {
       "sheet_name": "folders",
       "csv_path": "pages/apps/uprn-service/generated/csv/config/folders.csv",
-      "sha256": "22a98a1078c3aed5237e2fad00dea9adba9336ca9eae995d7c88484e5aad7f64"
+      "sha256": "2b6a9c6618476c734de2da5279380a2ccf8914e794c698d25ddb7b6f75a5abeb"
     },
     {
       "sheet_name": "md_uris",
