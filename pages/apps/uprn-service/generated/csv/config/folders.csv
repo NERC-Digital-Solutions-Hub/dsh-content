@@ -4,7 +4,7 @@ DbId,FolderName,IsListed,IsEnabled,TvPath,TvTitle,Order,MetadataConfigUrl,Treevi
 ,ClimateJust,True,True,/,ClimateJust,2000.0,,2.0,1.0,,
 ,Noise Levels,True,True,/,Noise Levels,3000.0,,2.0,0.0,,
 ,UK Air - Modelled Background Pollution,True,True,/,UK Air - Modelled Background Pollution,4000.0,https://nerc-digital-solutions-hub.github.io/dsh-metadata/UPRN/DEFRA/ModelledBackgroundPollution/info.json,2.0,0.0,,
-,AQREAN,True,True,/,AQREAN Surface Level,7000.0,,2.0,0.0,,
+,AQREAN,True,True,/,AQREAN,7000.0,,2.0,0.0,,
 ,Surface Level,True,True,/AQREAN,Surface Level,0.0,,,,,
 ,Surface Level - Bias Corrected,True,True,/AQREAN,Surface Level - Bias Corrected,100.0,,2.0,0.0,,
 ,Daily Measurements,True,True,/AQREAN/Surface Level,Daily Measurements,,,,,,
