@@ -1,0 +1,8 @@
+{
+    "initialMessage": "Hi! I can help you with questions about the application. What would you like to know?",
+    "exampleQuestions": [
+        "How do I navigate the application?",
+        "What datasets are available?",
+        "Where can I find datasets related to health?"
+    ]
+}
