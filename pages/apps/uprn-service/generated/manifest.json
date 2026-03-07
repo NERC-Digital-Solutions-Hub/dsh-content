@@ -1,15 +1,15 @@
 {
-  "version": 15,
+  "version": 16,
   "generated_dir": "pages/apps/uprn-service/generated/csv",
   "source": {
     "path": "pages/apps/uprn-service/config.xlsx",
-    "sha256": "6ca130df83edcb839a597630f25f9d6c7d375eeb63bb8493360d81e362ef0dd6"
+    "sha256": "f09993e744adf5e354c3b8ee0882884be992c187db1d9117448a179053033768"
   },
   "output": [
     {
       "sheet_name": "datasets",
       "csv_path": "pages/apps/uprn-service/generated/csv/config/datasets.csv",
-      "sha256": "80aa8663e46cdfd109b949dbc9eb682032989b98f4882a7a9eee2dc060eccadf"
+      "sha256": "d93e56e7524fc36178be7ca3bc1b2dd836a3f57a881b766f7de1583c99fba9ca"
     },
     {
       "sheet_name": "domains",
@@ -29,7 +29,7 @@
     {
       "sheet_name": "variables",
       "csv_path": "pages/apps/uprn-service/generated/csv/config/variables.csv",
-      "sha256": "6a90d892b8a5caee10c0dce77f86cfae1c46a69a48e509c50eb2e96338432eb3"
+      "sha256": "4d36e894696c5c5b279c836e8ef0c11e776930901a933673718765c1d2c26ec5"
     }
   ]
 }
