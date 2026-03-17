@@ -1,5 +1,5 @@
 {
-  "version": "2026-03-17T10:51:42Z",
+  "version": "2026-03-17T18:21:10Z",
   "environment": "production",
   "pages": [
     {
@@ -27,6 +27,14 @@
             }
           },
           "manifest": "apps/uprn-service/generated/manifest.json"
+        },
+        "images": {
+          "uprnApp1024": "apps/uprn-service/images/uprn-app-1024.png",
+          "uprnApp2048": "apps/uprn-service/images/uprn-app-2048.png",
+          "uprnApp256": "apps/uprn-service/images/uprn-app-256.png",
+          "uprnApp512": "apps/uprn-service/images/uprn-app-512.png",
+          "uprnApp768": "apps/uprn-service/images/uprn-app-768.png",
+          "uprnAppFull": "apps/uprn-service/images/uprn-app-full.png"
         },
         "infoDescriptions": "apps/uprn-service/info-descriptions.xlsx",
         "introduction": "apps/uprn-service/introduction.production.md"
