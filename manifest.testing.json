@@ -1,5 +1,5 @@
 {
-  "version": "2026-03-17T09:44:27Z",
+  "version": "2026-03-17T10:51:42Z",
   "environment": "testing",
   "pages": [
     {
@@ -57,7 +57,7 @@
         },
         "image-test": {
           "article": "research/articles/image-test/article.md",
-          "image": "research/articles/image-test/image.gif",
+          "image": "research/articles/image-test/image.png",
           "image1": "research/articles/image-test/image1.png",
           "image2": "research/articles/image-test/image2.png",
           "metadata": "research/articles/image-test/metadata.json"
