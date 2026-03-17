@@ -1,5 +1,5 @@
 {
-  "version": "2026-03-17T09:44:27Z",
+  "version": "2026-03-17T18:21:10Z",
   "environment": "production",
   "pages": [
     {
@@ -27,6 +27,14 @@
             }
           },
           "manifest": "apps/uprn-service/generated/manifest.json"
+        },
+        "images": {
+          "uprnApp1024": "apps/uprn-service/images/uprn-app-1024.png",
+          "uprnApp2048": "apps/uprn-service/images/uprn-app-2048.png",
+          "uprnApp256": "apps/uprn-service/images/uprn-app-256.png",
+          "uprnApp512": "apps/uprn-service/images/uprn-app-512.png",
+          "uprnApp768": "apps/uprn-service/images/uprn-app-768.png",
+          "uprnAppFull": "apps/uprn-service/images/uprn-app-full.png"
         },
         "infoDescriptions": "apps/uprn-service/info-descriptions.xlsx",
         "introduction": "apps/uprn-service/introduction.production.md"
@@ -57,7 +65,7 @@
         },
         "image-test": {
           "article": "research/articles/image-test/article.md",
-          "image": "research/articles/image-test/image.gif",
+          "image": "research/articles/image-test/image.png",
           "image1": "research/articles/image-test/image1.png",
           "image2": "research/articles/image-test/image2.png",
           "metadata": "research/articles/image-test/metadata.json"
