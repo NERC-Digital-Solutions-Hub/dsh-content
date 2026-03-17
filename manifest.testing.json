@@ -1,5 +1,5 @@
 {
-  "version": "2026-03-16T11:40:34Z",
+  "version": "2026-03-17T10:51:42Z",
   "environment": "testing",
   "pages": [
     {
@@ -29,7 +29,7 @@
           "manifest": "apps/uprn-service/generated/manifest.json"
         },
         "infoDescriptions": "apps/uprn-service/info-descriptions.xlsx",
-        "introduction": "apps/uprn-service/introduction.md"
+        "introduction": "apps/uprn-service/introduction.testing.md"
       }
     },
     {
@@ -57,7 +57,7 @@
         },
         "image-test": {
           "article": "research/articles/image-test/article.md",
-          "image": "research/articles/image-test/image.gif",
+          "image": "research/articles/image-test/image.png",
           "image1": "research/articles/image-test/image1.png",
           "image2": "research/articles/image-test/image2.png",
           "metadata": "research/articles/image-test/metadata.json"

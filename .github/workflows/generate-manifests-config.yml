@@ -1,0 +1,41 @@
+name: Generate Manifests
+
+on:
+  push:
+    paths-ignore:
+      - 'manifest.*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-manifests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate manifests
+        run: |
+          python .github/scripts/generate-manifests.py
+
+      - name: Commit changes (if any)
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add manifest.*.json
+            git commit -m "Update manifests"
+            git push
+          else
+            echo "No changes to commit."
+          fi
