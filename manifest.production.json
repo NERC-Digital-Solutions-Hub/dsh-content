@@ -1,11 +1,18 @@
 {
-  "version": "2026-03-18T02:55:16Z",
+  "version": "2026-03-29T20:30:07Z",
   "environment": "production",
   "pages": [
     {
       "route": "/",
       "files": {
-        "introduction": "introduction.production.md"
+        "introduction": "introduction.production.md",
+        "svgs": {
+          "bootstrap": {
+            "compass": "svgs/bootstrap/compass.svg",
+            "infoCircle": "svgs/bootstrap/info-circle.svg",
+            "search": "svgs/bootstrap/search.svg"
+          }
+        }
       }
     },
     {
@@ -15,7 +22,6 @@
         "cjBackend": "apps/uprn-service/CJ_Backend.xlsx",
         "climatejustRenderers": "apps/uprn-service/climatejust-renderers.json",
         "config": "apps/uprn-service/config.xlsx",
-        "config2": "apps/uprn-service/config2.xlsx",
         "generated": {
           "csv": {
             "config": {
@@ -27,14 +33,6 @@
             }
           },
           "manifest": "apps/uprn-service/generated/manifest.json"
-        },
-        "images": {
-          "uprnApp1024": "apps/uprn-service/images/uprn-app-1024.png",
-          "uprnApp2048": "apps/uprn-service/images/uprn-app-2048.png",
-          "uprnApp256": "apps/uprn-service/images/uprn-app-256.png",
-          "uprnApp512": "apps/uprn-service/images/uprn-app-512.png",
-          "uprnApp768": "apps/uprn-service/images/uprn-app-768.png",
-          "uprnAppFull": "apps/uprn-service/images/uprn-app-full.png"
         },
         "infoDescriptions": "apps/uprn-service/info-descriptions.xlsx",
         "introduction": "apps/uprn-service/introduction.production.md"
@@ -65,7 +63,7 @@
         },
         "image-test": {
           "article": "research/articles/image-test/article.md",
-          "image": "research/articles/image-test/image.png",
+          "image": "research/articles/image-test/image.webp",
           "image1": "research/articles/image-test/image1.png",
           "image2": "research/articles/image-test/image2.png",
           "metadata": "research/articles/image-test/metadata.json"
