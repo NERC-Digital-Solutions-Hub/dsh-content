@@ -1,5 +1,4 @@
 {
-    "environment": "testing",
     "environments": [
         "production",
         "testing"
