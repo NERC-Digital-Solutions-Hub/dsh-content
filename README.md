@@ -2,7 +2,7 @@
 
 ## Manifests
 
-`manifest.<environment>.json` files are generatored from the contents of the `/pages` directory.
+`manifest.<environment>.json` files are generated from the contents of the `/pages` directory.
 
 The manifests are used as a structured index of page routes and their files, so applications can discover page content and related assets.
 
