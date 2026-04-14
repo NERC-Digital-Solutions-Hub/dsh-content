@@ -1,0 +1,76 @@
+{
+  "version": "2026-04-14T08:58:18Z",
+  "environment": "production",
+  "pages": [
+    {
+      "route": "/",
+      "files": {
+        "introduction": "introduction.production.md",
+        "svgs": {
+          "bootstrap": {
+            "compass": "svgs/bootstrap/compass.svg",
+            "infoCircle": "svgs/bootstrap/info-circle.svg",
+            "search": "svgs/bootstrap/search.svg"
+          }
+        }
+      }
+    },
+    {
+      "route": "/apps/uprn-service",
+      "files": {
+        "chatbot": "apps/uprn-service/chatbot.json",
+        "cjBackend": "apps/uprn-service/CJ_Backend.xlsx",
+        "climatejustRenderers": "apps/uprn-service/climatejust-renderers.json",
+        "config": "apps/uprn-service/config.xlsx",
+        "generated": {
+          "csv": {
+            "config": {
+              "datasets": "apps/uprn-service/generated/csv/config/datasets.csv",
+              "domains": "apps/uprn-service/generated/csv/config/domains.csv",
+              "folders": "apps/uprn-service/generated/csv/config/folders.csv",
+              "mdUris": "apps/uprn-service/generated/csv/config/md_uris.csv",
+              "variables": "apps/uprn-service/generated/csv/config/variables.csv"
+            }
+          },
+          "manifest": "apps/uprn-service/generated/manifest.json"
+        },
+        "infoDescriptions": "apps/uprn-service/info-descriptions.xlsx",
+        "introduction": "apps/uprn-service/introduction.production.md",
+        "settings": "apps/uprn-service/settings.json"
+      }
+    },
+    {
+      "route": "/research",
+      "files": {
+        "main": "research/main.md"
+      }
+    },
+    {
+      "route": "/research/articles",
+      "files": {
+        "ai-agents-climatejust": {
+          "article": "research/articles/ai-agents-climatejust/article.md",
+          "metadata": "research/articles/ai-agents-climatejust/metadata.json"
+        },
+        "ai-document-insights": {
+          "architectureExtractDescriptions": "research/articles/ai-document-insights/architecture-extract-descriptions.svg",
+          "architectureSummarise": "research/articles/ai-document-insights/architecture-summarise.svg",
+          "article": "research/articles/ai-document-insights/article.md",
+          "metadata": "research/articles/ai-document-insights/metadata.json"
+        },
+        "ai-function-calling": {
+          "article": "research/articles/ai-function-calling/article.md",
+          "metadata": "research/articles/ai-function-calling/metadata.json"
+        },
+        "image-test": {
+          "article": "research/articles/image-test/article.md",
+          "image": "research/articles/image-test/image.jpg",
+          "image1": "research/articles/image-test/image1.png",
+          "image2": "research/articles/image-test/image2.png",
+          "metadata": "research/articles/image-test/metadata.json"
+        },
+        "index": "research/articles/index.txt"
+      }
+    }
+  ]
+}
