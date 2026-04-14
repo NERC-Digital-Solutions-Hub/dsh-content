@@ -1,0 +1,15 @@
+{
+	"enableInformationPopup": true,
+	"chatbot": {
+		"initialMessage": "Hi! I am the UPRN App AI assistant, and I can help you with questions about the application and how it can be used. I cannot initiate actions on your behalf, but I can provide advice about the application’s functionality and data. What would you like to know?",
+		"exampleQuestions": [
+			"How do I navigate the application?",
+			"What datasets are available?",
+			"Where can I find datasets related to health?",
+			"What are the areas of interest?",
+			"How can I select data?",
+			"How can I download data?",
+			"How can I locate the data I’m interested in?"
+		]
+	}
+}
