@@ -1,5 +1,5 @@
 {
-  "version": "2026-04-13T15:33:04Z",
+  "version": "2026-04-14T08:52:05Z",
   "environment": "testing",
   "pages": [
     {
@@ -35,7 +35,8 @@
           "manifest": "apps/uprn-service/generated/manifest.json"
         },
         "infoDescriptions": "apps/uprn-service/info-descriptions.xlsx",
-        "introduction": "apps/uprn-service/introduction.testing.md"
+        "introduction": "apps/uprn-service/introduction.testing.md",
+        "settings": "apps/uprn-service/settings.json"
       }
     },
     {
