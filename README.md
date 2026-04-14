@@ -23,8 +23,8 @@ Example output:
 	"files": {
 		"articles": {
 			"ai-document-insights": {
-				"article": "pages/research/articles/ai-document-insights/article.json",
-				"metadata": "pages/research/articles/ai-document-insights/metadata.json"
+				"article": "research/articles/ai-document-insights/article.json",
+				"metadata": "research/articles/ai-document-insights/metadata.json"
 			}
 		}
 	}
@@ -113,22 +113,6 @@ Example:
 - `page-metadata.json` → `pageMetadata`
 - `config.testing.json` → `config`
 
-### Ignored directories
-
-Any directory named exactly `generated` is ignored, no matter where it appears.
-
-Example:
-
-```text
-pages/research/generated/
-pages/generated/
-pages/research/articles/generated/
-```
-
-All of those are excluded from the manifests.
-
-This allows generated or intermediate files to live in the repo without being indexed.
-
 ### Environments
 
 The generator builds one manifest per environment.
@@ -211,8 +195,6 @@ pages/
       ai-document-insights/
         article.json
         metadata.json
-    generated/
-      temp.json
 ```
 
 #### Example result for `production`
@@ -221,11 +203,11 @@ pages/
 {
 	"route": "/research",
 	"files": {
-		"intro": "pages/research/intro.json",
+		"intro": "research/intro.json",
 		"articles": {
 			"ai-document-insights": {
-				"article": "pages/research/articles/ai-document-insights/article.json",
-				"metadata": "pages/research/articles/ai-document-insights/metadata.json"
+				"article": "research/articles/ai-document-insights/article.json",
+				"metadata": "research/articles/ai-document-insights/metadata.json"
 			}
 		}
 	}
@@ -238,11 +220,11 @@ pages/
 {
 	"route": "/research",
 	"files": {
-		"intro": "pages/research/intro.testing.json",
+		"intro": "research/intro.testing.json",
 		"articles": {
 			"ai-document-insights": {
-				"article": "pages/research/articles/ai-document-insights/article.json",
-				"metadata": "pages/research/articles/ai-document-insights/metadata.json"
+				"article": "research/articles/ai-document-insights/article.json",
+				"metadata": "research/articles/ai-document-insights/metadata.json"
 			}
 		}
 	}
@@ -251,5 +233,4 @@ pages/
 
 Note that:
 
-- `generated/` is excluded
 - `introduction.testing.json` overrides `introduction.json` only for `testing`
