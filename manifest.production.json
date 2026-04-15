@@ -1,11 +1,12 @@
 {
-  "version": "2026-04-14T08:58:18Z",
+  "version": "2026-04-15T09:40:26Z",
   "environment": "production",
   "pages": [
     {
       "route": "/",
       "files": {
         "introduction": "introduction.production.md",
+        "settings": "settings.json",
         "svgs": {
           "bootstrap": {
             "compass": "svgs/bootstrap/compass.svg",
@@ -18,7 +19,6 @@
     {
       "route": "/apps/uprn-service",
       "files": {
-        "chatbot": "apps/uprn-service/chatbot.json",
         "cjBackend": "apps/uprn-service/CJ_Backend.xlsx",
         "climatejustRenderers": "apps/uprn-service/climatejust-renderers.json",
         "config": "apps/uprn-service/config.xlsx",
@@ -28,7 +28,6 @@
               "datasets": "apps/uprn-service/generated/csv/config/datasets.csv",
               "domains": "apps/uprn-service/generated/csv/config/domains.csv",
               "folders": "apps/uprn-service/generated/csv/config/folders.csv",
-              "mdUris": "apps/uprn-service/generated/csv/config/md_uris.csv",
               "variables": "apps/uprn-service/generated/csv/config/variables.csv"
             }
           },
