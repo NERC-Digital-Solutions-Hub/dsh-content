@@ -1,9 +1,9 @@
 {
-  "version": 41,
+  "version": 42,
   "generated_dir": "pages/apps/uprn-service/generated/csv",
   "source": {
     "path": "pages/apps/uprn-service/config.xlsx",
-    "sha256": "4b574c66dbc8c9f5a6d276c19260682fee382725f61d24d6a3504ad11897f623"
+    "sha256": "658aecbb2793602fc072fd0b61a04bb0b81cff78665756c04f87d19ee2cbcdab"
   },
   "output": [
     {
@@ -24,7 +24,7 @@
     {
       "sheet_name": "variables",
       "csv_path": "pages/apps/uprn-service/generated/csv/config/variables.csv",
-      "sha256": "2c6bc8b66250a80537e5ecfb7861f52c9c7290084ddd8290e680f1e480d995bc"
+      "sha256": "c74557dd962ce1bcf2306c0a209ce79479471057498733a7a16426eb33fe68f0"
     }
   ]
 }
