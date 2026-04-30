@@ -1,12 +1,12 @@
 {
   "version": "2026-04-30T13:26:21Z",
-  "environment": "production",
+  "environment": "development",
   "pages": [
     {
       "route": "/",
       "files": {
-        "introduction": "introduction.production.md",
-        "settings": "settings.production.json",
+        "introduction": "introduction.development.md",
+        "settings": "settings.development.json",
         "svgs": {
           "bootstrap": {
             "compass": "svgs/bootstrap/compass.svg",
@@ -34,8 +34,8 @@
           "manifest": "apps/uprn-service/generated/manifest.json"
         },
         "infoDescriptions": "apps/uprn-service/info-descriptions.xlsx",
-        "introduction": "apps/uprn-service/introduction.production.md",
-        "settings": "apps/uprn-service/settings.production.json"
+        "introduction": "apps/uprn-service/introduction.development.md",
+        "settings": "apps/uprn-service/settings.development.json"
       }
     },
     {
