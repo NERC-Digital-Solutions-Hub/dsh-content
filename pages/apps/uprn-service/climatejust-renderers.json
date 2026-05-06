@@ -17,7 +17,7 @@
     {
       "Id": 2,
       "ClassBreaksGroupId": 73,
-      "SymbolsId": 8,
+      "SymbolsId": 10,
       "LodsGroupId": 8,
       "CustomRendererType": 2
     },
@@ -360,203 +360,203 @@
     {
       "Id": 51,
       "ClassBreaksGroupId": 161,
-      "SymbolsId": 4,
+      "SymbolsId": 5,
       "LodsGroupId": 4,
       "CustomRendererType": 2
     },
     {
       "Id": 52,
       "ClassBreaksGroupId": 162,
-      "SymbolsId": 4,
+      "SymbolsId": 5,
       "LodsGroupId": 4,
       "CustomRendererType": 2
     },
     {
       "Id": 53,
       "ClassBreaksGroupId": 163,
-      "SymbolsId": 5,
+      "SymbolsId": 6,
       "LodsGroupId": 5,
       "CustomRendererType": 2
     },
     {
       "Id": 54,
       "ClassBreaksGroupId": 164,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 55,
       "ClassBreaksGroupId": 165,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 56,
       "ClassBreaksGroupId": 166,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 57,
       "ClassBreaksGroupId": 167,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 58,
       "ClassBreaksGroupId": 168,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 59,
       "ClassBreaksGroupId": 169,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 60,
       "ClassBreaksGroupId": 170,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 61,
       "ClassBreaksGroupId": 171,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 62,
       "ClassBreaksGroupId": 172,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 63,
       "ClassBreaksGroupId": 173,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 64,
       "ClassBreaksGroupId": 174,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 65,
       "ClassBreaksGroupId": 175,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 66,
       "ClassBreaksGroupId": 176,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 67,
       "ClassBreaksGroupId": 177,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 68,
       "ClassBreaksGroupId": 178,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 69,
       "ClassBreaksGroupId": 179,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 70,
       "ClassBreaksGroupId": 180,
-      "SymbolsId": 6,
+      "SymbolsId": 7,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     },
     {
       "Id": 71,
       "ClassBreaksGroupId": 181,
-      "SymbolsId": 7,
+      "SymbolsId": 9,
       "LodsGroupId": 7,
       "CustomRendererType": 2
     },
     {
       "Id": 72,
       "ClassBreaksGroupId": 183,
-      "SymbolsId": 7,
+      "SymbolsId": 9,
       "LodsGroupId": 7,
       "CustomRendererType": 2
     },
     {
       "Id": 73,
       "ClassBreaksGroupId": 193,
-      "SymbolsId": 8,
+      "SymbolsId": 10,
       "LodsGroupId": 8,
       "CustomRendererType": 2
     },
     {
       "Id": 74,
       "ClassBreaksGroupId": 194,
-      "SymbolsId": 8,
+      "SymbolsId": 10,
       "LodsGroupId": 8,
       "CustomRendererType": 2
     },
     {
       "Id": 75,
       "ClassBreaksGroupId": 195,
-      "SymbolsId": 8,
+      "SymbolsId": 10,
       "LodsGroupId": 8,
       "CustomRendererType": 2
     },
     {
       "Id": 76,
       "ClassBreaksGroupId": 196,
-      "SymbolsId": 8,
+      "SymbolsId": 10,
       "LodsGroupId": 8,
       "CustomRendererType": 2
     },
     {
       "Id": 77,
       "ClassBreaksGroupId": 197,
-      "SymbolsId": 14,
+      "SymbolsId": 11,
       "LodsGroupId": 14,
       "CustomRendererType": 1
     },
     {
       "Id": 78,
       "ClassBreaksGroupId": 198,
-      "SymbolsId": 15,
+      "SymbolsId": 12,
       "LodsGroupId": 15,
       "CustomRendererType": 1
     },
     {
       "Id": 79,
       "ClassBreaksGroupId": 199,
-      "SymbolsId": 16,
+      "SymbolsId": 13,
       "LodsGroupId": 16,
       "CustomRendererType": 2
     },
@@ -570,14 +570,14 @@
     {
       "Id": 81,
       "ClassBreaksGroupId": 202,
-      "SymbolsId": 3,
+      "SymbolsId": 4,
       "LodsGroupId": 3,
       "CustomRendererType": 2
     },
     {
       "Id": 82,
       "ClassBreaksGroupId": 203,
-      "SymbolsId": 3,
+      "SymbolsId": 4,
       "LodsGroupId": 3,
       "CustomRendererType": 2
     },
@@ -948,7 +948,7 @@
     {
       "Id": 135,
       "ClassBreaksGroupId": 256,
-      "SymbolsId": 3,
+      "SymbolsId": 4,
       "LodsGroupId": 3,
       "CustomRendererType": 2
     },
@@ -1305,42 +1305,42 @@
     {
       "Id": 186,
       "ClassBreaksGroupId": 314,
-      "SymbolsId": 17,
+      "SymbolsId": 14,
       "LodsGroupId": 17,
       "CustomRendererType": 1
     },
     {
       "Id": 187,
       "ClassBreaksGroupId": 315,
-      "SymbolsId": 18,
+      "SymbolsId": 15,
       "LodsGroupId": 18,
       "CustomRendererType": 1
     },
     {
       "Id": 188,
       "ClassBreaksGroupId": 316,
-      "SymbolsId": 19,
+      "SymbolsId": 16,
       "LodsGroupId": 19,
       "CustomRendererType": 1
     },
     {
       "Id": 189,
       "ClassBreaksGroupId": 317,
-      "SymbolsId": 20,
+      "SymbolsId": 17,
       "LodsGroupId": 20,
       "CustomRendererType": 1
     },
     {
       "Id": 190,
       "ClassBreaksGroupId": 318,
-      "SymbolsId": 21,
+      "SymbolsId": 18,
       "LodsGroupId": 21,
       "CustomRendererType": 1
     },
     {
       "Id": 191,
       "ClassBreaksGroupId": 319,
-      "SymbolsId": 6,
+      "SymbolsId": 8,
       "LodsGroupId": 6,
       "CustomRendererType": 2
     }
@@ -15987,21 +15987,6 @@
       "Id": 18,
       "SymbolType": 0,
       "OutlineType": 1
-    },
-    {
-      "Id": 19,
-      "SymbolType": 0,
-      "OutlineType": 1
-    },
-    {
-      "Id": 20,
-      "SymbolType": 0,
-      "OutlineType": 1
-    },
-    {
-      "Id": 21,
-      "SymbolType": 0,
-      "OutlineType": 1
     }
   ],
   "CustomRenderers_Symbols_Appearances": [
@@ -16209,15 +16194,15 @@
       "Id": 26,
       "SymbolsId": 3,
       "Order": 0,
-      "SymbolColor": "#FFFFFF00",
-      "OutlineColor": "#BCBCBC",
-      "OutlineWidth": 0.5
+      "SymbolColor": "#FFFF80",
+      "OutlineColor": "#6B0000",
+      "OutlineWidth": 0.699999988079071
     },
     {
       "Id": 27,
       "SymbolsId": 3,
       "Order": 1,
-      "SymbolColor": "#FFFF80",
+      "SymbolColor": "#FAD155",
       "OutlineColor": "#6B0000",
       "OutlineWidth": 0.699999988079071
     },
@@ -16225,7 +16210,7 @@
       "Id": 28,
       "SymbolsId": 3,
       "Order": 2,
-      "SymbolColor": "#FAD155",
+      "SymbolColor": "#F2A72E",
       "OutlineColor": "#6B0000",
       "OutlineWidth": 0.699999988079071
     },
@@ -16233,7 +16218,7 @@
       "Id": 29,
       "SymbolsId": 3,
       "Order": 3,
-      "SymbolColor": "#F2A72E",
+      "SymbolColor": "#AD5313",
       "OutlineColor": "#6B0000",
       "OutlineWidth": 0.699999988079071
     },
@@ -16241,63 +16226,63 @@
       "Id": 30,
       "SymbolsId": 3,
       "Order": 4,
+      "SymbolColor": "#6B0000",
+      "OutlineColor": "#AD5313",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 31,
+      "SymbolsId": 4,
+      "Order": 0,
+      "SymbolColor": "#FFFFFF00",
+      "OutlineColor": "#BCBCBC",
+      "OutlineWidth": 0.5
+    },
+    {
+      "Id": 32,
+      "SymbolsId": 4,
+      "Order": 1,
+      "SymbolColor": "#FFFF80",
+      "OutlineColor": "#6B0000",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 33,
+      "SymbolsId": 4,
+      "Order": 2,
+      "SymbolColor": "#FAD155",
+      "OutlineColor": "#6B0000",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 34,
+      "SymbolsId": 4,
+      "Order": 3,
+      "SymbolColor": "#F2A72E",
+      "OutlineColor": "#6B0000",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 35,
+      "SymbolsId": 4,
+      "Order": 4,
       "SymbolColor": "#AD5313",
       "OutlineColor": "#6B0000",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 31,
-      "SymbolsId": 3,
+      "Id": 36,
+      "SymbolsId": 4,
       "Order": 5,
       "SymbolColor": "#6B0000",
       "OutlineColor": "#AD5313",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 32,
-      "SymbolsId": 4,
-      "Order": 0,
-      "SymbolColor": "#FAAA00",
-      "OutlineColor": "#704489",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 33,
-      "SymbolsId": 4,
-      "Order": 1,
-      "SymbolColor": "#FFEBAF",
-      "OutlineColor": "#704489",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 34,
-      "SymbolsId": 4,
-      "Order": 2,
-      "SymbolColor": "#FCFDBF",
-      "OutlineColor": "#704489",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 35,
-      "SymbolsId": 4,
-      "Order": 3,
-      "SymbolColor": "#C29ED7",
-      "OutlineColor": "#704489",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 36,
-      "SymbolsId": 4,
-      "Order": 4,
-      "SymbolColor": "#AA66CD",
-      "OutlineColor": "#704489",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
       "Id": 37,
       "SymbolsId": 5,
       "Order": 0,
-      "SymbolColor": "#FF5500",
+      "SymbolColor": "#FAAA00",
       "OutlineColor": "#704489",
       "OutlineWidth": 0.699999988079071
     },
@@ -16305,7 +16290,7 @@
       "Id": 38,
       "SymbolsId": 5,
       "Order": 1,
-      "SymbolColor": "#FAAA00",
+      "SymbolColor": "#FFEBAF",
       "OutlineColor": "#704489",
       "OutlineWidth": 0.699999988079071
     },
@@ -16313,7 +16298,7 @@
       "Id": 39,
       "SymbolsId": 5,
       "Order": 2,
-      "SymbolColor": "#FFEBAF",
+      "SymbolColor": "#FCFDBF",
       "OutlineColor": "#704489",
       "OutlineWidth": 0.699999988079071
     },
@@ -16337,24 +16322,24 @@
       "Id": 42,
       "SymbolsId": 6,
       "Order": 0,
-      "SymbolColor": "#FFFFFF00",
-      "OutlineColor": "#BCBCBC",
-      "OutlineWidth": 0.5
+      "SymbolColor": "#FF5500",
+      "OutlineColor": "#704489",
+      "OutlineWidth": 0.699999988079071
     },
     {
       "Id": 43,
       "SymbolsId": 6,
       "Order": 1,
-      "SymbolColor": "#704489",
-      "OutlineColor": "#3A2448",
+      "SymbolColor": "#FAAA00",
+      "OutlineColor": "#704489",
       "OutlineWidth": 0.699999988079071
     },
     {
       "Id": 44,
       "SymbolsId": 6,
       "Order": 2,
-      "SymbolColor": "#AA66CD",
-      "OutlineColor": "#3A2448",
+      "SymbolColor": "#FFEBAF",
+      "OutlineColor": "#704489",
       "OutlineWidth": 0.699999988079071
     },
     {
@@ -16369,445 +16354,357 @@
       "Id": 46,
       "SymbolsId": 6,
       "Order": 4,
-      "SymbolColor": "#FFEBAF",
+      "SymbolColor": "#AA66CD",
       "OutlineColor": "#704489",
       "OutlineWidth": 0.699999988079071
     },
     {
       "Id": 47,
-      "SymbolsId": 6,
-      "Order": 5,
-      "SymbolColor": "#FAAA00",
-      "OutlineColor": "#704489",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 48,
-      "SymbolsId": 6,
-      "Order": 6,
-      "SymbolColor": "#FF5500",
-      "OutlineColor": "#704489",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 49,
-      "SymbolsId": 6,
-      "Order": 7,
-      "SymbolColor": "#E60000",
-      "OutlineColor": "#704489",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 50,
       "SymbolsId": 7,
-      "Order": 0,
-      "SymbolColor": "#9EAAD7",
-      "OutlineColor": "#5E5E5E",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 51,
-      "SymbolsId": 7,
-      "Order": 1,
-      "SymbolColor": "#BDC8DA",
-      "OutlineColor": "#5E5E5E",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 52,
-      "SymbolsId": 7,
-      "Order": 2,
-      "SymbolColor": "#FFFF00",
-      "OutlineColor": "#5F0000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 53,
-      "SymbolsId": 7,
-      "Order": 3,
-      "SymbolColor": "#FFAA00",
-      "OutlineColor": "#5F0000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 54,
-      "SymbolsId": 7,
-      "Order": 4,
-      "SymbolColor": "#FF5500",
-      "OutlineColor": "#5F0000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 55,
-      "SymbolsId": 7,
-      "Order": 5,
-      "SymbolColor": "#E60000",
-      "OutlineColor": "#5F0000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 56,
-      "SymbolsId": 7,
-      "Order": 6,
-      "SymbolColor": "#A80000",
-      "OutlineColor": "#5F0000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 57,
-      "SymbolsId": 7,
-      "Order": 7,
-      "SymbolColor": "#5F0000",
-      "OutlineColor": "#A80000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 58,
-      "SymbolsId": 8,
-      "Order": 0,
-      "SymbolColor": "#004EA8",
-      "OutlineColor": "#446589",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 59,
-      "SymbolsId": 8,
-      "Order": 1,
-      "SymbolColor": "#9EAAD7",
-      "OutlineColor": "#446589",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 60,
-      "SymbolsId": 8,
-      "Order": 2,
-      "SymbolColor": "#CCCCCC",
-      "OutlineColor": "#446589",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 61,
-      "SymbolsId": 8,
-      "Order": 3,
-      "SymbolColor": "#FFFFBE",
-      "OutlineColor": "#446589",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 62,
-      "SymbolsId": 8,
-      "Order": 4,
-      "SymbolColor": "#F5A27A",
-      "OutlineColor": "#446589",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 63,
-      "SymbolsId": 8,
-      "Order": 5,
-      "SymbolColor": "#CD6666",
-      "OutlineColor": "#446589",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 64,
-      "SymbolsId": 8,
-      "Order": 6,
-      "SymbolColor": "#A80000",
-      "OutlineColor": "#446589",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 65,
-      "SymbolsId": 9,
-      "Order": 0,
-      "SymbolColor": "#FEEEE6",
-      "OutlineColor": "#6E6E6E",
-      "OutlineWidth": 1.0
-    },
-    {
-      "Id": 66,
-      "SymbolsId": 9,
-      "Order": 1,
-      "SymbolColor": "#FECCB8",
-      "OutlineColor": "#6E6E6E",
-      "OutlineWidth": 1.0
-    },
-    {
-      "Id": 67,
-      "SymbolsId": 9,
-      "Order": 2,
-      "SymbolColor": "#FC8F71",
-      "OutlineColor": "#6E6E6E",
-      "OutlineWidth": 1.0
-    },
-    {
-      "Id": 68,
-      "SymbolsId": 9,
-      "Order": 3,
-      "SymbolColor": "#F24D39",
-      "OutlineColor": "#6E6E6E",
-      "OutlineWidth": 1.0
-    },
-    {
-      "Id": 69,
-      "SymbolsId": 9,
-      "Order": 4,
-      "SymbolColor": "#C41B1C",
-      "OutlineColor": "#6E6E6E",
-      "OutlineWidth": 1.0
-    },
-    {
-      "Id": 70,
-      "SymbolsId": 9,
-      "Order": 5,
-      "SymbolColor": "#67000D",
-      "OutlineColor": "#6E6E6E",
-      "OutlineWidth": 1.0
-    },
-    {
-      "Id": 71,
-      "SymbolsId": 10,
-      "Order": 0,
-      "SymbolColor": "#F3FCD4",
-      "OutlineColor": "#734C00",
-      "OutlineWidth": 1.2000000476837158
-    },
-    {
-      "Id": 72,
-      "SymbolsId": 11,
-      "Order": 0,
-      "SymbolColor": "#D6DAFC",
-      "OutlineColor": "#00A884",
-      "OutlineWidth": 1.0
-    },
-    {
-      "Id": 73,
-      "SymbolsId": 12,
-      "Order": 0,
-      "SymbolColor": "#9EAAD7",
-      "OutlineColor": "#5E5E5E",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 74,
-      "SymbolsId": 12,
-      "Order": 1,
-      "SymbolColor": "#BDC8DA",
-      "OutlineColor": "#5E5E5E",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 75,
-      "SymbolsId": 12,
-      "Order": 2,
-      "SymbolColor": "#FFFF00",
-      "OutlineColor": "#380000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 76,
-      "SymbolsId": 12,
-      "Order": 3,
-      "SymbolColor": "#FFAA00",
-      "OutlineColor": "#380000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 77,
-      "SymbolsId": 12,
-      "Order": 4,
-      "SymbolColor": "#FF5500",
-      "OutlineColor": "#380000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 78,
-      "SymbolsId": 12,
-      "Order": 5,
-      "SymbolColor": "#E60000",
-      "OutlineColor": "#380000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 79,
-      "SymbolsId": 12,
-      "Order": 6,
-      "SymbolColor": "#940000",
-      "OutlineColor": "#380000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 80,
-      "SymbolsId": 12,
-      "Order": 7,
-      "SymbolColor": "#380000",
-      "OutlineColor": "#940000",
-      "OutlineWidth": 0.699999988079071
-    },
-    {
-      "Id": 81,
-      "SymbolsId": 13,
       "Order": 0,
       "SymbolColor": "#704489",
       "OutlineColor": "#3A2448",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 82,
-      "SymbolsId": 13,
+      "Id": 48,
+      "SymbolsId": 7,
       "Order": 1,
       "SymbolColor": "#AA66CD",
       "OutlineColor": "#3A2448",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 83,
-      "SymbolsId": 13,
+      "Id": 49,
+      "SymbolsId": 7,
       "Order": 2,
       "SymbolColor": "#C29ED7",
-      "OutlineColor": "#3A2448",
+      "OutlineColor": "#704489",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 84,
-      "SymbolsId": 13,
+      "Id": 50,
+      "SymbolsId": 7,
       "Order": 3,
       "SymbolColor": "#FFEBAF",
-      "OutlineColor": "#3A2448",
+      "OutlineColor": "#704489",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 85,
-      "SymbolsId": 13,
+      "Id": 51,
+      "SymbolsId": 7,
       "Order": 4,
       "SymbolColor": "#FAAA00",
-      "OutlineColor": "#3A2448",
+      "OutlineColor": "#704489",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 86,
-      "SymbolsId": 13,
+      "Id": 52,
+      "SymbolsId": 7,
       "Order": 5,
       "SymbolColor": "#FF5500",
-      "OutlineColor": "#3A2448",
+      "OutlineColor": "#704489",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 87,
-      "SymbolsId": 13,
+      "Id": 53,
+      "SymbolsId": 7,
       "Order": 6,
       "SymbolColor": "#E60000",
+      "OutlineColor": "#704489",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 54,
+      "SymbolsId": 8,
+      "Order": 0,
+      "SymbolColor": "#FFFFFF00",
+      "OutlineColor": "#BCBCBC",
+      "OutlineWidth": 0.5
+    },
+    {
+      "Id": 55,
+      "SymbolsId": 8,
+      "Order": 1,
+      "SymbolColor": "#704489",
       "OutlineColor": "#3A2448",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 88,
-      "SymbolsId": 14,
+      "Id": 56,
+      "SymbolsId": 8,
+      "Order": 2,
+      "SymbolColor": "#AA66CD",
+      "OutlineColor": "#3A2448",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 57,
+      "SymbolsId": 8,
+      "Order": 3,
+      "SymbolColor": "#C29ED7",
+      "OutlineColor": "#704489",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 58,
+      "SymbolsId": 8,
+      "Order": 4,
+      "SymbolColor": "#FFEBAF",
+      "OutlineColor": "#704489",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 59,
+      "SymbolsId": 8,
+      "Order": 5,
+      "SymbolColor": "#FAAA00",
+      "OutlineColor": "#704489",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 60,
+      "SymbolsId": 8,
+      "Order": 6,
+      "SymbolColor": "#FF5500",
+      "OutlineColor": "#704489",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 61,
+      "SymbolsId": 8,
+      "Order": 7,
+      "SymbolColor": "#E60000",
+      "OutlineColor": "#704489",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 62,
+      "SymbolsId": 9,
+      "Order": 0,
+      "SymbolColor": "#9EAAD7",
+      "OutlineColor": "#5E5E5E",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 63,
+      "SymbolsId": 9,
+      "Order": 1,
+      "SymbolColor": "#BDC8DA",
+      "OutlineColor": "#5E5E5E",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 64,
+      "SymbolsId": 9,
+      "Order": 2,
+      "SymbolColor": "#FFFF00",
+      "OutlineColor": "#5F0000",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 65,
+      "SymbolsId": 9,
+      "Order": 3,
+      "SymbolColor": "#FFAA00",
+      "OutlineColor": "#5F0000",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 66,
+      "SymbolsId": 9,
+      "Order": 4,
+      "SymbolColor": "#FF5500",
+      "OutlineColor": "#5F0000",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 67,
+      "SymbolsId": 9,
+      "Order": 5,
+      "SymbolColor": "#E60000",
+      "OutlineColor": "#5F0000",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 68,
+      "SymbolsId": 9,
+      "Order": 6,
+      "SymbolColor": "#A80000",
+      "OutlineColor": "#5F0000",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 69,
+      "SymbolsId": 9,
+      "Order": 7,
+      "SymbolColor": "#5F0000",
+      "OutlineColor": "#A80000",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 70,
+      "SymbolsId": 10,
+      "Order": 0,
+      "SymbolColor": "#004EA8",
+      "OutlineColor": "#446589",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 71,
+      "SymbolsId": 10,
+      "Order": 1,
+      "SymbolColor": "#9EAAD7",
+      "OutlineColor": "#446589",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 72,
+      "SymbolsId": 10,
+      "Order": 2,
+      "SymbolColor": "#CCCCCC",
+      "OutlineColor": "#446589",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 73,
+      "SymbolsId": 10,
+      "Order": 3,
+      "SymbolColor": "#FFFFBE",
+      "OutlineColor": "#446589",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 74,
+      "SymbolsId": 10,
+      "Order": 4,
+      "SymbolColor": "#F5A27A",
+      "OutlineColor": "#446589",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 75,
+      "SymbolsId": 10,
+      "Order": 5,
+      "SymbolColor": "#CD6666",
+      "OutlineColor": "#446589",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 76,
+      "SymbolsId": 10,
+      "Order": 6,
+      "SymbolColor": "#A80000",
+      "OutlineColor": "#446589",
+      "OutlineWidth": 0.699999988079071
+    },
+    {
+      "Id": 77,
+      "SymbolsId": 11,
       "Order": 0,
       "SymbolColor": "#888888",
       "OutlineColor": "#800080",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 89,
-      "SymbolsId": 15,
+      "Id": 78,
+      "SymbolsId": 12,
       "Order": 0,
       "SymbolColor": "#D9F7C1B4",
       "OutlineColor": "#6E6E6E",
       "OutlineWidth": 0.4000000059604645
     },
     {
-      "Id": 90,
-      "SymbolsId": 16,
+      "Id": 79,
+      "SymbolsId": 13,
       "Order": 0,
       "SymbolColor": "#FFFFFF",
       "OutlineColor": "#9A1C1C",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 91,
-      "SymbolsId": 16,
+      "Id": 80,
+      "SymbolsId": 13,
       "Order": 1,
       "SymbolColor": "#FED6C4",
       "OutlineColor": "#67000D",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 92,
-      "SymbolsId": 16,
+      "Id": 81,
+      "SymbolsId": 13,
       "Order": 2,
       "SymbolColor": "#FCA487",
       "OutlineColor": "#67000D",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 93,
-      "SymbolsId": 16,
+      "Id": 82,
+      "SymbolsId": 13,
       "Order": 3,
       "SymbolColor": "#FC7050",
       "OutlineColor": "#67000D",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 94,
-      "SymbolsId": 16,
+      "Id": 83,
+      "SymbolsId": 13,
       "Order": 4,
       "SymbolColor": "#EB362A",
       "OutlineColor": "#67000D",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 95,
-      "SymbolsId": 16,
+      "Id": 84,
+      "SymbolsId": 13,
       "Order": 5,
       "SymbolColor": "#BA1419",
       "OutlineColor": "#67000D",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 96,
-      "SymbolsId": 16,
+      "Id": 85,
+      "SymbolsId": 13,
       "Order": 6,
       "SymbolColor": "#67000D",
       "OutlineColor": "#300006",
       "OutlineWidth": 0.699999988079071
     },
     {
-      "Id": 97,
-      "SymbolsId": 17,
+      "Id": 86,
+      "SymbolsId": 14,
       "Order": 0,
       "SymbolColor": "#FFFFFF00",
       "OutlineColor": "#004DA8",
       "OutlineWidth": 0.4000000059604645
     },
     {
-      "Id": 98,
-      "SymbolsId": 18,
+      "Id": 87,
+      "SymbolsId": 15,
       "Order": 0,
       "SymbolColor": "#FFFFFF00",
       "OutlineColor": "#4E4E4E",
       "OutlineWidth": 0.4000000059604645
     },
     {
-      "Id": 99,
-      "SymbolsId": 19,
+      "Id": 88,
+      "SymbolsId": 16,
       "Order": 0,
       "SymbolColor": "#FFFFFF00",
       "OutlineColor": "#96007D",
       "OutlineWidth": 0.4000000059604645
     },
     {
-      "Id": 100,
-      "SymbolsId": 20,
+      "Id": 89,
+      "SymbolsId": 17,
       "Order": 0,
       "SymbolColor": "#00A88433",
       "OutlineColor": "#00A884",
       "OutlineWidth": 0.10000000149011612
     },
     {
-      "Id": 101,
-      "SymbolsId": 21,
+      "Id": 90,
+      "SymbolsId": 18,
       "Order": 0,
       "SymbolColor": "#FFFFFF00",
       "OutlineColor": "#A80000",
