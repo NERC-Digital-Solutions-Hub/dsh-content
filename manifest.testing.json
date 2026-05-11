@@ -1,75 +1,152 @@
 {
-  "version": "2026-05-08T10:47:25Z",
+  "schemaVersion": 1,
+  "version": "2026-05-11T12:44:39Z",
+  "generatedAt": "2026-05-11T12:44:39Z",
   "environment": "testing",
-  "pages": [
-    {
-      "route": "/",
-      "files": {
-        "introduction": "introduction.testing.md",
-        "settings": "settings.testing.json",
-        "svgs": {
-          "bootstrap": {
-            "compass": "svgs/bootstrap/compass.svg",
-            "infoCircle": "svgs/bootstrap/info-circle.svg",
-            "search": "svgs/bootstrap/search.svg"
-          }
+  "pages": {
+    "articles": {
+      "route": "/research/articles",
+      "assets": {
+        "ai-agents-climatejust.article": {
+          "path": "research/articles/ai-agents-climatejust/article.md",
+          "type": "markdown"
+        },
+        "ai-agents-climatejust.metadata": {
+          "path": "research/articles/ai-agents-climatejust/metadata.json",
+          "type": "json"
+        },
+        "ai-document-insights.architectureExtractDescriptions": {
+          "path": "research/articles/ai-document-insights/architecture-extract-descriptions.svg",
+          "type": "svg"
+        },
+        "ai-document-insights.architectureSummarise": {
+          "path": "research/articles/ai-document-insights/architecture-summarise.svg",
+          "type": "svg"
+        },
+        "ai-document-insights.article": {
+          "path": "research/articles/ai-document-insights/article.md",
+          "type": "markdown"
+        },
+        "ai-document-insights.metadata": {
+          "path": "research/articles/ai-document-insights/metadata.json",
+          "type": "json"
+        },
+        "ai-function-calling.article": {
+          "path": "research/articles/ai-function-calling/article.md",
+          "type": "markdown"
+        },
+        "ai-function-calling.metadata": {
+          "path": "research/articles/ai-function-calling/metadata.json",
+          "type": "json"
+        },
+        "image-test.article": {
+          "path": "research/articles/image-test/article.md",
+          "type": "markdown"
+        },
+        "image-test.image": {
+          "path": "research/articles/image-test/image.jpg",
+          "type": "jpg"
+        },
+        "image-test.image1": {
+          "path": "research/articles/image-test/image1.png",
+          "type": "png"
+        },
+        "image-test.image2": {
+          "path": "research/articles/image-test/image2.png",
+          "type": "png"
+        },
+        "image-test.metadata": {
+          "path": "research/articles/image-test/metadata.json",
+          "type": "json"
+        },
+        "index": {
+          "path": "research/articles/index.txt",
+          "type": "text"
         }
       }
     },
-    {
-      "route": "/apps/uprn-service",
-      "files": {
-        "cjBackend": "apps/uprn-service/CJ_Backend.xlsx",
-        "climatejustRenderers": "apps/uprn-service/climatejust-renderers.json",
-        "config": "apps/uprn-service/config.xlsx",
-        "generated": {
-          "csv": {
-            "config": {
-              "datasets": "apps/uprn-service/generated/csv/config/datasets.csv",
-              "domains": "apps/uprn-service/generated/csv/config/domains.csv",
-              "folders": "apps/uprn-service/generated/csv/config/folders.csv",
-              "variables": "apps/uprn-service/generated/csv/config/variables.csv"
-            }
-          },
-          "manifest": "apps/uprn-service/generated/manifest.json"
+    "home": {
+      "route": "/",
+      "assets": {
+        "introduction": {
+          "path": "introduction.testing.md",
+          "type": "markdown"
         },
-        "infoDescriptions": "apps/uprn-service/info-descriptions.xlsx",
-        "introduction": "apps/uprn-service/introduction.testing.md",
-        "settings": "apps/uprn-service/settings.testing.json"
+        "settings": {
+          "path": "settings.testing.json",
+          "type": "json"
+        },
+        "svgs.bootstrap.compass": {
+          "path": "svgs/bootstrap/compass.svg",
+          "type": "svg"
+        },
+        "svgs.bootstrap.infoCircle": {
+          "path": "svgs/bootstrap/info-circle.svg",
+          "type": "svg"
+        },
+        "svgs.bootstrap.search": {
+          "path": "svgs/bootstrap/search.svg",
+          "type": "svg"
+        }
       }
     },
-    {
+    "research": {
       "route": "/research",
-      "files": {
-        "main": "research/main.md"
+      "assets": {
+        "main": {
+          "path": "research/main.md",
+          "type": "markdown"
+        }
       }
     },
-    {
-      "route": "/research/articles",
-      "files": {
-        "ai-agents-climatejust": {
-          "article": "research/articles/ai-agents-climatejust/article.md",
-          "metadata": "research/articles/ai-agents-climatejust/metadata.json"
+    "uprn-service": {
+      "route": "/apps/uprn-service",
+      "assets": {
+        "cjBackend": {
+          "path": "apps/uprn-service/CJ_Backend.xlsx",
+          "type": "xlsx"
         },
-        "ai-document-insights": {
-          "architectureExtractDescriptions": "research/articles/ai-document-insights/architecture-extract-descriptions.svg",
-          "architectureSummarise": "research/articles/ai-document-insights/architecture-summarise.svg",
-          "article": "research/articles/ai-document-insights/article.md",
-          "metadata": "research/articles/ai-document-insights/metadata.json"
+        "climatejustRenderers": {
+          "path": "apps/uprn-service/climatejust-renderers.json",
+          "type": "json"
         },
-        "ai-function-calling": {
-          "article": "research/articles/ai-function-calling/article.md",
-          "metadata": "research/articles/ai-function-calling/metadata.json"
+        "config": {
+          "path": "apps/uprn-service/config.xlsx",
+          "type": "xlsx"
         },
-        "image-test": {
-          "article": "research/articles/image-test/article.md",
-          "image": "research/articles/image-test/image.jpg",
-          "image1": "research/articles/image-test/image1.png",
-          "image2": "research/articles/image-test/image2.png",
-          "metadata": "research/articles/image-test/metadata.json"
+        "generated.csv.config.datasets": {
+          "path": "apps/uprn-service/generated/csv/config/datasets.csv",
+          "type": "csv"
         },
-        "index": "research/articles/index.txt"
+        "generated.csv.config.domains": {
+          "path": "apps/uprn-service/generated/csv/config/domains.csv",
+          "type": "csv"
+        },
+        "generated.csv.config.folders": {
+          "path": "apps/uprn-service/generated/csv/config/folders.csv",
+          "type": "csv"
+        },
+        "generated.csv.config.variables": {
+          "path": "apps/uprn-service/generated/csv/config/variables.csv",
+          "type": "csv"
+        },
+        "generated.manifest": {
+          "path": "apps/uprn-service/generated/manifest.json",
+          "type": "json"
+        },
+        "infoDescriptions": {
+          "path": "apps/uprn-service/info-descriptions.xlsx",
+          "type": "xlsx"
+        },
+        "introduction": {
+          "path": "apps/uprn-service/introduction.testing.md",
+          "type": "markdown"
+        },
+        "settings": {
+          "path": "apps/uprn-service/settings.testing.json",
+          "type": "json"
+        }
       }
     }
-  ]
+  }
 }
