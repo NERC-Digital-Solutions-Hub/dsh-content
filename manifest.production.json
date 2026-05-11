@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "2026-05-11T12:44:39Z",
-  "generatedAt": "2026-05-11T12:44:39Z",
+  "version": "2026-05-11T12:49:18Z",
+  "generatedAt": "2026-05-11T12:49:18Z",
   "environment": "production",
   "pages": {
     "articles": {
@@ -15,11 +15,11 @@
           "path": "research/articles/ai-agents-climatejust/metadata.json",
           "type": "json"
         },
-        "ai-document-insights.architectureExtractDescriptions": {
+        "ai-document-insights.architecture-extract-descriptions": {
           "path": "research/articles/ai-document-insights/architecture-extract-descriptions.svg",
           "type": "svg"
         },
-        "ai-document-insights.architectureSummarise": {
+        "ai-document-insights.architecture-summarise": {
           "path": "research/articles/ai-document-insights/architecture-summarise.svg",
           "type": "svg"
         },
@@ -80,7 +80,7 @@
           "path": "svgs/bootstrap/compass.svg",
           "type": "svg"
         },
-        "svgs.bootstrap.infoCircle": {
+        "svgs.bootstrap.info-circle": {
           "path": "svgs/bootstrap/info-circle.svg",
           "type": "svg"
         },
@@ -102,11 +102,11 @@
     "uprn-service": {
       "route": "/apps/uprn-service",
       "assets": {
-        "cjBackend": {
+        "CJ_Backend": {
           "path": "apps/uprn-service/CJ_Backend.xlsx",
           "type": "xlsx"
         },
-        "climatejustRenderers": {
+        "climatejust-renderers": {
           "path": "apps/uprn-service/climatejust-renderers.json",
           "type": "json"
         },
@@ -134,7 +134,7 @@
           "path": "apps/uprn-service/generated/manifest.json",
           "type": "json"
         },
-        "infoDescriptions": {
+        "info-descriptions": {
           "path": "apps/uprn-service/info-descriptions.xlsx",
           "type": "xlsx"
         },
