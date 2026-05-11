@@ -1,6 +1,16 @@
+---
+title: "AI Function Calling"
+description: "Demonstrates using AI function calling in our UPRN service application."
+date: "2025-11-07"
+tags:
+  - AI
+  - Function Calling
+  - UPRN
+---
+
 # AI Function Calling
 
-We’ve been investigating whether AI function calling can make it easier for users to interrogate and work with UPRN-based datasets, particularly when today’s workflows require navigating multiple UI controls or composing more formal query inputs.
+We've been investigating whether AI function calling can make it easier for users to interrogate and work with UPRN-based datasets, particularly when today's workflows require navigating multiple UI controls or composing more formal query inputs.
 
 Function calling is interesting here because it gives a model a constrained way to take actions: instead of generating free-text instructions, it can select from a small set of predefined functions (e.g., filter, zoom, download), pass structured parameters, and have the application execute those actions deterministically. Our goal in this early work was to see what this interaction pattern looks like in practice, and what kinds of user tasks it supports well.
 
@@ -27,7 +37,7 @@ We then extended the same approach to support filtering by more specific geograp
 
 Next, we explored a more data-driven query: filtering UPRNs based on pollutant levels. This was a useful stress-test because it requires the model to translate a natural-language condition into structured filters (thresholds, fields, and operators), rather than selecting from a small set of map controls.
 
-This experiment helped us evaluate how 'function calling' performs when the user’s request is closer to an analytical query than a UI action.
+This experiment helped us evaluate how 'function calling' performs when the user's request is closer to an analytical query than a UI action.
 
 [Filter by pollutants](https://github.com/NERC-Digital-Solutions-Hub/dsh-content-videos/raw/refs/heads/dev/videos/llm/func-call/llm-func-call-poc-pollutants-filter.mp4)
 
@@ -37,12 +47,10 @@ Finally, we tested whether the same interface could support a complete workflow:
 
 [Filter by pollutants then download](https://github.com/NERC-Digital-Solutions-Hub/dsh-content-videos/raw/refs/heads/dev/videos/llm/func-call/llm-func-call-poc-pollutants-filter-download.mp4)
 
-### What we’ve learned so far
+### What we've learned so far
 
 Across these experiments, function calling looks promising for reducing friction in common tasks: users can describe what they want, and the service can respond by executing explicit, auditable actions on the underlying data.
 
 This is still early-stage work, but it suggests that function calling can provide a practical bridge between natural-language intent and structured geospatial operations, particularly for workflows currently split between UI interactions and query building.
 
 Next, we plan to focus on robustness (handling ambiguity and edge cases), transparency (showing what was executed and why), and safety/constraints (ensuring the model can only take permitted actions with validated parameters).
-
-
