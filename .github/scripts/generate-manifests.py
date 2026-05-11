@@ -117,24 +117,6 @@ def utc_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
-def to_camel_case(s: str) -> str:
-    """
-    Convert strings like:
-      hero.title -> heroTitle
-      architecture-extract-descriptions -> architectureExtractDescriptions
-      info-circle -> infoCircle
-    """
-    parts = [p for p in re.split(r"[^A-Za-z0-9]+", s) if p]
-
-    if not parts:
-        return s
-
-    first = parts[0].lower()
-    rest = [(p[:1].upper() + p[1:]) if p else "" for p in parts[1:]]
-
-    return first + "".join(rest)
-
-
 def load_site_json(path: Path) -> Dict[str, Any]:
     if not path.exists():
         raise FileNotFoundError(f"site.json not found at {path}")
@@ -347,31 +329,13 @@ def collect_files_for_route(route_dir: Path, route_dirs: Set[Path]) -> List[Path
 
     return out
 
-
 def asset_key_for_file(route_dir: Path, file_path: Path, environments: List[str]) -> Tuple[str, Optional[str], str]:
-    """
-    Convert a file path to a flat asset key.
-
-    Parent directory segments are preserved as path-ish keys.
-    Leaf filename is camelCased after removing environment and extension.
-
-    Examples:
-      introduction.development.md
-        -> ("introduction", "development", "md")
-
-      generated/csv/config/datasets.csv
-        -> ("generated.csv.config.datasets", None, "csv")
-
-      svgs/bootstrap/info-circle.svg
-        -> ("svgs.bootstrap.infoCircle", None, "svg")
-    """
     rel = file_path.relative_to(route_dir)
     parent_parts = list(rel.parent.parts) if rel.parent != Path(".") else []
 
     base, environment, extension = parse_filename(rel.name, environments)
-    leaf_key = to_camel_case(base)
 
-    key_parts = parent_parts + [leaf_key]
+    key_parts = parent_parts + [base]
     asset_key = ".".join(key_parts)
 
     return asset_key, environment, extension
