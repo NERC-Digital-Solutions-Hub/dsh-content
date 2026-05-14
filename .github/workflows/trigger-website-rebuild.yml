@@ -1,0 +1,20 @@
+name: Trigger website rebuild
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger dsh website repo build
+        env:
+          GH_TOKEN: ${{ secrets.WEBSITE_REPO_ACTIONS_TOKEN }}
+        run: |
+          gh workflow run deploy.yml \
+            --repo NERC-Digital-Solutions-Hub/dsh-dev \
+            --ref dev \
+            -f content_sha=${{ github.sha }} \
+            -f content_ref=${{ github.ref_name }}
