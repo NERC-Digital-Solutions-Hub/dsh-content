@@ -11,25 +11,12 @@ content:
     label: Home
     type: group
     items:
-      - name: home-default
-        label: Default
+      - name: home-introduction
+        label: Introduction
         type: group
         items:
-          - name: root-settings
-            label: Root Settings (Default)
-            type: file
-            path: pages/settings.json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-      - name: home-production
-        label: Production
-        type: group
-        items:
-          - name: introduction-production
-            label: Introduction
+          - name: home-introduction-production
+            label: Production
             type: file
             path: pages/introduction.production.md
             fields:
@@ -39,21 +26,8 @@ content:
                 options:
                   format: markdown
 
-          - name: root-settings-production
-            label: Root Settings
-            type: file
-            path: pages/settings.production.json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-      - name: home-development
-        label: Development
-        type: group
-        items:
-          - name: introduction-development
-            label: Introduction
+          - name: home-introduction-development
+            label: Development
             type: file
             path: pages/introduction.development.md
             fields:
@@ -63,21 +37,8 @@ content:
                 options:
                   format: markdown
 
-          - name: root-settings-development
-            label: Root Settings
-            type: file
-            path: pages/settings.development.json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-      - name: home-testing
-        label: Testing
-        type: group
-        items:
-          - name: introduction-testing
-            label: Introduction
+          - name: home-introduction-testing
+            label: Testing
             type: file
             path: pages/introduction.testing.md
             fields:
@@ -87,10 +48,45 @@ content:
                 options:
                   format: markdown
 
-          - name: root-settings-testing
-            label: Root Settings
+      - name: home-settings
+        label: Settings
+        type: group
+        items:
+          - name: home-settings-default
+            label: Default
+            type: file
+            path: pages/settings.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+          - name: home-settings-production
+            label: Production
+            type: file
+            path: pages/settings.production.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+          - name: home-settings-development
+            label: Development
+            type: file
+            path: pages/settings.development.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+          - name: home-settings-testing
+            label: Testing
             type: file
             path: pages/settings.testing.json
+            format: json
             fields:
               - name: enableIntroductionPopup
                 label: Enable Introduction Popup
@@ -157,38 +153,12 @@ content:
     label: UPRN Service
     type: group
     items:
-      - name: uprn-service-default
-        label: Default
+      - name: uprn-service-introduction
+        label: Introduction
         type: group
         items:
-          - name: uprn-settings
-            label: UPRN Service Settings (Default)
-            type: file
-            path: pages/apps/uprn-service/settings.json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-              - name: chatbot
-                label: Chatbot
-                type: object
-                fields:
-                  - name: initialMessage
-                    label: Initial Message
-                    type: text
-
-                  - name: exampleQuestions
-                    label: Example Questions
-                    type: string
-                    list: true
-
-      - name: uprn-service-production
-        label: Production
-        type: group
-        items:
-          - name: uprn-introduction-production
-            label: Introduction
+          - name: uprn-service-introduction-production
+            label: Production
             type: file
             path: pages/apps/uprn-service/introduction.production.md
             fields:
@@ -198,34 +168,8 @@ content:
                 options:
                   format: markdown
 
-          - name: uprn-settings-production
-            label: Settings
-            type: file
-            path: pages/apps/uprn-service/settings.production.json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-              - name: chatbot
-                label: Chatbot
-                type: object
-                fields:
-                  - name: initialMessage
-                    label: Initial Message
-                    type: text
-
-                  - name: exampleQuestions
-                    label: Example Questions
-                    type: string
-                    list: true
-
-      - name: uprn-service-development
-        label: Development
-        type: group
-        items:
-          - name: uprn-introduction-development
-            label: Introduction
+          - name: uprn-service-introduction-development
+            label: Development
             type: file
             path: pages/apps/uprn-service/introduction.development.md
             fields:
@@ -235,10 +179,26 @@ content:
                 options:
                   format: markdown
 
-          - name: uprn-settings-development
-            label: Settings
+          - name: uprn-service-introduction-testing
+            label: Testing
             type: file
-            path: pages/apps/uprn-service/settings.development.json
+            path: pages/apps/uprn-service/introduction.testing.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+      - name: uprn-service-settings
+        label: Settings
+        type: group
+        items:
+          - name: uprn-service-settings-default
+            label: Default
+            type: file
+            path: pages/apps/uprn-service/settings.json
+            format: json
             fields:
               - name: enableIntroductionPopup
                 label: Enable Introduction Popup
@@ -257,25 +217,57 @@ content:
                     type: string
                     list: true
 
-      - name: uprn-service-testing
-        label: Testing
-        type: group
-        items:
-          - name: uprn-introduction-testing
-            label: Introduction
+          - name: uprn-service-settings-production
+            label: Production
             type: file
-            path: pages/apps/uprn-service/introduction.testing.md
+            path: pages/apps/uprn-service/settings.production.json
+            format: json
             fields:
-              - name: body
-                label: Body
-                type: rich-text
-                options:
-                  format: markdown
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
 
-          - name: uprn-settings-testing
-            label: Settings
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
+
+          - name: uprn-service-settings-development
+            label: Development
+            type: file
+            path: pages/apps/uprn-service/settings.development.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
+
+          - name: uprn-service-settings-testing
+            label: Testing
             type: file
             path: pages/apps/uprn-service/settings.testing.json
+            format: json
             fields:
               - name: enableIntroductionPopup
                 label: Enable Introduction Popup
