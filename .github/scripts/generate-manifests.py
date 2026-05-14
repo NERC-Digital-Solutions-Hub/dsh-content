@@ -1,15 +1,26 @@
 #!/usr/bin/env python3
 """
-Generate manifest.<environment>.json files from a /pages directory using `.page` markers,
-but output each page entry in the nested "Option 1" style:
+Generate manifest.<environment>.json files from a /pages directory using `.page` markers.
+
+Output shape:
 
 {
-  "route": "/research",
-  "files": {
-    "articles": {
-      "ai-document-insights": {
-        "article": "...",
-        "metadata": "..."
+  "schemaVersion": 1,
+  "version": "2026-05-08T10:47:25Z",
+  "generatedAt": "2026-05-08T10:47:25Z",
+  "environment": "development",
+  "pages": {
+    "uprn-service": {
+      "route": "/apps/uprn-service",
+      "assets": {
+        "introduction": {
+          "path": "apps/uprn-service/introduction.development.md",
+          "type": "markdown"
+        },
+        "generated.csv.config.datasets": {
+          "path": "apps/uprn-service/generated/csv/config/datasets.csv",
+          "type": "csv"
+        }
       }
     }
   }
@@ -17,17 +28,31 @@ but output each page entry in the nested "Option 1" style:
 
 Key rules:
 - A directory is a route IFF it contains a `.page` file.
-- Any directory named exactly "generated" is ignored (anywhere).
-- A file is environment-specific if: <name>.<environment>.<ext> (e.g., config.testing.json).
-  Otherwise it is included for all environments (default).
-- For the same "key path", environment-specific overrides default.
-- Nested structure mirrors the folder structure beneath the route directory.
-- Leaf key name = filename with environment + extension removed, converted to camelCase.
-  Parent directory keys are kept as-is (including hyphens), mirroring folders.
+- `.page` may be empty, or may contain JSON such as: { "id": "uprn-service" }.
+- Hidden files are ignored.
+- Nested route directories are not included in the parent route's assets.
+- A file is environment-specific if: <name>.<environment>.<ext>
+  e.g. config.testing.json.
+- Otherwise it is included for all environments.
+- For the same asset key, environment-specific files override default files.
+- Asset key = relative path under the route directory, without environment and extension,
+  converted to dot notation.
+  Examples:
+    introduction.development.md
+      -> introduction
+    generated/csv/config/datasets.csv
+      -> generated.csv.config.datasets
+    svgs/bootstrap/info-circle.svg
+      -> svgs.bootstrap.infoCircle
+- Each asset is emitted as:
+    {
+      "path": "...",
+      "type": "markdown" | "json" | "csv" | "svg" | ...
+    }
 
 Outputs:
 - manifest.<environment>.json for every environment in site.json["environments"]
-  (fallback: [site.json["currentenvironment"]] if "environments" is missing)
+  fallback: [site.json["currentenvironment"]] if "environments" is missing.
 
 Run:
   python generate_manifests.py
@@ -41,25 +66,46 @@ import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 
 PAGE_MARKER = ".page"
+SCHEMA_VERSION = 1
+
+# Keep this empty if generated assets should appear in the manifest.
+# If you really want to ignore generated directories, set: {"generated"}
+IGNORED_DIR_NAMES: Set[str] = set()
+
+
+@dataclass(frozen=True)
+class AssetDescriptor:
+    path: str
+    type: str
+
+
+@dataclass(frozen=True)
+class FileChoice:
+    default_asset: Optional[AssetDescriptor]
+    environment_assets: Dict[str, AssetDescriptor]
 
 
 def find_repo_root(start: Path) -> Path:
     """
     Find repo root by walking up until we find site.json and pages/.
-    This lets you run the script from anywhere (e.g. inside .github/).
+    This lets you run the script from anywhere.
     """
     p = start.resolve()
+
     for _ in range(30):
         if (p / "site.json").exists() and (p / "pages").is_dir():
             return p
+
         if p.parent == p:
             break
+
         p = p.parent
-    raise FileNotFoundError("Could not find repo root (expected site.json and pages/).")
+
+    raise FileNotFoundError("Could not find repo root. Expected site.json and pages/.")
 
 
 REPO_ROOT = find_repo_root(Path(__file__).parent)
@@ -67,77 +113,183 @@ SITE_JSON = REPO_ROOT / "site.json"
 PAGES_DIR = REPO_ROOT / "pages"
 
 
-@dataclass(frozen=True)
-class FileChoice:
-    default_path: Optional[str]        # rel to /pages
-    environment_paths: Dict[str, str]         # environment -> rel to /pages
-
-
 def utc_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
-def to_camel_case(s: str) -> str:
-    """
-    Convert 'hero.title' or 'architecture-extract-descriptions' to camelCase.
-    """
-    parts = [p for p in re.split(r"[^A-Za-z0-9]+", s) if p]
-    if not parts:
-        return s
-    first = parts[0].lower()
-    rest = [(p[:1].upper() + p[1:]) if p else "" for p in parts[1:]]
-    return first + "".join(rest)
-
-
-def load_site_json(path: Path) -> Dict:
+def load_site_json(path: Path) -> Dict[str, Any]:
     if not path.exists():
         raise FileNotFoundError(f"site.json not found at {path}")
+
     with path.open("r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def get_environments(site: Dict) -> List[str]:
+def get_environments(site: Dict[str, Any]) -> List[str]:
     environments = site.get("environments")
-    if isinstance(environments, list) and environments and all(isinstance(m, str) for m in environments):
+
+    if isinstance(environments, list) and environments and all(isinstance(env, str) for env in environments):
         return environments
-    cm = site.get("currentenvironment")
-    if isinstance(cm, str) and cm:
-        return [cm]
+
+    current_environment = site.get("currentenvironment")
+
+    if isinstance(current_environment, str) and current_environment:
+        return [current_environment]
+
     raise ValueError('site.json must contain "environments": [...] or "currentenvironment": "..."')
 
 
-def parse_filename(filename: str, environments: List[str]) -> Tuple[str, Optional[str]]:
+def parse_filename(filename: str, environments: List[str]) -> Tuple[str, Optional[str], str]:
     """
-    Return (basename_without_environment_or_ext, environment_or_None).
-    Recognizes <name>.<environment>.<ext>.
+    Return:
+      basename_without_environment_or_ext,
+      environment_or_None,
+      extension_without_dot
+
+    Recognizes:
+      <name>.<environment>.<ext>
+
+    Examples:
+      introduction.development.md -> ("introduction", "development", "md")
+      settings.json -> ("settings", None, "json")
+      archive.tar.gz -> ("archive.tar", None, "gz")
     """
     parts = filename.split(".")
+
     if len(parts) >= 3 and parts[-2] in environments:
         environment = parts[-2]
         base = ".".join(parts[:-2])
-        return base, environment
-    base = ".".join(parts[:-1]) if len(parts) > 1 else filename
-    return base, None
+        extension = parts[-1]
+        return base, environment, extension
+
+    if len(parts) > 1:
+        base = ".".join(parts[:-1])
+        extension = parts[-1]
+        return base, None, extension
+
+    return filename, None, ""
+
+
+def infer_asset_type(extension: str) -> str:
+    """
+    Map file extensions to generic manifest asset types.
+    Keep this intentionally broad and content-oriented.
+    """
+    ext = extension.lower().lstrip(".")
+
+    mapping = {
+        "md": "markdown",
+        "mdx": "markdown",
+        "json": "json",
+        "csv": "csv",
+        "svg": "svg",
+        "png": "png",
+        "jpg": "jpg",
+        "jpeg": "jpg",
+        "webp": "webp",
+        "gif": "gif",
+        "xlsx": "xlsx",
+        "xls": "xls",
+        "txt": "text",
+        "html": "html",
+        "xml": "xml",
+        "pdf": "pdf",
+    }
+
+    return mapping.get(ext, ext or "binary")
 
 
 def route_from_dir(route_dir: Path) -> str:
     rel = route_dir.relative_to(PAGES_DIR)
+
     if str(rel) in (".", ""):
         return "/"
+
     return "/" + "/".join(rel.parts)
 
 
-def rel_to_pages(p: Path) -> str:
-    return str(p.relative_to(PAGES_DIR)).replace(os.sep, "/")
+def rel_to_pages(path: Path) -> str:
+    return str(path.relative_to(PAGES_DIR)).replace(os.sep, "/")
+
+
+def read_page_marker(route_dir: Path) -> Dict[str, Any]:
+    """
+    `.page` can be:
+    - empty
+    - arbitrary non-JSON marker text
+    - JSON metadata, for example:
+        { "id": "uprn-service" }
+
+    Non-JSON content is ignored for backwards compatibility.
+    """
+    marker = route_dir / PAGE_MARKER
+
+    if not marker.exists():
+        return {}
+
+    text = marker.read_text(encoding="utf-8").strip()
+
+    if not text:
+        return {}
+
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError:
+        return {}
+
+    if not isinstance(data, dict):
+        return {}
+
+    return data
+
+
+def page_id_from_route(route: str) -> str:
+    """
+    Default page id derivation.
+
+    Examples:
+      /                  -> home
+      /research          -> research
+      /apps/uprn-service -> uprn-service
+      /research/articles -> articles
+
+    If this causes collisions, add an explicit id to the route's `.page` file.
+    """
+    if route == "/":
+        return "home"
+
+    parts = [part for part in route.split("/") if part]
+
+    if not parts:
+        return "home"
+
+    return parts[-1]
+
+
+def page_id_for_route_dir(route_dir: Path) -> str:
+    route = route_from_dir(route_dir)
+    marker = read_page_marker(route_dir)
+
+    explicit_id = marker.get("id")
+
+    if explicit_id is not None:
+        if not isinstance(explicit_id, str) or not explicit_id.strip():
+            raise ValueError(f'Invalid "id" in {route_dir / PAGE_MARKER}. Expected a non-empty string.')
+
+        return explicit_id.strip()
+
+    return page_id_from_route(route)
 
 
 def find_route_dirs() -> Set[Path]:
     """
-    Find all directories under /pages that contain `.page`, ignoring generated/.
+    Find all directories under /pages that contain `.page`.
     """
     route_dirs: Set[Path] = set()
 
     for root, dirs, files in os.walk(PAGES_DIR):
+        dirs[:] = [d for d in dirs if d not in IGNORED_DIR_NAMES]
+
         root_path = Path(root)
 
         if PAGE_MARKER in files:
@@ -148,128 +300,186 @@ def find_route_dirs() -> Set[Path]:
 
 def collect_files_for_route(route_dir: Path, route_dirs: Set[Path]) -> List[Path]:
     """
-    Collect all files under a route_dir recursively, excluding:
+    Collect all files under a route directory recursively, excluding:
     - `.page`
     - hidden files
-    - anything under generated/
-    - any subtree that is itself a route directory (has its own `.page`)
+    - ignored directory names
+    - any subtree that is itself a route directory
     """
     out: List[Path] = []
+
     for root, dirs, files in os.walk(route_dir):
+        dirs[:] = [d for d in dirs if d not in IGNORED_DIR_NAMES]
+
         root_path = Path(root)
 
-        # stop at nested route dirs
+        # Stop at nested route directories.
         if root_path != route_dir and root_path in route_dirs:
             dirs[:] = []
             continue
 
-        for f in files:
-            if f == PAGE_MARKER or f.startswith("."):
+        for filename in files:
+            if filename == PAGE_MARKER or filename.startswith("."):
                 continue
-            fp = root_path / f
-            if fp.is_file():
-                out.append(fp)
+
+            file_path = root_path / filename
+
+            if file_path.is_file():
+                out.append(file_path)
+
     return out
 
-
-def keypath_for_file(route_dir: Path, file_path: Path, environments: List[str]) -> Tuple[Tuple[str, ...], Optional[str]]:
-    """
-    Convert a file path to a nested key path under "files".
-
-    Parent directory keys mirror folder names (kept as-is).
-    Leaf key = camelCase(filename-without-environment-and-ext).
-    """
-    rel = file_path.relative_to(route_dir)  # e.g. articles/ai-x/metadata.json
+def asset_key_for_file(route_dir: Path, file_path: Path, environments: List[str]) -> Tuple[str, Optional[str], str]:
+    rel = file_path.relative_to(route_dir)
     parent_parts = list(rel.parent.parts) if rel.parent != Path(".") else []
 
-    base, environment = parse_filename(rel.name, environments)
-    leaf_key = to_camel_case(base)
+    base, environment, extension = parse_filename(rel.name, environments)
 
-    # Keep directory names as-is (to mirror folders)
-    return tuple(parent_parts + [leaf_key]), environment
+    key_parts = parent_parts + [base]
+    asset_key = ".".join(key_parts)
+
+    return asset_key, environment, extension
 
 
-def set_nested(obj: Dict, keys: Tuple[str, ...], value: str) -> None:
+def build_index(
+    route_dirs: Set[Path],
+    environments: List[str],
+) -> Dict[str, Dict[str, FileChoice]]:
     """
-    Set obj[keys[0]]...[keys[-1]] = value, creating dicts as needed.
-    Raises if there's a type collision (e.g. trying to put children under a string).
+    Build:
+      page_id -> asset_key -> FileChoice(default, per-environment)
     """
-    cur = obj
-    for k in keys[:-1]:
-        if k not in cur:
-            cur[k] = {}
-        if not isinstance(cur[k], dict):
-            raise ValueError(f"Key collision: '{k}' is already a non-object, cannot nest under it.")
-        cur = cur[k]
-    last = keys[-1]
-    # If last exists and is a dict, collision (file vs folder)
-    if last in cur and isinstance(cur[last], dict):
-        raise ValueError(f"Key collision: '{last}' is already an object, cannot overwrite with a file path.")
-    cur[last] = value
+    index: Dict[str, Dict[str, FileChoice]] = {}
+    seen_page_ids: Dict[str, Path] = {}
 
+    for route_dir in sorted(route_dirs):
+        page_id = page_id_for_route_dir(route_dir)
 
-def build_index(route_dirs: Set[Path], environments: List[str]) -> Dict[str, Dict[Tuple[str, ...], FileChoice]]:
-    """
-    route -> keypath(tuple) -> FileChoice(default, per-environment)
-    """
-    index: Dict[str, Dict[Tuple[str, ...], FileChoice]] = {}
-
-    for route_dir in route_dirs:
-        route = route_from_dir(route_dir)
-        files = collect_files_for_route(route_dir, route_dirs)
-
-        default_map: Dict[Tuple[str, ...], str] = {}
-        environment_map: Dict[Tuple[str, ...], Dict[str, str]] = {}
-
-        for fp in files:
-            keypath, environment = keypath_for_file(route_dir, fp, environments)
-            path_from_pages = rel_to_pages(fp)
-
-            if environment is None:
-                # If multiple defaults map to same keypath, keep the first deterministically
-                default_map.setdefault(keypath, path_from_pages)
-            else:
-                environment_map.setdefault(keypath, {})[environment] = path_from_pages
-
-        route_entries: Dict[Tuple[str, ...], FileChoice] = {}
-        for kp in set(list(default_map.keys()) + list(environment_map.keys())):
-            route_entries[kp] = FileChoice(
-                default_path=default_map.get(kp),
-                environment_paths=environment_map.get(kp, {}),
+        if page_id in seen_page_ids:
+            previous = seen_page_ids[page_id]
+            raise ValueError(
+                f'Duplicate page id "{page_id}".\n'
+                f"First:  {previous}\n"
+                f"Second: {route_dir}\n"
+                f"Add explicit unique ids to the .page files."
             )
 
-        index[route] = route_entries
+        seen_page_ids[page_id] = route_dir
+
+        files = collect_files_for_route(route_dir, route_dirs)
+
+        default_map: Dict[str, AssetDescriptor] = {}
+        environment_map: Dict[str, Dict[str, AssetDescriptor]] = {}
+
+        for file_path in files:
+            asset_key, environment, extension = asset_key_for_file(route_dir, file_path, environments)
+
+            asset = AssetDescriptor(
+                path=rel_to_pages(file_path),
+                type=infer_asset_type(extension),
+            )
+
+            if environment is None:
+                # If multiple defaults map to the same key, keep the first deterministically.
+                default_map.setdefault(asset_key, asset)
+            else:
+                environment_map.setdefault(asset_key, {})[environment] = asset
+
+        route_entries: Dict[str, FileChoice] = {}
+
+        for asset_key in set(list(default_map.keys()) + list(environment_map.keys())):
+            route_entries[asset_key] = FileChoice(
+                default_asset=default_map.get(asset_key),
+                environment_assets=environment_map.get(asset_key, {}),
+            )
+
+        index[page_id] = route_entries
 
     return index
 
 
-def build_page_files_for_environment(
+def build_page_assets_for_environment(
     environment: str,
-    route_entries: Dict[Tuple[str, ...], FileChoice],
-) -> Dict:
+    route_entries: Dict[str, FileChoice],
+) -> Dict[str, Dict[str, str]]:
     """
-    Build the nested "files" object for one route and one environment.
+    Build the flat "assets" object for one page and one environment.
     """
-    files_obj: Dict = {}
+    assets: Dict[str, Dict[str, str]] = {}
 
-    # deterministic ordering for stable diffs
-    for keypath in sorted(route_entries.keys()):
-        choice = route_entries[keypath]
-        if environment in choice.environment_paths:
-            set_nested(files_obj, keypath, choice.environment_paths[environment])
-        elif choice.default_path is not None:
-            set_nested(files_obj, keypath, choice.default_path)
+    for asset_key in sorted(route_entries.keys()):
+        choice = route_entries[asset_key]
 
-    return files_obj
+        if environment in choice.environment_assets:
+            selected = choice.environment_assets[environment]
+        elif choice.default_asset is not None:
+            selected = choice.default_asset
+        else:
+            continue
+
+        assets[asset_key] = {
+            "path": selected.path,
+            "type": selected.type,
+        }
+
+    return assets
 
 
-def build_manifest(environment: str, version: str, index: Dict[str, Dict[Tuple[str, ...], FileChoice]]) -> Dict:
-    pages: List[Dict] = []
-    for route in sorted(index.keys()):
-        files_obj = build_page_files_for_environment(environment, index[route])
-        if files_obj:
-            pages.append({"route": route, "files": files_obj})
-    return {"version": version, "environment": environment, "pages": pages}
+def build_manifest(
+    environment: str,
+    version: str,
+    index: Dict[str, Dict[str, FileChoice]],
+) -> Dict[str, Any]:
+    pages: Dict[str, Dict[str, Any]] = {}
+
+    for page_id in sorted(index.keys()):
+        route_dir = page_route_dir_from_page_id(page_id)
+        route = route_from_dir(route_dir)
+
+        assets = build_page_assets_for_environment(environment, index[page_id])
+
+        if assets:
+            pages[page_id] = {
+                "route": route,
+                "assets": assets,
+            }
+
+    return {
+        "schemaVersion": SCHEMA_VERSION,
+        "version": version,
+        "generatedAt": version,
+        "environment": environment,
+        "pages": pages,
+    }
+
+
+# Internal route lookup populated by main/build setup.
+_PAGE_ID_TO_ROUTE_DIR: Dict[str, Path] = {}
+
+
+def page_route_dir_from_page_id(page_id: str) -> Path:
+    try:
+        return _PAGE_ID_TO_ROUTE_DIR[page_id]
+    except KeyError as exc:
+        raise KeyError(f'No route directory registered for page id "{page_id}".') from exc
+
+
+def register_page_route_dirs(route_dirs: Set[Path]) -> None:
+    _PAGE_ID_TO_ROUTE_DIR.clear()
+
+    for route_dir in sorted(route_dirs):
+        page_id = page_id_for_route_dir(route_dir)
+
+        if page_id in _PAGE_ID_TO_ROUTE_DIR:
+            previous = _PAGE_ID_TO_ROUTE_DIR[page_id]
+            raise ValueError(
+                f'Duplicate page id "{page_id}".\n'
+                f"First:  {previous}\n"
+                f"Second: {route_dir}\n"
+                f"Add explicit unique ids to the .page files."
+            )
+
+        _PAGE_ID_TO_ROUTE_DIR[page_id] = route_dir
 
 
 def main() -> None:
@@ -277,17 +487,32 @@ def main() -> None:
     environments = get_environments(site)
 
     current_environment = site.get("currentenvironment")
-    if isinstance(current_environment, str) and current_environment and current_environment not in environments:
-        raise ValueError(f'currentenvironment "{current_environment}" is not in environments {environments}')
+
+    if (
+        isinstance(current_environment, str)
+        and current_environment
+        and current_environment not in environments
+    ):
+        raise ValueError(
+            f'currentenvironment "{current_environment}" is not in environments {environments}'
+        )
 
     route_dirs = find_route_dirs()
+    register_page_route_dirs(route_dirs)
+
     index = build_index(route_dirs, environments)
 
     version = utc_iso()
+
     for environment in environments:
         manifest = build_manifest(environment, version, index)
         out_path = REPO_ROOT / f"manifest.{environment}.json"
-        out_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+        out_path.write_text(
+            json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+
         print(f"Wrote {out_path.relative_to(REPO_ROOT)}")
 
     print("Done.")

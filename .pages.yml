@@ -1,0 +1,356 @@
+media:
+  input: dsh-catalogue-arcgis/images
+  output: /images
+
+content:
+  # ─────────────────────────────────────────────
+  # Home
+  # ─────────────────────────────────────────────
+
+  - name: home
+    label: Home
+    type: group
+    items:
+      - name: home-introduction
+        label: Introduction
+        type: group
+        items:
+          - name: home-introduction-production
+            label: Production
+            type: file
+            path: pages/introduction.production.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: home-introduction-development
+            label: Development
+            type: file
+            path: pages/introduction.development.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: home-introduction-testing
+            label: Testing
+            type: file
+            path: pages/introduction.testing.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+      - name: home-content
+        label: Content
+        type: group
+        items:
+          - name: home-content-production
+            label: Production
+            type: file
+            path: pages/content.production.json
+            format: json
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: version
+                label: Version
+                type: string
+                required: false
+              - name: description
+                label: Description
+                type: string
+                required: false
+
+          - name: home-content-development
+            label: Development
+            type: file
+            path: pages/content.development.json
+            format: json
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: version
+                label: Version
+                type: string
+                required: false
+              - name: description
+                label: Description
+                type: string
+                required: false
+
+          - name: home-content-testing
+            label: Testing
+            type: file
+            path: pages/content.testing.json
+            format: json
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: version
+                label: Version
+                type: string
+                required: false
+              - name: description
+                label: Description
+                type: string
+                required: false
+
+      - name: home-settings
+        label: Settings
+        type: group
+        items:
+          - name: home-settings-default
+            label: Default
+            type: file
+            path: pages/settings.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+          - name: home-settings-production
+            label: Production
+            type: file
+            path: pages/settings.production.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+          - name: home-settings-development
+            label: Development
+            type: file
+            path: pages/settings.development.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+          - name: home-settings-testing
+            label: Testing
+            type: file
+            path: pages/settings.testing.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+  # ─────────────────────────────────────────────
+  # Research
+  # ─────────────────────────────────────────────
+
+  - name: research
+    label: Research
+    type: group
+    items:
+      - name: research-page
+        label: Research Page
+        type: file
+        path: pages/research/main.md
+        fields:
+          - name: body
+            label: Body
+            type: rich-text
+            options:
+              format: markdown
+
+      - name: research-articles
+        label: Research Articles
+        type: collection
+        path: pages/research/articles
+        filename: '{slug}.md'
+        fields:
+          - name: title
+            label: Title
+            type: string
+            required: true
+
+          - name: description
+            label: Description
+            type: text
+
+          - name: thumbnail
+            label: Thumbnail
+            type: image
+            options:
+              path: articles
+              extensions: [jpg, jpeg, png, webp, gif, svg]
+              rename: false
+
+          - name: date
+            label: Date
+            type: date
+
+          - name: tags
+            label: Tags
+            type: string
+            list: true
+
+          - name: hidden
+            label: Hidden
+            type: boolean
+
+          - name: body
+            label: Body
+            type: rich-text
+            options:
+              format: markdown
+
+  # ─────────────────────────────────────────────
+  # UPRN Service
+  # ─────────────────────────────────────────────
+
+  - name: uprn-service
+    label: UPRN Service
+    type: group
+    items:
+      - name: uprn-service-introduction
+        label: Introduction
+        type: group
+        items:
+          - name: uprn-service-introduction-production
+            label: Production
+            type: file
+            path: pages/apps/uprn-service/introduction.production.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: uprn-service-introduction-development
+            label: Development
+            type: file
+            path: pages/apps/uprn-service/introduction.development.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: uprn-service-introduction-testing
+            label: Testing
+            type: file
+            path: pages/apps/uprn-service/introduction.testing.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+      - name: uprn-service-settings
+        label: Settings
+        type: group
+        items:
+          - name: uprn-service-settings-default
+            label: Default
+            type: file
+            path: pages/apps/uprn-service/settings.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
+
+          - name: uprn-service-settings-production
+            label: Production
+            type: file
+            path: pages/apps/uprn-service/settings.production.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
+
+          - name: uprn-service-settings-development
+            label: Development
+            type: file
+            path: pages/apps/uprn-service/settings.development.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
+
+          - name: uprn-service-settings-testing
+            label: Testing
+            type: file
+            path: pages/apps/uprn-service/settings.testing.json
+            format: json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
