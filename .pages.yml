@@ -126,6 +126,14 @@ content:
             label: Description
             type: text
 
+          - name: thumbnail
+            label: Thumbnail
+            type: image
+            options:
+              path: articles
+              extensions: [jpg, jpeg, png, webp, gif, svg]
+              rename: false
+
           - name: date
             label: Date
             type: date
