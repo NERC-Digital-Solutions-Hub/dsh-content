@@ -15,6 +15,4 @@ jobs:
         run: |
           gh workflow run deploy.yml \
             --repo NERC-Digital-Solutions-Hub/dsh-dev \
-            --ref dev \
-            -f content_sha=${{ github.sha }} \
-            -f content_ref=${{ github.ref_name }}
+            --ref dev
