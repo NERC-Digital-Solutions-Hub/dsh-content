@@ -4,46 +4,106 @@ media:
 
 content:
   # ─────────────────────────────────────────────
-  # Shared / non-environment-specific content
+  # Home
   # ─────────────────────────────────────────────
 
-  - name: shared
-    label: Shared
+  - name: home
+    label: Home
     type: group
     items:
-      # ─────────────────────────────────────────
-      # Research
-      # ─────────────────────────────────────────
+      - name: home-default
+        label: Default
+        type: group
+        items:
+          - name: root-settings
+            label: Root Settings (Default)
+            type: file
+            path: pages/settings.json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
 
-      - name: research-articles
-        label: Research Articles
-        type: collection
-        path: pages/research/articles
-        filename: '{slug}.md'
-        fields:
-          - name: title
-            label: Title
-            type: string
-            required: true
-          - name: description
-            label: Description
-            type: text
-          - name: date
-            label: Date
-            type: date
-          - name: tags
-            label: Tags
-            type: string
-            list: true
-          - name: hidden
-            label: Hidden
-            type: boolean
-          - name: body
-            label: Body
-            type: rich-text
-            options:
-              format: markdown
+      - name: home-production
+        label: Production
+        type: group
+        items:
+          - name: introduction-production
+            label: Introduction
+            type: file
+            path: pages/introduction.production.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
 
+          - name: root-settings-production
+            label: Root Settings
+            type: file
+            path: pages/settings.production.json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+      - name: home-development
+        label: Development
+        type: group
+        items:
+          - name: introduction-development
+            label: Introduction
+            type: file
+            path: pages/introduction.development.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: root-settings-development
+            label: Root Settings
+            type: file
+            path: pages/settings.development.json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+      - name: home-testing
+        label: Testing
+        type: group
+        items:
+          - name: introduction-testing
+            label: Introduction
+            type: file
+            path: pages/introduction.testing.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: root-settings-testing
+            label: Root Settings
+            type: file
+            path: pages/settings.testing.json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+  # ─────────────────────────────────────────────
+  # Research
+  # ─────────────────────────────────────────────
+
+  - name: research
+    label: Research
+    type: group
+    items:
       - name: research-page
         label: Research Page
         type: file
@@ -55,212 +115,181 @@ content:
             options:
               format: markdown
 
-      # ─────────────────────────────────────────
-      # Default settings
-      # ─────────────────────────────────────────
-
-      - name: root-settings
-        label: Root Settings (Default)
-        type: file
-        path: pages/settings.json
+      - name: research-articles
+        label: Research Articles
+        type: collection
+        path: pages/research/articles
+        filename: '{slug}.md'
         fields:
-          - name: enableIntroductionPopup
-            label: Enable Introduction Popup
+          - name: title
+            label: Title
+            type: string
+            required: true
+
+          - name: description
+            label: Description
+            type: text
+
+          - name: date
+            label: Date
+            type: date
+
+          - name: tags
+            label: Tags
+            type: string
+            list: true
+
+          - name: hidden
+            label: Hidden
             type: boolean
 
-      - name: uprn-settings
-        label: UPRN Service Settings (Default)
-        type: file
-        path: pages/apps/uprn-service/settings.json
-        fields:
-          - name: enableIntroductionPopup
-            label: Enable Introduction Popup
-            type: boolean
-          - name: chatbot
-            label: Chatbot
-            type: object
-            fields:
-              - name: initialMessage
-                label: Initial Message
-                type: text
-              - name: exampleQuestions
-                label: Example Questions
-                type: string
-                list: true
+          - name: body
+            label: Body
+            type: rich-text
+            options:
+              format: markdown
 
   # ─────────────────────────────────────────────
-  # Production
+  # UPRN Service
   # ─────────────────────────────────────────────
 
-  - name: production
-    label: Production
+  - name: uprn-service
+    label: UPRN Service
     type: group
     items:
-      - name: introduction-production
-        label: Introduction
-        type: file
-        path: pages/introduction.production.md
-        fields:
-          - name: body
-            label: Body
-            type: rich-text
-            options:
-              format: markdown
-
-      - name: root-settings-production
-        label: Root Settings
-        type: file
-        path: pages/settings.production.json
-        fields:
-          - name: enableIntroductionPopup
-            label: Enable Introduction Popup
-            type: boolean
-
-      - name: uprn-introduction-production
-        label: UPRN Service Introduction
-        type: file
-        path: pages/apps/uprn-service/introduction.production.md
-        fields:
-          - name: body
-            label: Body
-            type: rich-text
-            options:
-              format: markdown
-
-      - name: uprn-settings-production
-        label: UPRN Service Settings
-        type: file
-        path: pages/apps/uprn-service/settings.production.json
-        fields:
-          - name: enableIntroductionPopup
-            label: Enable Introduction Popup
-            type: boolean
-          - name: chatbot
-            label: Chatbot
-            type: object
+      - name: uprn-service-default
+        label: Default
+        type: group
+        items:
+          - name: uprn-settings
+            label: UPRN Service Settings (Default)
+            type: file
+            path: pages/apps/uprn-service/settings.json
             fields:
-              - name: initialMessage
-                label: Initial Message
-                type: text
-              - name: exampleQuestions
-                label: Example Questions
-                type: string
-                list: true
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
 
-  # ─────────────────────────────────────────────
-  # Development
-  # ─────────────────────────────────────────────
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
 
-  - name: development
-    label: Development
-    type: group
-    items:
-      - name: introduction-development
-        label: Introduction
-        type: file
-        path: pages/introduction.development.md
-        fields:
-          - name: body
-            label: Body
-            type: rich-text
-            options:
-              format: markdown
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
 
-      - name: root-settings-development
-        label: Root Settings
-        type: file
-        path: pages/settings.development.json
-        fields:
-          - name: enableIntroductionPopup
-            label: Enable Introduction Popup
-            type: boolean
-
-      - name: uprn-introduction-development
-        label: UPRN Service Introduction
-        type: file
-        path: pages/apps/uprn-service/introduction.development.md
-        fields:
-          - name: body
-            label: Body
-            type: rich-text
-            options:
-              format: markdown
-
-      - name: uprn-settings-development
-        label: UPRN Service Settings
-        type: file
-        path: pages/apps/uprn-service/settings.development.json
-        fields:
-          - name: enableIntroductionPopup
-            label: Enable Introduction Popup
-            type: boolean
-          - name: chatbot
-            label: Chatbot
-            type: object
+      - name: uprn-service-production
+        label: Production
+        type: group
+        items:
+          - name: uprn-introduction-production
+            label: Introduction
+            type: file
+            path: pages/apps/uprn-service/introduction.production.md
             fields:
-              - name: initialMessage
-                label: Initial Message
-                type: text
-              - name: exampleQuestions
-                label: Example Questions
-                type: string
-                list: true
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
 
-  # ─────────────────────────────────────────────
-  # Testing
-  # ─────────────────────────────────────────────
-
-  - name: testing
-    label: Testing
-    type: group
-    items:
-      - name: introduction-testing
-        label: Introduction
-        type: file
-        path: pages/introduction.testing.md
-        fields:
-          - name: body
-            label: Body
-            type: rich-text
-            options:
-              format: markdown
-
-      - name: root-settings-testing
-        label: Root Settings
-        type: file
-        path: pages/settings.testing.json
-        fields:
-          - name: enableIntroductionPopup
-            label: Enable Introduction Popup
-            type: boolean
-
-      - name: uprn-introduction-testing
-        label: UPRN Service Introduction
-        type: file
-        path: pages/apps/uprn-service/introduction.testing.md
-        fields:
-          - name: body
-            label: Body
-            type: rich-text
-            options:
-              format: markdown
-
-      - name: uprn-settings-testing
-        label: UPRN Service Settings
-        type: file
-        path: pages/apps/uprn-service/settings.testing.json
-        fields:
-          - name: enableIntroductionPopup
-            label: Enable Introduction Popup
-            type: boolean
-          - name: chatbot
-            label: Chatbot
-            type: object
+          - name: uprn-settings-production
+            label: Settings
+            type: file
+            path: pages/apps/uprn-service/settings.production.json
             fields:
-              - name: initialMessage
-                label: Initial Message
-                type: text
-              - name: exampleQuestions
-                label: Example Questions
-                type: string
-                list: true
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
+
+      - name: uprn-service-development
+        label: Development
+        type: group
+        items:
+          - name: uprn-introduction-development
+            label: Introduction
+            type: file
+            path: pages/apps/uprn-service/introduction.development.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: uprn-settings-development
+            label: Settings
+            type: file
+            path: pages/apps/uprn-service/settings.development.json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
+
+      - name: uprn-service-testing
+        label: Testing
+        type: group
+        items:
+          - name: uprn-introduction-testing
+            label: Introduction
+            type: file
+            path: pages/apps/uprn-service/introduction.testing.md
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: uprn-settings-testing
+            label: Settings
+            type: file
+            path: pages/apps/uprn-service/settings.testing.json
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
