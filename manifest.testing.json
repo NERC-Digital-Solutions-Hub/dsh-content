@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "version": "2026-05-11T12:49:18Z",
-  "generatedAt": "2026-05-11T12:49:18Z",
+  "version": "2026-05-14T13:38:52Z",
+  "generatedAt": "2026-05-14T13:38:52Z",
   "environment": "testing",
   "pages": {
     "articles": {
       "route": "/research/articles",
       "assets": {
-        "ai-agents-climatejust.article": {
-          "path": "research/articles/ai-agents-climatejust/article.md",
+        "ai-agents-climatejust": {
+          "path": "research/articles/ai-agents-climatejust.md",
           "type": "markdown"
         },
-        "ai-agents-climatejust.metadata": {
-          "path": "research/articles/ai-agents-climatejust/metadata.json",
-          "type": "json"
+        "ai-document-insights": {
+          "path": "research/articles/ai-document-insights.md",
+          "type": "markdown"
         },
         "ai-document-insights.architecture-extract-descriptions": {
           "path": "research/articles/ai-document-insights/architecture-extract-descriptions.svg",
@@ -23,24 +23,12 @@
           "path": "research/articles/ai-document-insights/architecture-summarise.svg",
           "type": "svg"
         },
-        "ai-document-insights.article": {
-          "path": "research/articles/ai-document-insights/article.md",
+        "ai-function-calling": {
+          "path": "research/articles/ai-function-calling.md",
           "type": "markdown"
         },
-        "ai-document-insights.metadata": {
-          "path": "research/articles/ai-document-insights/metadata.json",
-          "type": "json"
-        },
-        "ai-function-calling.article": {
-          "path": "research/articles/ai-function-calling/article.md",
-          "type": "markdown"
-        },
-        "ai-function-calling.metadata": {
-          "path": "research/articles/ai-function-calling/metadata.json",
-          "type": "json"
-        },
-        "image-test.article": {
-          "path": "research/articles/image-test/article.md",
+        "image-test": {
+          "path": "research/articles/image-test.md",
           "type": "markdown"
         },
         "image-test.image": {
@@ -54,14 +42,6 @@
         "image-test.image2": {
           "path": "research/articles/image-test/image2.png",
           "type": "png"
-        },
-        "image-test.metadata": {
-          "path": "research/articles/image-test/metadata.json",
-          "type": "json"
-        },
-        "index": {
-          "path": "research/articles/index.txt",
-          "type": "text"
         }
       }
     },
