@@ -4,7 +4,7 @@ description: Tests image display functionality.
 date: 2025-11-10
 tags:
   - Test
-hidden: false
+hidden: true
 ---
 # Image Test
 
