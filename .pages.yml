@@ -48,6 +48,67 @@ content:
                 options:
                   format: markdown
 
+      - name: home-content
+        label: Content
+        type: group
+        items:
+          - name: home-content-production
+            label: Production
+            type: file
+            path: pages/content.production.json
+            format: json
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: version
+                label: Version
+                type: string
+                required: false
+              - name: description
+                label: Description
+                type: string
+                required: false
+
+          - name: home-content-development
+            label: Development
+            type: file
+            path: pages/content.development.json
+            format: json
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: version
+                label: Version
+                type: string
+                required: false
+              - name: description
+                label: Description
+                type: string
+                required: false
+
+          - name: home-content-testing
+            label: Testing
+            type: file
+            path: pages/content.testing.json
+            format: json
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: version
+                label: Version
+                type: string
+                required: false
+              - name: description
+                label: Description
+                type: string
+                required: false
+
       - name: home-settings
         label: Settings
         type: group
