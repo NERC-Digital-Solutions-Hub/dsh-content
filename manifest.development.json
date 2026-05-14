@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "2026-05-14T13:38:52Z",
-  "generatedAt": "2026-05-14T13:38:52Z",
+  "version": "2026-05-14T14:43:22Z",
+  "generatedAt": "2026-05-14T14:43:22Z",
   "environment": "development",
   "pages": {
     "articles": {
@@ -48,6 +48,10 @@
     "home": {
       "route": "/",
       "assets": {
+        "content": {
+          "path": "content.development.json",
+          "type": "json"
+        },
         "introduction": {
           "path": "introduction.development.md",
           "type": "markdown"
