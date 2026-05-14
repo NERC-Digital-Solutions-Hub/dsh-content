@@ -1,3 +1,15 @@
+---
+title: "AI Agents for Geospatial Data"
+description: "Using AI agents to query the Esri API and answer questions about ClimateJust data."
+date: "2025-11-10"
+tags:
+  - AI
+  - Agents
+  - Esri
+  - ClimateJust
+  - API
+---
+
 # AI Agents for Geospatial Data
 
 Finding specific information within large geospatial datasets can be complex and time-consuming. To simplify this, we have developed a project using AI agents to interact directly with the Esri REST API for [ClimateJust](https://climatejust.org.uk) data.

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "version": "2026-05-14T14:43:22Z",
   "generatedAt": "2026-05-14T14:43:22Z",
-  "environment": "testing",
+  "environment": "development",
   "pages": {
     "articles": {
       "route": "/research/articles",
@@ -49,15 +49,15 @@
       "route": "/",
       "assets": {
         "content": {
-          "path": "content.testing.json",
+          "path": "content.development.json",
           "type": "json"
         },
         "introduction": {
-          "path": "introduction.testing.md",
+          "path": "introduction.development.md",
           "type": "markdown"
         },
         "settings": {
-          "path": "settings.testing.json",
+          "path": "settings.development.json",
           "type": "json"
         },
         "svgs.bootstrap.compass": {
@@ -123,11 +123,11 @@
           "type": "xlsx"
         },
         "introduction": {
-          "path": "apps/uprn-service/introduction.testing.md",
+          "path": "apps/uprn-service/introduction.development.md",
           "type": "markdown"
         },
         "settings": {
-          "path": "apps/uprn-service/settings.testing.json",
+          "path": "apps/uprn-service/settings.development.json",
           "type": "json"
         }
       }
