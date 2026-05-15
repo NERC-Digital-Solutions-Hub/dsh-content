@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "2026-05-15T09:59:45Z",
-  "generatedAt": "2026-05-15T09:59:45Z",
+  "version": "2026-05-15T12:21:08Z",
+  "generatedAt": "2026-05-15T12:21:08Z",
   "environment": "development",
   "pages": {
     "articles": {
@@ -32,8 +32,8 @@
           "type": "markdown"
         },
         "image-test.image": {
-          "path": "research/articles/image-test/image.jpg",
-          "type": "jpg"
+          "path": "research/articles/image-test/image.png",
+          "type": "png"
         },
         "image-test.image1": {
           "path": "research/articles/image-test/image1.png",
@@ -52,21 +52,25 @@
           "path": "content.development.json",
           "type": "json"
         },
-        "images.ChatGPT Image May 15, 2026, 09_50_20 AM": {
+        "images.chat-gpt-image-may-15-2026-09-50-20-am": {
           "path": "images/ChatGPT Image May 15, 2026, 09_50_20 AM.png",
           "type": "png"
         },
-        "images.ChatGPT Image May 15, 2026, 09_54_17 AM": {
+        "images.chat-gpt-image-may-15-2026-09-54-17-am": {
           "path": "images/ChatGPT Image May 15, 2026, 09_54_17 AM.png",
           "type": "png"
         },
-        "images.ChatGPT Image May 15, 2026, 09_58_26 AM": {
+        "images.chat-gpt-image-may-15-2026-09-58-26-am": {
           "path": "images/ChatGPT Image May 15, 2026, 09_58_26 AM.png",
           "type": "png"
         },
         "introduction": {
           "path": "introduction.development.md",
           "type": "markdown"
+        },
+        "navigation": {
+          "path": "navigation.json",
+          "type": "json"
         },
         "settings": {
           "path": "settings.development.json",
@@ -98,7 +102,7 @@
     "uprn-service": {
       "route": "/apps/uprn-service",
       "assets": {
-        "CJ_Backend": {
+        "cj-backend": {
           "path": "apps/uprn-service/CJ_Backend.xlsx",
           "type": "xlsx"
         },
