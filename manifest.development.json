@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "2026-05-15T09:34:34Z",
-  "generatedAt": "2026-05-15T09:34:34Z",
+  "version": "2026-05-15T09:42:43Z",
+  "generatedAt": "2026-05-15T09:42:43Z",
   "environment": "development",
   "pages": {
     "articles": {
@@ -51,6 +51,18 @@
         "content": {
           "path": "content.development.json",
           "type": "json"
+        },
+        "images.ChatGPT Image May 15, 2026, 09_50_20 AM": {
+          "path": "images/ChatGPT Image May 15, 2026, 09_50_20 AM.png",
+          "type": "png"
+        },
+        "images.ChatGPT Image May 15, 2026, 09_54_17 AM": {
+          "path": "images/ChatGPT Image May 15, 2026, 09_54_17 AM.png",
+          "type": "png"
+        },
+        "images.ChatGPT Image May 15, 2026, 09_58_26 AM": {
+          "path": "images/ChatGPT Image May 15, 2026, 09_58_26 AM.png",
+          "type": "png"
         },
         "introduction": {
           "path": "introduction.development.md",
