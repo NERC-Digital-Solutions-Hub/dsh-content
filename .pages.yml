@@ -1,5 +1,5 @@
 media:
-  input: dsh-catalogue-arcgis/imag
+  input: dsh-catalogue-arcgis/images
   output: /images
 
 content:
