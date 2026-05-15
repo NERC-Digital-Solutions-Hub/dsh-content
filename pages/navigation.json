@@ -1,0 +1,84 @@
+{
+    "items": [
+        {
+            "type": "folder",
+            "name": "Catalogues",
+            "children": [
+                {
+                    "type": "link",
+                    "name": "DSH Catalogue",
+                    "href": "https://nercdsh.dev.azure.manchester.ac.uk/portal/apps/sites/#/dsh-catalogue/search",
+                    "info": "Explore our data using a traditional approach to search."
+                },
+                {
+                    "type": "link",
+                    "name": "AI Catalogue",
+                    "href": "/catalogues/ai",
+                    "info": "Explore our data using AI-powered search and discovery tools."
+                }
+            ]
+        },
+        {
+            "type": "folder",
+            "name": "Apps",
+            "children": [
+                {
+                    "type": "link",
+                    "name": "UPRN",
+                    "href": "/apps/uprn",
+                    "info": "Explore Unique Property Reference Numbers (UPRNs) on an interactive map."
+                },
+                {
+                    "type": "link",
+                    "name": "ClimateJust",
+                    "href": "/apps/climate-just",
+                    "info": "Discover who is vulnerable to climate change and fuel-poverty and why."
+                },
+                {
+                    "type": "link",
+                    "name": "Health and Environment",
+                    "href": "/apps/health-and-environment",
+                    "info": "Explore the spatial relationships between a broad set of environmental and health data along with the ability to add your own data for your own use."
+                },
+                {
+                    "type": "link",
+                    "name": "Where to Build",
+                    "href": "/apps/where-to-build",
+                    "info": "Identify potential sites for housing and undertake a site analysis based on your choices."
+                },
+                {
+                    "type": "link",
+                    "name": "Where to Build (AI)",
+                    "href": "/apps/ai-where-to-build",
+                    "info": "Identify potential sites for housing and undertake a site analysis based on your choices - AI powered."
+                },
+                {
+                    "type": "link",
+                    "name": "View All...",
+                    "href": "/apps"
+                }
+            ]
+        },
+        {
+            "type": "folder",
+            "name": "Realtime",
+            "children": [
+                {
+                    "type": "link",
+                    "name": "NERC Urban Observatory",
+                    "href": "/realtime/urban-observatory"
+                }
+            ]
+        },
+        {
+            "type": "link",
+            "name": "Maps",
+            "href": "/maps"
+        },
+        {
+            "type": "link",
+            "name": "Research",
+            "href": "/research"
+        }
+    ]
+}

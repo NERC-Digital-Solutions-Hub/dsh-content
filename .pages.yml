@@ -113,6 +113,59 @@ content:
         label: Settings
         type: group
         items:
+          - name: home-navigation
+            label: Navigation
+            type: file
+            path: pages/navigation.json
+            format: json
+            fields:
+              - name: items
+                label: Navigation Items
+                type: object
+                list: true
+                fields:
+                  - name: type
+                    label: Type
+                    type: string
+                    required: true
+
+                  - name: name
+                    label: Name
+                    type: string
+                    required: true
+
+                  - name: href
+                    label: Link URL
+                    type: string
+
+                  - name: info
+                    label: Description
+                    type: text
+
+                  - name: children
+                    label: Child Links
+                    type: object
+                    list: true
+                    fields:
+                      - name: type
+                        label: Type
+                        type: string
+                        required: true
+
+                      - name: name
+                        label: Name
+                        type: string
+                        required: true
+
+                      - name: href
+                        label: Link URL
+                        type: string
+                        required: true
+
+                      - name: info
+                        label: Description
+                        type: text
+
           - name: home-settings-default
             label: Default
             type: file
