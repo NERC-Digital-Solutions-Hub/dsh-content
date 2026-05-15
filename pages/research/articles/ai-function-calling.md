@@ -1,13 +1,14 @@
 ---
-title: "AI Function Calling"
-description: "Demonstrates using AI function calling in our UPRN service application."
-date: "2025-11-07"
+title: AI Function Calling
+description: Demonstrates using AI function calling in our UPRN service application.
+thumbnail: /images/ChatGPT Image May 15, 2026, 09_58_26 AM.png
+date: 2025-11-07
 tags:
   - AI
   - Function Calling
   - UPRN
+hidden: false
 ---
-
 # AI Function Calling
 
 We've been investigating whether AI function calling can make it easier for users to interrogate and work with UPRN-based datasets, particularly when today's workflows require navigating multiple UI controls or composing more formal query inputs.
@@ -20,8 +21,8 @@ Below, we describe an early prototype and a sequence of small experiments we use
 
 Our first prototype focused on basic map interaction. We tested whether a model could:
 
-* control the map view (for example, zooming in and out)
-* filter UPRNs by ward, and
+- control the map view (for example, zooming in and out)
+- filter UPRNs by ward, and
 
 This provided a simple way to validate the end-to-end loop: user intent → model selects a function → the service executes it → the user sees the result.
 
