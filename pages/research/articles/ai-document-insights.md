@@ -2,7 +2,7 @@
 title: AI-Powered Document Insights
 description: Using AI to make documents more accessible through automated
   summarisation and question-answering (RAG).
-thumbnail: /images/ChatGPT Image May 15, 2026, 09_54_17 AM.png
+thumbnail: pages/images/ChatGPT Image May 15, 2026, 09_54_17 AM.png
 date: 2025-11-10
 tags:
   - AI
