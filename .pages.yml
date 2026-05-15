@@ -1,6 +1,6 @@
 media:
   input: pages/images
-  output: /images
+  output: pages/images
 
 content:
   # ─────────────────────────────────────────────

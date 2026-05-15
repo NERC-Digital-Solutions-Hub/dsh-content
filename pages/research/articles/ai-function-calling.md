@@ -1,7 +1,7 @@
 ---
 title: AI Function Calling
 description: Demonstrates using AI function calling in our UPRN service application.
-thumbnail: /images/ChatGPT Image May 15, 2026, 09_58_26 AM.png
+thumbnail: pages/images/ChatGPT Image May 15, 2026, 09_58_26 AM.png
 date: 2025-11-07
 tags:
   - AI
