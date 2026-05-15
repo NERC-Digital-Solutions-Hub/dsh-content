@@ -1,9 +1,12 @@
 name: Generate Manifests
 
 on:
+  push:
+    branches: [main]
   workflow_run:
     workflows: ['Build UPRN Service Config']
     types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +14,7 @@ permissions:
 
 jobs:
   generate-manifests:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -31,7 +34,7 @@ jobs:
           python .github/scripts/generate-manifests.py
 
       - name: Commit changes on main only
-        if: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.head_branch == 'main') || (github.event_name == 'workflow_dispatch' && github.ref_name == 'main') }}
+        if: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.head_branch == 'main') || (github.event_name != 'workflow_run' && github.ref_name == 'main') }}
         run: |
           if [[ -n "$(git status --porcelain manifest.*.json)" ]]; then
             git config user.name "github-actions[bot]"
