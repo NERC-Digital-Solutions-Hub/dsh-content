@@ -1,9 +1,18 @@
 {
   "schemaVersion": 1,
-  "version": "2026-05-15T12:49:45Z",
-  "generatedAt": "2026-05-15T12:49:45Z",
+  "version": "2026-05-15T13:06:50Z",
+  "generatedAt": "2026-05-15T13:06:50Z",
   "environment": "development",
   "pages": {
+    "apps": {
+      "route": "/apps",
+      "assets": {
+        "apps": {
+          "path": "apps/apps.json",
+          "type": "json"
+        }
+      }
+    },
     "articles": {
       "route": "/research/articles",
       "assets": {
@@ -32,8 +41,8 @@
           "type": "markdown"
         },
         "image-test.image": {
-          "path": "research/articles/image-test/image.png",
-          "type": "png"
+          "path": "research/articles/image-test/image.jpg",
+          "type": "jpg"
         },
         "image-test.image1": {
           "path": "research/articles/image-test/image1.png",
