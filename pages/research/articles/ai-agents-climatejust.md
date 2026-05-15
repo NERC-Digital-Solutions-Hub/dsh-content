@@ -2,7 +2,7 @@
 title: AI Agents for Geospatial Data
 description: Using AI agents to query the Esri API and answer questions about
   ClimateJust data.
-thumbnail: /images/ChatGPT Image May 15, 2026, 09_50_20 AM.png
+thumbnail: pages/images/ChatGPT Image May 15, 2026, 09_50_20 AM.png
 date: 2025-11-10
 tags:
   - AI
