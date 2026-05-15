@@ -1,34 +1,32 @@
 {
-    "items": [
-        {
-            "title": "UPRN",
-            "description": "Explore Unique Property Reference Numbers (UPRNs) on an interactive map.",
-            "image": "",
-            "href": "/apps/uprn"
-        },
-        {
-            "title": "ClimateJust",
-            "description": "Discover who is vulnerable to climate change and fuel-poverty and why.",
-            "image": "",
-            "href": "/apps/climate-just"
-        },
-        {
-            "title": "Health and Environment",
-            "description": "Explore the spatial relationships between a broad set of environmental and health data along with the ability to add your own data for your own use.",
-            "image": "",
-            "href": "/apps/health-and-environment"
-        },
-        {
-            "title": "Where to Build",
-            "description": "Identify potential sites for housing and undertake a site analysis based on your choices.",
-            "image": "",
-            "href": "/apps/where-to-build"
-        },
-        {
-            "title": "Where to Build (AI)",
-            "description": "Identify potential sites for housing and undertake a site analysis based on your choices - AI powered.",
-            "image": "",
-            "href": "/apps/ai-where-to-build"
-        }
-    ]
+  "items": [
+    {
+      "title": "UPRN",
+      "description": "Explore Unique Property Reference Numbers (UPRNs) on an interactive map.",
+      "image": "pages/images/uprn.png",
+      "href": "/apps/uprn"
+    },
+    {
+      "title": "ClimateJust",
+      "description": "Discover who is vulnerable to climate change and fuel-poverty and why.",
+      "image": "pages/images/climate-just.png",
+      "href": "/apps/climate-just"
+    },
+    {
+      "title": "Health and Environment",
+      "description": "Explore the spatial relationships between a broad set of environmental and health data along with the ability to add your own data for your own use.",
+      "href": "/apps/health-and-environment"
+    },
+    {
+      "title": "Where to Build",
+      "description": "Identify potential sites for housing and undertake a site analysis based on your choices.",
+      "href": "/apps/where-to-build"
+    },
+    {
+      "title": "Where to Build (AI)",
+      "description": "Identify potential sites for housing and undertake a site analysis based on your choices - AI powered.",
+      "image": "pages/images/ai-where-to-build.png",
+      "href": "/apps/ai-where-to-build"
+    }
+  ]
 }
