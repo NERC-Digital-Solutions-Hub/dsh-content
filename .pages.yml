@@ -207,6 +207,45 @@ content:
                 type: boolean
 
   # ─────────────────────────────────────────────
+  # Apps
+  # ─────────────────────────────────────────────
+
+  - name: apps
+    label: Apps
+    type: group
+    items:
+      - name: apps-cards
+        label: App Cards
+        type: file
+        path: pages/apps/apps.json
+        format: json
+        fields:
+          - name: items
+            label: Apps
+            type: object
+            list: true
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+
+              - name: description
+                label: Description
+                type: text
+                required: true
+
+              - name: image
+                label: Image
+                type: image
+                required: false
+
+              - name: href
+                label: Link URL
+                type: string
+                required: true
+
+  # ─────────────────────────────────────────────
   # Research
   # ─────────────────────────────────────────────
 
