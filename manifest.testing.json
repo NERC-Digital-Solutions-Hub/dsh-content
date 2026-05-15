@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "2026-05-14T14:43:22Z",
-  "generatedAt": "2026-05-14T14:43:22Z",
+  "version": "2026-05-15T09:34:34Z",
+  "generatedAt": "2026-05-15T09:34:34Z",
   "environment": "testing",
   "pages": {
     "articles": {
@@ -32,8 +32,8 @@
           "type": "markdown"
         },
         "image-test.image": {
-          "path": "research/articles/image-test/image.jpg",
-          "type": "jpg"
+          "path": "research/articles/image-test/image.png",
+          "type": "png"
         },
         "image-test.image1": {
           "path": "research/articles/image-test/image1.png",
