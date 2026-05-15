@@ -42,8 +42,8 @@ Key rules:
       -> introduction
     generated/csv/config/datasets.csv
       -> generated.csv.config.datasets
-    svgs/bootstrap/info-circle.svg
-      -> svgs.bootstrap.infoCircle
+        svgs/bootstrap/info-circle.svg
+            -> svgs.bootstrap.info-circle
 - Each asset is emitted as:
     {
       "path": "...",
@@ -168,6 +168,17 @@ def parse_filename(filename: str, environments: List[str]) -> Tuple[str, Optiona
         return base, None, extension
 
     return filename, None, ""
+
+
+def to_kebab_case(value: str) -> str:
+    """
+    Convert a path or filename segment into lowercase kebab-case for manifest asset keys.
+    """
+    value = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1-\2", value)
+    value = re.sub(r"([a-z0-9])([A-Z])", r"\1-\2", value)
+    value = re.sub(r"[^A-Za-z0-9]+", "-", value)
+
+    return value.strip("-").lower() or "asset"
 
 
 def infer_asset_type(extension: str) -> str:
@@ -335,7 +346,7 @@ def asset_key_for_file(route_dir: Path, file_path: Path, environments: List[str]
 
     base, environment, extension = parse_filename(rel.name, environments)
 
-    key_parts = parent_parts + [base]
+    key_parts = [to_kebab_case(part) for part in parent_parts + [base]]
     asset_key = ".".join(key_parts)
 
     return asset_key, environment, extension
