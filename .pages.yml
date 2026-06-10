@@ -115,35 +115,16 @@ content:
         items:
           - name: home-navigation
             label: Navigation
-            type: file
-            path: pages/navigation.json
-            format: json
-            fields:
-              - name: items
-                label: Navigation Items
-                type: object
-                list: true
+            type: group
+            items:
+              - name: home-navigation-production
+                label: Production
+                type: file
+                path: pages/navigation.json
+                format: json
                 fields:
-                  - name: type
-                    label: Type
-                    type: string
-                    required: true
-
-                  - name: name
-                    label: Name
-                    type: string
-                    required: true
-
-                  - name: href
-                    label: Link URL
-                    type: string
-
-                  - name: info
-                    label: Description
-                    type: text
-
-                  - name: children
-                    label: Child Links
+                  - name: items
+                    label: Navigation Items
                     type: object
                     list: true
                     fields:
@@ -160,11 +141,86 @@ content:
                       - name: href
                         label: Link URL
                         type: string
-                        required: true
 
                       - name: info
                         label: Description
                         type: text
+
+                      - name: children
+                        label: Child Links
+                        type: object
+                        list: true
+                        fields:
+                          - name: type
+                            label: Type
+                            type: string
+                            required: true
+
+                          - name: name
+                            label: Name
+                            type: string
+                            required: true
+
+                          - name: href
+                            label: Link URL
+                            type: string
+                            required: true
+
+                          - name: info
+                            label: Description
+                            type: text
+                  - name: home-navigation-development
+                    label: Development
+                    type: file
+                    path: pages/navigation.development.json
+                    format: json
+                    fields:
+                      - name: items
+                        label: Navigation Items
+                        type: object
+                        list: true
+                        fields:
+                          - name: type
+                            label: Type
+                            type: string
+                            required: true
+
+                          - name: name
+                            label: Name
+                            type: string
+                            required: true
+
+                          - name: href
+                            label: Link URL
+                            type: string
+
+                          - name: info
+                            label: Description
+                            type: text
+
+                          - name: children
+                            label: Child Links
+                            type: object
+                            list: true
+                            fields:
+                              - name: type
+                                label: Type
+                                type: string
+                                required: true
+
+                              - name: name
+                                label: Name
+                                type: string
+                                required: true
+
+                              - name: href
+                                label: Link URL
+                                type: string
+                                required: true
+
+                              - name: info
+                                label: Description
+                                type: text
 
           - name: home-settings-default
             label: Default
