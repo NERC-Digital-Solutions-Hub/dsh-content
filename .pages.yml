@@ -313,7 +313,6 @@ content:
           rename: false
           delete: false
         view:
-          layout: tree
           fields: [name, body]
           primary: name
           sort: [name]
@@ -321,6 +320,8 @@ content:
             sort: name
             order: asc
         fields:
+          - name: name
+            label: Name
           - name: body
             label: Body
             type: rich-text
