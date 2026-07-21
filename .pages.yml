@@ -3,8 +3,17 @@ media:
   output: pages/images
 
 # Environment-managed content is represented by fixed files so editors can
-# choose Production, Development, or Testing directly in the Pages CMS UI.
-# The environment is stored only in each filename.
+# choose Default, Production, Development, or Testing directly in Pages CMS.
+#
+# Default files have no environment suffix:
+#   introduction.md
+#   content.json
+#   settings.json
+#
+# Environment-specific files use:
+#   introduction.production.md
+#   introduction.development.md
+#   introduction.testing.md
 
 content:
   # ─────────────────────────────────────────────
@@ -19,6 +28,21 @@ content:
         label: Introduction
         type: group
         items:
+          - name: home-introduction-default
+            label: Default
+            type: file
+            path: pages/introduction/introduction.md
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
           - name: home-introduction-production
             label: Production
             type: file
@@ -68,6 +92,31 @@ content:
         label: Content
         type: group
         items:
+          - name: home-content-default
+            label: Default
+            type: file
+            path: pages/content/content.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+
+              - name: version
+                label: Version
+                type: string
+                required: false
+
+              - name: description
+                label: Description
+                type: string
+                required: false
+
           - name: home-content-production
             label: Production
             type: file
@@ -151,6 +200,63 @@ content:
             label: Navigation
             type: group
             items:
+              - name: home-navigation-default
+                label: Default
+                type: file
+                path: pages/navigation/navigation.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: items
+                    label: Navigation Items
+                    type: object
+                    list: true
+                    fields:
+                      - name: type
+                        label: Type
+                        type: string
+                        required: true
+
+                      - name: name
+                        label: Name
+                        type: string
+                        required: true
+
+                      - name: href
+                        label: Link URL
+                        type: string
+
+                      - name: info
+                        label: Description
+                        type: text
+
+                      - name: children
+                        label: Child Links
+                        type: object
+                        list: true
+                        fields:
+                          - name: type
+                            label: Type
+                            type: string
+                            required: true
+
+                          - name: name
+                            label: Name
+                            type: string
+                            required: true
+
+                          - name: href
+                            label: Link URL
+                            type: string
+                            required: true
+
+                          - name: info
+                            label: Description
+                            type: text
+
               - name: home-navigation-production
                 label: Production
                 type: file
@@ -326,6 +432,20 @@ content:
             label: Site Settings
             type: group
             items:
+              - name: home-settings-default
+                label: Default
+                type: file
+                path: pages/settings/settings.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: enableIntroductionPopup
+                    label: Enable Introduction Popup
+                    type: boolean
+
               - name: home-settings-production
                 label: Production
                 type: file
@@ -380,6 +500,41 @@ content:
         label: App Cards
         type: group
         items:
+          - name: apps-cards-default
+            label: Default
+            type: file
+            path: pages/apps/apps.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: items
+                label: Apps
+                type: object
+                list: true
+                fields:
+                  - name: title
+                    label: Title
+                    type: string
+                    required: true
+
+                  - name: description
+                    label: Description
+                    type: text
+                    required: true
+
+                  - name: image
+                    label: Image
+                    type: image
+                    required: false
+
+                  - name: href
+                    label: Link URL
+                    type: string
+                    required: true
+
           - name: apps-cards-production
             label: Production
             type: file
@@ -508,7 +663,7 @@ content:
         label: Research Articles
         type: collection
         path: pages/research/articles
-        filename: "{slug}.md"
+        filename: '{slug}.md'
         fields:
           - name: title
             label: Title
@@ -558,6 +713,21 @@ content:
         label: Introduction
         type: group
         items:
+          - name: uprn-service-introduction-default
+            label: Default
+            type: file
+            path: pages/apps/uprn-service/introduction/introduction.md
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
           - name: uprn-service-introduction-production
             label: Production
             type: file
@@ -607,6 +777,33 @@ content:
         label: Settings
         type: group
         items:
+          - name: uprn-service-settings-default
+            label: Default
+            type: file
+            path: pages/apps/uprn-service/settings/settings.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
+
           - name: uprn-service-settings-production
             label: Production
             type: file
