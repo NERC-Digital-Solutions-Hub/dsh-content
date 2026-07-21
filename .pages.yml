@@ -340,6 +340,7 @@ content:
           rename: false
           delete: false
         view:
+          layout: "tree"
           fields: [name, enableIntroductionPopup]
           primary: name
           sort: [name]
