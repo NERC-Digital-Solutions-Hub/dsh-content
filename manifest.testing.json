@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "version": "2026-06-24T13:37:20Z",
-  "generatedAt": "2026-06-24T13:37:20Z",
+  "version": "2026-07-21T12:07:15Z",
+  "generatedAt": "2026-07-21T12:07:15Z",
   "environment": "testing",
   "pages": {
     "apps": {
       "route": "/apps",
       "assets": {
-        "apps": {
-          "path": "apps/apps.json",
+        "apps.apps": {
+          "path": "apps/apps/apps.json",
           "type": "json"
         }
       }
@@ -57,8 +57,8 @@
     "home": {
       "route": "/",
       "assets": {
-        "content": {
-          "path": "content.testing.json",
+        "content.content": {
+          "path": "content/content.testing.json",
           "type": "json"
         },
         "images.ai-where-to-build": {
@@ -85,16 +85,16 @@
           "path": "images/uprn.png",
           "type": "png"
         },
-        "introduction": {
-          "path": "introduction.testing.md",
+        "introduction.introduction": {
+          "path": "introduction/introduction.testing.md",
           "type": "markdown"
         },
-        "navigation": {
-          "path": "navigation.json",
+        "navigation.navigation": {
+          "path": "navigation/navigation.json",
           "type": "json"
         },
-        "settings": {
-          "path": "settings.testing.json",
+        "settings.settings": {
+          "path": "settings/settings.testing.json",
           "type": "json"
         },
         "svgs.bootstrap.compass": {
@@ -159,12 +159,12 @@
           "path": "apps/uprn-service/info-descriptions.xlsx",
           "type": "xlsx"
         },
-        "introduction": {
-          "path": "apps/uprn-service/introduction.testing.md",
+        "introduction.introduction": {
+          "path": "apps/uprn-service/introduction/introduction.testing.md",
           "type": "markdown"
         },
-        "settings": {
-          "path": "apps/uprn-service/settings.testing.json",
+        "settings.settings": {
+          "path": "apps/uprn-service/settings/settings.testing.json",
           "type": "json"
         }
       }
