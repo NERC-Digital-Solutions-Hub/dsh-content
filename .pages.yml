@@ -320,8 +320,6 @@ content:
             sort: name
             order: asc
         fields:
-          - name: environment
-            label: Environment
           - name: body
             label: Body
             type: rich-text
