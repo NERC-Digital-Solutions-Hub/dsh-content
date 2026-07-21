@@ -5,9 +5,9 @@ media:
 # Environment-managed content is configured as collections so editors can
 # create additional environment files through the Pages CMS UI.
 #
-# filename.field is true for each environment collection, so the filename is
-# shown in both the create and edit forms. The collection list itself is still
-# driven by content fields configured under view.
+# Collections are folder-scoped, so content types with different schemas are
+# kept in separate directories. Move the existing files to the paths shown
+# below when adopting this configuration.
 
 content:
   # ─────────────────────────────────────────────
@@ -24,7 +24,7 @@ content:
         path: pages/introduction
         filename:
           template: introduction.production.md
-          field: true
+          field: create
         subfolders: false
         operations:
           create: true
@@ -44,7 +44,7 @@ content:
         format: json
         filename:
           template: content.production.json
-          field: true
+          field: create
         subfolders: false
         operations:
           create: true
@@ -77,7 +77,7 @@ content:
             format: json
             filename:
               template: navigation.json
-              field: true
+              field: create
             subfolders: false
             operations:
               create: true
@@ -138,7 +138,7 @@ content:
             format: json
             filename:
               template: settings.json
-              field: true
+              field: create
             subfolders: false
             operations:
               create: true
@@ -164,7 +164,7 @@ content:
         format: json
         filename:
           template: apps.json
-          field: true
+          field: create
         subfolders: false
         operations:
           create: true
@@ -271,7 +271,7 @@ content:
         path: pages/apps/uprn-service/introduction
         filename:
           template: introduction.production.md
-          field: true
+          field: create
         subfolders: false
         operations:
           create: true
@@ -291,7 +291,7 @@ content:
         format: json
         filename:
           template: settings.json
-          field: true
+          field: create
         subfolders: false
         operations:
           create: true
