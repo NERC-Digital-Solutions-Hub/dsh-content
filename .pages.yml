@@ -2,12 +2,9 @@ media:
   input: pages/images
   output: pages/images
 
-# Environment-managed content is configured as collections so editors can
-# create additional environment files through the Pages CMS UI.
-#
-# The built-in collection entry name is displayed in each environment
-# collection so editors can identify the underlying filename without
-# opening the entry.
+# Environment-managed content is represented by fixed files so editors can
+# choose Production, Development, or Testing directly in the Pages CMS UI.
+# The environment is stored only in each filename.
 
 content:
   # ─────────────────────────────────────────────
@@ -20,65 +17,131 @@ content:
     items:
       - name: home-introduction
         label: Introduction
-        type: collection
-        path: pages/introduction
-        filename:
-          template: introduction.production.md
-          field: create
-        subfolders: false
-        operations:
-          create: true
-          rename: false
-          delete: false
-        view:
-          fields: [name, body]
-          primary: name
-          sort: [name]
-          default:
-            sort: name
-            order: asc
-        fields:
-          - name: body
-            label: Body
-            type: rich-text
-            options:
-              format: markdown
+        type: group
+        items:
+          - name: home-introduction-production
+            label: Production
+            type: file
+            path: pages/introduction/introduction.production.md
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: home-introduction-development
+            label: Development
+            type: file
+            path: pages/introduction/introduction.development.md
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: home-introduction-testing
+            label: Testing
+            type: file
+            path: pages/introduction/introduction.testing.md
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
 
       - name: home-content
         label: Content
-        type: collection
-        path: pages/content
-        format: json
-        filename:
-          template: content.production.json
-          field: create
-        subfolders: false
-        operations:
-          create: true
-          rename: false
-          delete: false
-        view:
-          fields: [name, title, version]
-          primary: name
-          sort: [name, title, version]
-          default:
-            sort: name
-            order: asc
-        fields:
-          - name: title
-            label: Title
-            type: string
-            required: true
+        type: group
+        items:
+          - name: home-content-production
+            label: Production
+            type: file
+            path: pages/content/content.production.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
 
-          - name: version
-            label: Version
-            type: string
-            required: false
+              - name: version
+                label: Version
+                type: string
+                required: false
 
-          - name: description
-            label: Description
-            type: string
-            required: false
+              - name: description
+                label: Description
+                type: string
+                required: false
+
+          - name: home-content-development
+            label: Development
+            type: file
+            path: pages/content/content.development.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+
+              - name: version
+                label: Version
+                type: string
+                required: false
+
+              - name: description
+                label: Description
+                type: string
+                required: false
+
+          - name: home-content-testing
+            label: Testing
+            type: file
+            path: pages/content/content.testing.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+
+              - name: version
+                label: Version
+                type: string
+                required: false
+
+              - name: description
+                label: Description
+                type: string
+                required: false
 
       - name: home-settings
         label: Settings
@@ -86,50 +149,20 @@ content:
         items:
           - name: home-navigation
             label: Navigation
-            type: collection
-            path: pages/navigation
-            format: json
-            filename:
-              template: navigation.json
-              field: create
-            subfolders: false
-            operations:
-              create: true
-              rename: false
-              delete: false
-            view:
-              fields: [name]
-              primary: name
-              sort: [name]
-              default:
-                sort: name
-                order: asc
-            fields:
-              - name: items
-                label: Navigation Items
-                type: object
-                list: true
+            type: group
+            items:
+              - name: home-navigation-production
+                label: Production
+                type: file
+                path: pages/navigation/navigation.production.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
                 fields:
-                  - name: type
-                    label: Type
-                    type: string
-                    required: true
-
-                  - name: name
-                    label: Name
-                    type: string
-                    required: true
-
-                  - name: href
-                    label: Link URL
-                    type: string
-
-                  - name: info
-                    label: Description
-                    type: text
-
-                  - name: children
-                    label: Child Links
+                  - name: items
+                    label: Navigation Items
                     type: object
                     list: true
                     fields:
@@ -146,36 +179,194 @@ content:
                       - name: href
                         label: Link URL
                         type: string
-                        required: true
 
                       - name: info
                         label: Description
                         type: text
 
+                      - name: children
+                        label: Child Links
+                        type: object
+                        list: true
+                        fields:
+                          - name: type
+                            label: Type
+                            type: string
+                            required: true
+
+                          - name: name
+                            label: Name
+                            type: string
+                            required: true
+
+                          - name: href
+                            label: Link URL
+                            type: string
+                            required: true
+
+                          - name: info
+                            label: Description
+                            type: text
+
+              - name: home-navigation-development
+                label: Development
+                type: file
+                path: pages/navigation/navigation.development.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: items
+                    label: Navigation Items
+                    type: object
+                    list: true
+                    fields:
+                      - name: type
+                        label: Type
+                        type: string
+                        required: true
+
+                      - name: name
+                        label: Name
+                        type: string
+                        required: true
+
+                      - name: href
+                        label: Link URL
+                        type: string
+
+                      - name: info
+                        label: Description
+                        type: text
+
+                      - name: children
+                        label: Child Links
+                        type: object
+                        list: true
+                        fields:
+                          - name: type
+                            label: Type
+                            type: string
+                            required: true
+
+                          - name: name
+                            label: Name
+                            type: string
+                            required: true
+
+                          - name: href
+                            label: Link URL
+                            type: string
+                            required: true
+
+                          - name: info
+                            label: Description
+                            type: text
+
+              - name: home-navigation-testing
+                label: Testing
+                type: file
+                path: pages/navigation/navigation.testing.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: items
+                    label: Navigation Items
+                    type: object
+                    list: true
+                    fields:
+                      - name: type
+                        label: Type
+                        type: string
+                        required: true
+
+                      - name: name
+                        label: Name
+                        type: string
+                        required: true
+
+                      - name: href
+                        label: Link URL
+                        type: string
+
+                      - name: info
+                        label: Description
+                        type: text
+
+                      - name: children
+                        label: Child Links
+                        type: object
+                        list: true
+                        fields:
+                          - name: type
+                            label: Type
+                            type: string
+                            required: true
+
+                          - name: name
+                            label: Name
+                            type: string
+                            required: true
+
+                          - name: href
+                            label: Link URL
+                            type: string
+                            required: true
+
+                          - name: info
+                            label: Description
+                            type: text
+
           - name: home-settings-files
             label: Site Settings
-            type: collection
-            path: pages/settings
-            format: json
-            filename:
-              template: settings.json
-              field: create
-            subfolders: false
-            operations:
-              create: true
-              rename: false
-              delete: false
-            view:
-              fields: [name, enableIntroductionPopup]
-              primary: name
-              sort: [name]
-              default:
-                sort: name
-                order: asc
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
+            type: group
+            items:
+              - name: home-settings-production
+                label: Production
+                type: file
+                path: pages/settings/settings.production.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: enableIntroductionPopup
+                    label: Enable Introduction Popup
+                    type: boolean
+
+              - name: home-settings-development
+                label: Development
+                type: file
+                path: pages/settings/settings.development.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: enableIntroductionPopup
+                    label: Enable Introduction Popup
+                    type: boolean
+
+              - name: home-settings-testing
+                label: Testing
+                type: file
+                path: pages/settings/settings.testing.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: enableIntroductionPopup
+                    label: Enable Introduction Popup
+                    type: boolean
 
   # ─────────────────────────────────────────────
   # Apps
@@ -187,49 +378,112 @@ content:
     items:
       - name: apps-cards
         label: App Cards
-        type: collection
-        path: pages/apps
-        format: json
-        filename:
-          template: apps.json
-          field: create
-        subfolders: false
-        operations:
-          create: true
-          rename: false
-          delete: false
-        view:
-          fields: [name]
-          primary: name
-          sort: [name]
-          default:
-            sort: name
-            order: asc
-        fields:
-          - name: items
-            label: Apps
-            type: object
-            list: true
+        type: group
+        items:
+          - name: apps-cards-production
+            label: Production
+            type: file
+            path: pages/apps/apps.production.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
-              - name: title
-                label: Title
-                type: string
-                required: true
+              - name: items
+                label: Apps
+                type: object
+                list: true
+                fields:
+                  - name: title
+                    label: Title
+                    type: string
+                    required: true
 
-              - name: description
-                label: Description
-                type: text
-                required: true
+                  - name: description
+                    label: Description
+                    type: text
+                    required: true
 
-              - name: image
-                label: Image
-                type: image
-                required: false
+                  - name: image
+                    label: Image
+                    type: image
+                    required: false
 
-              - name: href
-                label: Link URL
-                type: string
-                required: true
+                  - name: href
+                    label: Link URL
+                    type: string
+                    required: true
+
+          - name: apps-cards-development
+            label: Development
+            type: file
+            path: pages/apps/apps.development.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: items
+                label: Apps
+                type: object
+                list: true
+                fields:
+                  - name: title
+                    label: Title
+                    type: string
+                    required: true
+
+                  - name: description
+                    label: Description
+                    type: text
+                    required: true
+
+                  - name: image
+                    label: Image
+                    type: image
+                    required: false
+
+                  - name: href
+                    label: Link URL
+                    type: string
+                    required: true
+
+          - name: apps-cards-testing
+            label: Testing
+            type: file
+            path: pages/apps/apps.testing.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: items
+                label: Apps
+                type: object
+                list: true
+                fields:
+                  - name: title
+                    label: Title
+                    type: string
+                    required: true
+
+                  - name: description
+                    label: Description
+                    type: text
+                    required: true
+
+                  - name: image
+                    label: Image
+                    type: image
+                    required: false
+
+                  - name: href
+                    label: Link URL
+                    type: string
+                    required: true
 
   # ─────────────────────────────────────────────
   # Research
@@ -302,70 +556,134 @@ content:
     items:
       - name: uprn-service-introduction
         label: Introduction
-        type: collection
-        path: pages/apps/uprn-service/introduction
-      
-        filename:
-          template: introduction.production.md
-          field: create
-      
-        subfolders: false
-      
-        operations:
-          create: true
-          rename: false
-          delete: false
-      
-        view:
-          fields: [name]
-          primary: name
-          sort: [name]
-          search: [name]
-          default:
-            sort: name
-            order: asc
-      
-        fields:
-          - name: body
-            label: Body
-            type: rich-text
-            options:
-              format: markdown
+        type: group
+        items:
+          - name: uprn-service-introduction-production
+            label: Production
+            type: file
+            path: pages/apps/uprn-service/introduction/introduction.production.md
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: uprn-service-introduction-development
+            label: Development
+            type: file
+            path: pages/apps/uprn-service/introduction/introduction.development.md
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
+          - name: uprn-service-introduction-testing
+            label: Testing
+            type: file
+            path: pages/apps/uprn-service/introduction/introduction.testing.md
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
 
       - name: uprn-service-settings
         label: Settings
-        type: collection
-        path: pages/apps/uprn-service/settings
-        format: json
-        filename:
-          template: settings.json
-          field: create
-        subfolders: false
-        operations:
-          create: true
-          rename: false
-          delete: false
-        view:
-          fields: [name, enableIntroductionPopup]
-          primary: name
-          sort: [name]
-          default:
-            sort: name
-            order: asc
-        fields:
-          - name: enableIntroductionPopup
-            label: Enable Introduction Popup
-            type: boolean
-
-          - name: chatbot
-            label: Chatbot
-            type: object
+        type: group
+        items:
+          - name: uprn-service-settings-production
+            label: Production
+            type: file
+            path: pages/apps/uprn-service/settings/settings.production.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
-              - name: initialMessage
-                label: Initial Message
-                type: text
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
 
-              - name: exampleQuestions
-                label: Example Questions
-                type: string
-                list: true
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
+
+          - name: uprn-service-settings-development
+            label: Development
+            type: file
+            path: pages/apps/uprn-service/settings/settings.development.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
+
+          - name: uprn-service-settings-testing
+            label: Testing
+            type: file
+            path: pages/apps/uprn-service/settings/settings.testing.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: enableIntroductionPopup
+                label: Enable Introduction Popup
+                type: boolean
+
+              - name: chatbot
+                label: Chatbot
+                type: object
+                fields:
+                  - name: initialMessage
+                    label: Initial Message
+                    type: text
+
+                  - name: exampleQuestions
+                    label: Example Questions
+                    type: string
+                    list: true
