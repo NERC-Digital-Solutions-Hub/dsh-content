@@ -316,6 +316,8 @@ content:
           fields: [name, body]
           primary: name
           sort: [name]
+          node: 
+            filename: "test"
           default:
             sort: name
             order: asc
