@@ -305,7 +305,7 @@ content:
         type: collection
         path: pages/apps/uprn-service/introduction
         filename:
-          template: introduction.production.md
+          template: introduction.{environment}.md
           field: create
         subfolders: false
         operations:
@@ -320,8 +320,8 @@ content:
             sort: name
             order: asc
         fields:
-          - name: name
-            label: Name
+          - name: environment
+            label: Environment
           - name: body
             label: Body
             type: rich-text
