@@ -1,27 +1,25 @@
 # dsh-content
 
-`dsh-content` is the content repository for the Digital Solutions Hub websites. It stores the content files, controls which content can be edited through Pages CMS, and publishes environment-specific manifests that the website repositories use during their builds.
+`dsh-content` is the content repository for the Digital Solutions Hub websites (`dsh`, `dsh-dev`, and `dsh-testing`). It stores the content files, controls which content can be edited through Pages CMS, and publishes environment-specific manifests that the website repositories use during their builds.
 
-Most contributors follow this process:
+The expected workflow is as follows:
 
 1. Edit content on the `dev` branch, usually through Pages CMS.
-2. Review the change and merge `dev` into `main`.
-3. The [Generate Manifests GitHub Actions workflow](.github/workflows/generate-manifests.yml) automatically generates and commits the environment manifests.
+2. Review the change and merge the `dev` branch into the `main` branch.
+3. The [Generate Manifests GitHub Actions workflow](.github/workflows/generate-manifests.yml) automatically generates and commits the environment manifests in `main`.
 4. After manifest generation succeeds, the [Trigger DSH Website Rebuild workflow](.github/workflows/trigger-dsh-website-rebuild.yml) requests a rebuild of the [`dsh-dev` repository](https://github.com/NERC-Digital-Solutions-Hub/dsh-dev).
 
-Contributors should not edit or commit generated manifests manually.
+You should not edit or commit generated manifests manually.
 
 ## How the repository fits together
 
-Pages CMS and the manifests have separate responsibilities:
+Pages CMS and the manifests the following responsibilities:
 
 - [`pages/`](pages/) contains the content consumed by the websites.
 - [`.pages.yml`](.pages.yml) controls which files and fields Pages CMS exposes for editing.
 - [`.page`](pages/.page) marker files identify the directories that become manifest routes.
 - [`site.json`](site.json) declares the environments for which manifests are generated.
 - The [Generate Manifests workflow](.github/workflows/generate-manifests.yml) turns the content under `pages/` into environment-specific mappings.
-
-The Generate Manifests workflow does not use `.pages.yml` when building manifests. A file can therefore be included in a manifest without being editable through Pages CMS. Similarly, adding a file to `.pages.yml` makes it editable but does not, by itself, create a new manifest route.
 
 ```mermaid
 flowchart LR
@@ -88,7 +86,7 @@ A Markdown file added directly to this collection on `dev` also becomes editable
 
 ### Example: expose a configuration file in Pages CMS
 
-Configuration files are represented by fixed `file` entries. Each environment is declared separately so an editor can deliberately choose **Default**, **Development**, **Testing**, or **Production** in the CMS.
+Configuration files are represented by fixed `file` entries in the CMS. Each environment is declared separately so an editor can deliberately choose **Default**, **Development**, **Testing**, or **Production** in the CMS.
 
 For example, this entry exposes the testing site settings file:
 
