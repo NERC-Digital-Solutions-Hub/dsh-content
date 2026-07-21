@@ -1,4 +1,4 @@
-name: Trigger website rebuild
+name: Trigger Website Rebuild
 
 on:
   push:
