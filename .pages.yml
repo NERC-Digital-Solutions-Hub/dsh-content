@@ -2,6 +2,19 @@ media:
   input: pages/images
   output: pages/images
 
+# Environment-managed content is represented by fixed files so editors can
+# choose Default, Production, Development, or Testing directly in Pages CMS.
+#
+# Default files have no environment suffix:
+#   introduction.md
+#   content.json
+#   settings.json
+#
+# Environment-specific files use:
+#   introduction.production.md
+#   introduction.development.md
+#   introduction.testing.md
+
 content:
   # ─────────────────────────────────────────────
   # Home
@@ -15,10 +28,29 @@ content:
         label: Introduction
         type: group
         items:
+          - name: home-introduction-default
+            label: Default
+            type: file
+            path: pages/introduction/introduction.md
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
           - name: home-introduction-production
             label: Production
             type: file
-            path: pages/introduction.production.md
+            path: pages/introduction/introduction.production.md
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: body
                 label: Body
@@ -29,7 +61,11 @@ content:
           - name: home-introduction-development
             label: Development
             type: file
-            path: pages/introduction.development.md
+            path: pages/introduction/introduction.development.md
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: body
                 label: Body
@@ -40,7 +76,11 @@ content:
           - name: home-introduction-testing
             label: Testing
             type: file
-            path: pages/introduction.testing.md
+            path: pages/introduction/introduction.testing.md
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: body
                 label: Body
@@ -52,20 +92,51 @@ content:
         label: Content
         type: group
         items:
-          - name: home-content-production
-            label: Production
+          - name: home-content-default
+            label: Default
             type: file
-            path: pages/content.production.json
+            path: pages/content/content.json
             format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: title
                 label: Title
                 type: string
                 required: true
+
               - name: version
                 label: Version
                 type: string
                 required: false
+
+              - name: description
+                label: Description
+                type: string
+                required: false
+
+          - name: home-content-production
+            label: Production
+            type: file
+            path: pages/content/content.production.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+
+              - name: version
+                label: Version
+                type: string
+                required: false
+
               - name: description
                 label: Description
                 type: string
@@ -74,17 +145,23 @@ content:
           - name: home-content-development
             label: Development
             type: file
-            path: pages/content.development.json
+            path: pages/content/content.development.json
             format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: title
                 label: Title
                 type: string
                 required: true
+
               - name: version
                 label: Version
                 type: string
                 required: false
+
               - name: description
                 label: Description
                 type: string
@@ -93,17 +170,23 @@ content:
           - name: home-content-testing
             label: Testing
             type: file
-            path: pages/content.testing.json
+            path: pages/content/content.testing.json
             format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: title
                 label: Title
                 type: string
                 required: true
+
               - name: version
                 label: Version
                 type: string
                 required: false
+
               - name: description
                 label: Description
                 type: string
@@ -117,11 +200,15 @@ content:
             label: Navigation
             type: group
             items:
-              - name: home-navigation-production
-                label: Production
+              - name: home-navigation-default
+                label: Default
                 type: file
-                path: pages/navigation.json
+                path: pages/navigation/navigation.json
                 format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
                 fields:
                   - name: items
                     label: Navigation Items
@@ -169,14 +256,42 @@ content:
                           - name: info
                             label: Description
                             type: text
-                  - name: home-navigation-development
-                    label: Development
-                    type: file
-                    path: pages/navigation.development.json
-                    format: json
+
+              - name: home-navigation-production
+                label: Production
+                type: file
+                path: pages/navigation/navigation.production.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: items
+                    label: Navigation Items
+                    type: object
+                    list: true
                     fields:
-                      - name: items
-                        label: Navigation Items
+                      - name: type
+                        label: Type
+                        type: string
+                        required: true
+
+                      - name: name
+                        label: Name
+                        type: string
+                        required: true
+
+                      - name: href
+                        label: Link URL
+                        type: string
+
+                      - name: info
+                        label: Description
+                        type: text
+
+                      - name: children
+                        label: Child Links
                         type: object
                         list: true
                         fields:
@@ -193,74 +308,185 @@ content:
                           - name: href
                             label: Link URL
                             type: string
+                            required: true
 
                           - name: info
                             label: Description
                             type: text
 
-                          - name: children
-                            label: Child Links
-                            type: object
-                            list: true
-                            fields:
-                              - name: type
-                                label: Type
-                                type: string
-                                required: true
+              - name: home-navigation-development
+                label: Development
+                type: file
+                path: pages/navigation/navigation.development.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: items
+                    label: Navigation Items
+                    type: object
+                    list: true
+                    fields:
+                      - name: type
+                        label: Type
+                        type: string
+                        required: true
 
-                              - name: name
-                                label: Name
-                                type: string
-                                required: true
+                      - name: name
+                        label: Name
+                        type: string
+                        required: true
 
-                              - name: href
-                                label: Link URL
-                                type: string
-                                required: true
+                      - name: href
+                        label: Link URL
+                        type: string
 
-                              - name: info
-                                label: Description
-                                type: text
+                      - name: info
+                        label: Description
+                        type: text
 
-          - name: home-settings-default
-            label: Default
-            type: file
-            path: pages/settings.json
-            format: json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
+                      - name: children
+                        label: Child Links
+                        type: object
+                        list: true
+                        fields:
+                          - name: type
+                            label: Type
+                            type: string
+                            required: true
 
-          - name: home-settings-production
-            label: Production
-            type: file
-            path: pages/settings.production.json
-            format: json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
+                          - name: name
+                            label: Name
+                            type: string
+                            required: true
 
-          - name: home-settings-development
-            label: Development
-            type: file
-            path: pages/settings.development.json
-            format: json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
+                          - name: href
+                            label: Link URL
+                            type: string
+                            required: true
 
-          - name: home-settings-testing
-            label: Testing
-            type: file
-            path: pages/settings.testing.json
-            format: json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
+                          - name: info
+                            label: Description
+                            type: text
+
+              - name: home-navigation-testing
+                label: Testing
+                type: file
+                path: pages/navigation/navigation.testing.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: items
+                    label: Navigation Items
+                    type: object
+                    list: true
+                    fields:
+                      - name: type
+                        label: Type
+                        type: string
+                        required: true
+
+                      - name: name
+                        label: Name
+                        type: string
+                        required: true
+
+                      - name: href
+                        label: Link URL
+                        type: string
+
+                      - name: info
+                        label: Description
+                        type: text
+
+                      - name: children
+                        label: Child Links
+                        type: object
+                        list: true
+                        fields:
+                          - name: type
+                            label: Type
+                            type: string
+                            required: true
+
+                          - name: name
+                            label: Name
+                            type: string
+                            required: true
+
+                          - name: href
+                            label: Link URL
+                            type: string
+                            required: true
+
+                          - name: info
+                            label: Description
+                            type: text
+
+          - name: home-settings-files
+            label: Site Settings
+            type: group
+            items:
+              - name: home-settings-default
+                label: Default
+                type: file
+                path: pages/settings/settings.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: enableIntroductionPopup
+                    label: Enable Introduction Popup
+                    type: boolean
+
+              - name: home-settings-production
+                label: Production
+                type: file
+                path: pages/settings/settings.production.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: enableIntroductionPopup
+                    label: Enable Introduction Popup
+                    type: boolean
+
+              - name: home-settings-development
+                label: Development
+                type: file
+                path: pages/settings/settings.development.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: enableIntroductionPopup
+                    label: Enable Introduction Popup
+                    type: boolean
+
+              - name: home-settings-testing
+                label: Testing
+                type: file
+                path: pages/settings/settings.testing.json
+                format: json
+                operations:
+                  create: true
+                  rename: false
+                  delete: false
+                fields:
+                  - name: enableIntroductionPopup
+                    label: Enable Introduction Popup
+                    type: boolean
 
   # ─────────────────────────────────────────────
   # Apps
@@ -272,34 +498,147 @@ content:
     items:
       - name: apps-cards
         label: App Cards
-        type: file
-        path: pages/apps/apps.json
-        format: json
-        fields:
-          - name: items
-            label: Apps
-            type: object
-            list: true
+        type: group
+        items:
+          - name: apps-cards-default
+            label: Default
+            type: file
+            path: pages/apps/apps.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
-              - name: title
-                label: Title
-                type: string
-                required: true
+              - name: items
+                label: Apps
+                type: object
+                list: true
+                fields:
+                  - name: title
+                    label: Title
+                    type: string
+                    required: true
 
-              - name: description
-                label: Description
-                type: text
-                required: true
+                  - name: description
+                    label: Description
+                    type: text
+                    required: true
 
-              - name: image
-                label: Image
-                type: image
-                required: false
+                  - name: image
+                    label: Image
+                    type: image
+                    required: false
 
-              - name: href
-                label: Link URL
-                type: string
-                required: true
+                  - name: href
+                    label: Link URL
+                    type: string
+                    required: true
+
+          - name: apps-cards-production
+            label: Production
+            type: file
+            path: pages/apps/apps.production.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: items
+                label: Apps
+                type: object
+                list: true
+                fields:
+                  - name: title
+                    label: Title
+                    type: string
+                    required: true
+
+                  - name: description
+                    label: Description
+                    type: text
+                    required: true
+
+                  - name: image
+                    label: Image
+                    type: image
+                    required: false
+
+                  - name: href
+                    label: Link URL
+                    type: string
+                    required: true
+
+          - name: apps-cards-development
+            label: Development
+            type: file
+            path: pages/apps/apps.development.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: items
+                label: Apps
+                type: object
+                list: true
+                fields:
+                  - name: title
+                    label: Title
+                    type: string
+                    required: true
+
+                  - name: description
+                    label: Description
+                    type: text
+                    required: true
+
+                  - name: image
+                    label: Image
+                    type: image
+                    required: false
+
+                  - name: href
+                    label: Link URL
+                    type: string
+                    required: true
+
+          - name: apps-cards-testing
+            label: Testing
+            type: file
+            path: pages/apps/apps.testing.json
+            format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: items
+                label: Apps
+                type: object
+                list: true
+                fields:
+                  - name: title
+                    label: Title
+                    type: string
+                    required: true
+
+                  - name: description
+                    label: Description
+                    type: text
+                    required: true
+
+                  - name: image
+                    label: Image
+                    type: image
+                    required: false
+
+                  - name: href
+                    label: Link URL
+                    type: string
+                    required: true
 
   # ─────────────────────────────────────────────
   # Research
@@ -374,10 +713,29 @@ content:
         label: Introduction
         type: group
         items:
+          - name: uprn-service-introduction-default
+            label: Default
+            type: file
+            path: pages/apps/uprn-service/introduction/introduction.md
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: body
+                label: Body
+                type: rich-text
+                options:
+                  format: markdown
+
           - name: uprn-service-introduction-production
             label: Production
             type: file
-            path: pages/apps/uprn-service/introduction.production.md
+            path: pages/apps/uprn-service/introduction/introduction.production.md
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: body
                 label: Body
@@ -388,7 +746,11 @@ content:
           - name: uprn-service-introduction-development
             label: Development
             type: file
-            path: pages/apps/uprn-service/introduction.development.md
+            path: pages/apps/uprn-service/introduction/introduction.development.md
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: body
                 label: Body
@@ -399,7 +761,11 @@ content:
           - name: uprn-service-introduction-testing
             label: Testing
             type: file
-            path: pages/apps/uprn-service/introduction.testing.md
+            path: pages/apps/uprn-service/introduction/introduction.testing.md
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: body
                 label: Body
@@ -414,8 +780,12 @@ content:
           - name: uprn-service-settings-default
             label: Default
             type: file
-            path: pages/apps/uprn-service/settings.json
+            path: pages/apps/uprn-service/settings/settings.json
             format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: enableIntroductionPopup
                 label: Enable Introduction Popup
@@ -437,8 +807,12 @@ content:
           - name: uprn-service-settings-production
             label: Production
             type: file
-            path: pages/apps/uprn-service/settings.production.json
+            path: pages/apps/uprn-service/settings/settings.production.json
             format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: enableIntroductionPopup
                 label: Enable Introduction Popup
@@ -460,8 +834,12 @@ content:
           - name: uprn-service-settings-development
             label: Development
             type: file
-            path: pages/apps/uprn-service/settings.development.json
+            path: pages/apps/uprn-service/settings/settings.development.json
             format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: enableIntroductionPopup
                 label: Enable Introduction Popup
@@ -483,8 +861,12 @@ content:
           - name: uprn-service-settings-testing
             label: Testing
             type: file
-            path: pages/apps/uprn-service/settings.testing.json
+            path: pages/apps/uprn-service/settings/settings.testing.json
             format: json
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: enableIntroductionPopup
                 label: Enable Introduction Popup

@@ -1,47 +1,212 @@
 # dsh-content
 
-## Manifests
+`dsh-content` is the content repository for the Digital Solutions Hub websites. It stores the content files, controls which content can be edited through Pages CMS, and publishes environment-specific manifests that the website repositories use during their builds.
 
-`manifest.<environment>.json` files are generated from the contents of the `/pages` directory.
+Most contributors follow this process:
 
-The manifests act as a structured index of page routes and their content assets, so applications can discover and retrieve page content at build time without hardcoding repository paths.
+1. Edit content on the `dev` branch, usually through Pages CMS.
+2. Review the change and merge `dev` into `main`.
+3. The [Generate Manifests GitHub Actions workflow](.github/workflows/generate-manifests.yml) automatically generates and commits the environment manifests.
+4. After manifest generation succeeds, the [Trigger DSH Website Rebuild workflow](.github/workflows/trigger-dsh-website-rebuild.yml) requests a rebuild of the [`dsh-dev` repository](https://github.com/NERC-Digital-Solutions-Hub/dsh-dev).
 
-A manifest is intended to be a machine-readable contract between the content repository and consuming applications.
+Contributors should not edit or commit generated manifests manually.
 
-## Manifest Structure
+## How the repository fits together
+
+Pages CMS and the manifests have separate responsibilities:
+
+- [`pages/`](pages/) contains the content consumed by the websites.
+- [`.pages.yml`](.pages.yml) controls which files and fields Pages CMS exposes for editing.
+- [`.page`](pages/.page) marker files identify the directories that become manifest routes.
+- [`site.json`](site.json) declares the environments for which manifests are generated.
+- The [Generate Manifests workflow](.github/workflows/generate-manifests.yml) turns the content under `pages/` into environment-specific mappings.
+
+The Generate Manifests workflow does not use `.pages.yml` when building manifests. A file can therefore be included in a manifest without being editable through Pages CMS. Similarly, adding a file to `.pages.yml` makes it editable but does not, by itself, create a new manifest route.
+
+```mermaid
+flowchart LR
+    Config[".pages.yml<br/>editable files and fields"] --> CMS["Pages CMS"]
+    CMS -->|"commits declared content"| Content["pages/ on dsh-content:dev"]
+    Content --> Action["Generate Manifests<br/>GitHub Actions workflow"]
+    Markers[".page route markers"] --> Action
+    Environments["site.json environments"] --> Action
+    Action --> Manifests["manifest.&lt;environment&gt;.json"]
+```
+
+## Editing content with Pages CMS
+
+Pages CMS wraps around this repository and uses `.pages.yml` to build its editing interface. The configuration contains:
+
+- `group` entries that organise the CMS navigation.
+- `file` entries for fixed content or configuration files.
+- `collection` entries for repeatable content such as research articles.
+- Field definitions that control the form presented to an editor.
+- A `media` configuration that stores uploaded images under `pages/images`.
+
+Only declared files and collections are editable through the CMS. See the [Pages CMS configuration documentation](https://pagescms.org/docs/configuration/) when adding or changing entries in `.pages.yml`.
+
+Pages CMS is configured to commit changes to the `dev` branch. Saving in the CMS updates `dsh-content:dev`; it does not immediately publish the change. The resulting commit must still be reviewed and merged into `main`.
+
+### Example: add a research article
+
+The `research-articles` collection in `.pages.yml` maps to:
+
+```text
+pages/research/articles/{slug}.md
+```
+
+To add an article through Pages CMS:
+
+1. Open **Research → Research Articles**.
+2. Create an item and choose its slug. The slug becomes the Markdown filename.
+3. Enter the title and any optional description, thumbnail, date, tags, or hidden status.
+4. Add the article body using the rich-text Markdown editor.
+5. Save the item. Pages CMS commits it to the `dev` branch of this repository.
+6. Review the content and merge `dev` into `main`.
+
+The resulting file follows this shape:
+
+```markdown
+---
+title: Example research article
+description: A short summary of the article.
+thumbnail: pages/images/example.png
+date: 2026-07-21
+tags:
+  - Research
+hidden: false
+---
+
+# Example research article
+
+Article content goes here.
+```
+
+Because `pages/research/articles/.page` exists, the article is included under the `articles` manifest page at `/research/articles`. A file named `example-research-article.md` has the asset key `example-research-article`.
+
+A Markdown file added directly to this collection on `dev` also becomes editable in Pages CMS when its frontmatter matches the configured fields.
+
+### Example: expose a configuration file in Pages CMS
+
+Configuration files are represented by fixed `file` entries. Each environment is declared separately so an editor can deliberately choose **Default**, **Development**, **Testing**, or **Production** in the CMS.
+
+For example, this entry exposes the testing site settings file:
+
+```yaml
+- name: home-settings-testing
+  label: Testing
+  type: file
+  path: pages/settings/settings.testing.json
+  format: json
+  operations:
+    create: true
+    rename: false
+    delete: false
+  fields:
+    - name: enableIntroductionPopup
+      label: Enable Introduction Popup
+      type: boolean
+```
+
+To add a configuration to the CMS:
+
+1. Choose the configuration path and, where applicable, its environment suffix.
+2. Add a `file` entry under the appropriate group in `.pages.yml`.
+3. Set the file format and declare fields that match the JSON structure.
+4. Use `operations.create: true` when Pages CMS should be able to create the fixed file if it does not exist.
+5. Commit the `.pages.yml` change to `dev`.
+6. Open the new entry in Pages CMS, create or edit its values, and save the CMS commit to `dev`.
+7. Review and merge `dev` into `main`.
+
+The example above produces configuration such as:
+
+```json
+{
+	"enableIntroductionPopup": true
+}
+```
+
+Because `pages/.page` defines the root route, `pages/settings/settings.testing.json` is included in the testing manifest under the `home` page with the asset key `settings.settings`.
+
+When adding any other CMS-managed content type, use a `file` entry for a fixed file or a `collection` entry for repeatable items. Add a `.page` marker only when a directory should become a separate manifest route.
+
+## Publishing and website rebuilds
+
+Merging `dsh-content:dev` into `dsh-content:main` starts the automated publishing process.
+
+### Generate Manifests
+
+The [Generate Manifests GitHub Actions workflow](.github/workflows/generate-manifests.yml):
+
+1. Checks out the content from `main`.
+2. Reads the environments declared in `site.json`.
+3. Finds the routes identified by `.page` markers.
+4. Maps each route's files to stable asset keys.
+5. Applies default and environment-specific file selection.
+6. Writes `manifest.development.json`, `manifest.testing.json`, and `manifest.production.json`.
+7. Automatically commits changed manifests to `main`.
+
+The workflow also runs after the UPRN configuration build completes successfully, ensuring generated UPRN assets can be included in the manifests.
+
+### Trigger the development website rebuild
+
+The [Trigger DSH Website Rebuild workflow](.github/workflows/trigger-dsh-website-rebuild.yml) waits for Generate Manifests to complete successfully. It then dispatches `deploy.yml` on the `dev` branch of the separate [`NERC-Digital-Solutions-Hub/dsh-dev` repository](https://github.com/NERC-Digital-Solutions-Hub/dsh-dev).
+
+A failed or incomplete Generate Manifests run does not rebuild the development website.
+
+```mermaid
+flowchart TD
+    Author["Pages CMS or contributor"] --> ContentDev["dsh-content repository<br/>dev branch"]
+    ContentDev -->|"review and merge"| ContentMain["dsh-content repository<br/>main branch"]
+    ContentMain --> Generate["Generate Manifests<br/>automatic GitHub Actions workflow"]
+    Generate -->|"completed successfully"| Trigger["Trigger DSH Website Rebuild"]
+    Trigger --> DevRepo["dsh-dev repository<br/>deploy.yml on dev branch"]
+    DevRepo --> DevManifest["development<br/>manifest.development.json"]
+    DevRepo -->|"promote website code"| TestRepo["dsh-testing repository<br/>testing environment"]
+    TestRepo --> TestManifest["manifest.testing.json"]
+    DevRepo -->|"promote website code"| ProdRepo["dsh repository<br/>production environment"]
+    ProdRepo --> ProdManifest["manifest.production.json"]
+```
+
+### Website repositories and environments
+
+Each website repository selects its content manifest at build time from its configured `PUBLIC_DSH_ENVIRONMENT` value:
+
+| Website repository                                                         | Environment value | Manifest                    |
+| -------------------------------------------------------------------------- | ----------------- | --------------------------- |
+| [`dsh-dev`](https://github.com/NERC-Digital-Solutions-Hub/dsh-dev)         | `development`     | `manifest.development.json` |
+| [`dsh-testing`](https://github.com/NERC-Digital-Solutions-Hub/dsh-testing) | `testing`         | `manifest.testing.json`     |
+| [`dsh`](https://github.com/NERC-Digital-Solutions-Hub/dsh)                 | `production`      | `manifest.production.json`  |
+
+When website code is merged from the `dsh-dev` repository into the `dsh-testing` or `dsh` repository, the target repository rebuilds using its own configured environment. This allows all three websites to use the same content repository while resolving different environment-specific files.
+
+## Manifest purpose and structure
+
+A manifest is a machine-readable mapping between stable page and asset identifiers and the physical files under `pages/`. Website repositories use this mapping instead of hardcoding content paths.
 
 Each manifest contains:
 
-- the manifest schema version
-- the content version / generation timestamp
-- the environment the manifest was generated for
-- a `pages` object keyed by stable page IDs
-- one route per page
-- an `assets` object for each page
-- asset descriptors containing the file `path` and asset `type`
+- `schemaVersion`: the manifest schema version.
+- `version` and `generatedAt`: the UTC generation timestamp.
+- `environment`: the environment represented by the manifest.
+- `pages`: an object keyed by stable page ID.
+- `route`: the website route represented by a page.
+- `assets`: flat asset keys mapped to file descriptors.
 
 Example:
 
 ```json
 {
 	"schemaVersion": 1,
-	"version": "2026-05-08T10:47:25Z",
-	"generatedAt": "2026-05-08T10:47:25Z",
-	"environment": "development",
+	"version": "2026-07-21T10:30:00Z",
+	"generatedAt": "2026-07-21T10:30:00Z",
+	"environment": "production",
 	"pages": {
-		"research": {
-			"route": "/research",
+		"home": {
+			"route": "/",
 			"assets": {
-				"main": {
-					"path": "research/main.md",
-					"type": "markdown"
-				},
-				"articles.ai-document-insights.article": {
-					"path": "research/articles/ai-document-insights/article.md",
-					"type": "markdown"
-				},
-				"articles.ai-document-insights.metadata": {
-					"path": "research/articles/ai-document-insights/metadata.json",
+				"settings.settings": {
+					"path": "settings/settings.production.json",
 					"type": "json"
 				}
 			}
@@ -50,185 +215,51 @@ Example:
 }
 ```
 
-## Purpose
+## Page routes and IDs
 
-A manifest describes:
-
-- which directories are valid page routes
-- the stable ID for each page
-- which assets belong to each page
-- the route associated with each page
-- the content path for each asset
-- the type of each asset
-- which files apply to a given environment
-
-Applications should use the manifest to request content semantically, for example:
-
-```ts
-const page = source.page('research');
-const main = await page.asset('main').text();
-const metadata = await page.asset('articles.ai-document-insights.metadata').json();
-```
-
-This keeps consuming applications independent from the physical folder layout of the content repository.
-
-## Page Files
-
-A directory is treated as a page route only if it contains a file named `.page`.
-
-This marker makes the directory the root of a page route.
-
-For example:
+A directory becomes a manifest route only when it contains a `.page` marker.
 
 ```text
 pages/
+  .page
   research/
     .page
     main.md
     articles/
-      ai-document-insights/
-        article.md
-        metadata.json
-```
-
-Because `pages/research/.page` exists, `research` becomes a page route and is emitted as:
-
-```json
-{
-	"pages": {
-		"research": {
-			"route": "/research",
-			"assets": {
-				"main": {
-					"path": "research/main.md",
-					"type": "markdown"
-				},
-				"articles.ai-document-insights.article": {
-					"path": "research/articles/ai-document-insights/article.md",
-					"type": "markdown"
-				},
-				"articles.ai-document-insights.metadata": {
-					"path": "research/articles/ai-document-insights/metadata.json",
-					"type": "json"
-				}
-			}
-		}
-	}
-}
-```
-
-Without a `.page` file, the directory is not treated as a route, even if it contains content.
-
-### `.page` Metadata
-
-The `.page` file may be empty, or it may contain JSON metadata.
-
-Use this when you want to provide a stable page ID explicitly:
-
-```json
-{
-	"id": "uprn-service"
-}
-```
-
-This is useful when the route path and the page ID should not be tightly coupled.
-
-For example:
-
-```text
-pages/
-  apps/
-    uprn-service/
       .page
-      introduction.md
-      settings.json
+      example-research-article.md
 ```
 
-With this `.page` file:
+This produces the routes `/`, `/research`, and `/research/articles`.
 
-```json
-{
-	"id": "uprn-service"
-}
-```
+Files beneath a nested route are not included in the parent route. In the example above, article files belong to `/research/articles`, not `/research` or `/`.
 
-The manifest page entry is keyed by `uprn-service`:
+### Page IDs
 
-```json
-{
-	"pages": {
-		"uprn-service": {
-			"route": "/apps/uprn-service",
-			"assets": {
-				"introduction": {
-					"path": "apps/uprn-service/introduction.md",
-					"type": "markdown"
-				},
-				"settings": {
-					"path": "apps/uprn-service/settings.json",
-					"type": "json"
-				}
-			}
-		}
-	}
-}
-```
-
-## Page IDs
-
-The `pages` object is keyed by page ID.
-
-Example:
-
-```json
-{
-	"pages": {
-		"home": {},
-		"research": {},
-		"uprn-service": {}
-	}
-}
-```
-
-If the `.page` file contains an explicit `id`, that value is used.
-
-If no ID is provided, the generator derives one from the route:
+An empty `.page` file uses the final route segment as its page ID:
 
 | Route                | Default page ID |
 | -------------------- | --------------- |
 | `/`                  | `home`          |
 | `/research`          | `research`      |
+| `/research/articles` | `articles`      |
 | `/apps/uprn-service` | `uprn-service`  |
 
-If two routes would produce the same page ID, add explicit IDs to their `.page` files.
-
-## Assets
-
-Each page contains an `assets` object.
-
-An asset entry maps a stable asset key to an asset descriptor:
+A `.page` file can contain JSON to provide an explicit ID:
 
 ```json
 {
-	"assets": {
-		"introduction": {
-			"path": "apps/uprn-service/introduction.md",
-			"type": "markdown"
-		}
-	}
+	"id": "uprn-service"
 }
 ```
 
-### Asset Descriptor
+Use explicit IDs when the route and stable application identifier should differ, or when default IDs would collide. Duplicate page IDs cause the Generate Manifests workflow to fail.
 
-Each asset descriptor contains:
+A page is omitted from a particular environment's manifest when it has no applicable assets for that environment.
 
-| Field  | Description                                       |
-| ------ | ------------------------------------------------- |
-| `path` | File path relative to the `/pages` directory      |
-| `type` | Inferred content type based on the file extension |
+## Assets and asset keys
 
-Example:
+Each asset is described by its path relative to `pages/` and its inferred content type:
 
 ```json
 {
@@ -237,442 +268,101 @@ Example:
 }
 ```
 
-### Asset Types
+Asset keys are derived from the path beneath the route directory:
 
-Asset types are inferred from file extensions.
-
-Common examples:
-
-| Extension       | Type       |
-| --------------- | ---------- |
-| `.md`           | `markdown` |
-| `.mdx`          | `markdown` |
-| `.json`         | `json`     |
-| `.csv`          | `csv`      |
-| `.svg`          | `svg`      |
-| `.png`          | `png`      |
-| `.jpg`, `.jpeg` | `jpg`      |
-| `.webp`         | `webp`     |
-| `.xlsx`         | `xlsx`     |
-| `.txt`          | `text`     |
-| `.pdf`          | `pdf`      |
-
-Unknown extensions are emitted as their extension name. Files without an extension are emitted as `binary`.
-
-## Asset Keys
-
-Asset keys are stable lookup keys used by consuming applications.
-
-Asset keys are derived from the file path beneath the page route directory by:
-
-1. removing the environment segment, if present
-2. removing the file extension
-3. joining folder names and the filename with `.`
-4. preserving path-style names such as kebab-case
+1. Remove a recognised environment segment from the filename.
+2. Remove the file extension.
+3. Convert each directory and filename segment to lowercase kebab-case.
+4. Join the segments with `.`.
 
 Examples:
 
-| File path beneath route directory                                     | Asset key                                                         |
-| --------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `introduction.md`                                                     | `introduction`                                                    |
-| `settings.production.json`                                            | `settings`                                                        |
-| `svgs/bootstrap/info-circle.svg`                                      | `svgs.bootstrap.info-circle`                                      |
-| `generated/csv/config/datasets.csv`                                   | `generated.csv.config.datasets`                                   |
-| `articles/ai-document-insights/metadata.json`                         | `articles.ai-document-insights.metadata`                          |
-| `articles/ai-document-insights/architecture-extract-descriptions.svg` | `articles.ai-document-insights.architecture-extract-descriptions` |
+| Route-relative file                        | Asset key                       |
+| ------------------------------------------ | ------------------------------- |
+| `introduction/introduction.development.md` | `introduction.introduction`     |
+| `settings/settings.testing.json`           | `settings.settings`             |
+| `CJ_Backend.xlsx`                          | `cj-backend`                    |
+| `generated/csv/config/datasets.csv`        | `generated.csv.config.datasets` |
+| `svgs/bootstrap/info-circle.svg`           | `svgs.bootstrap.info-circle`    |
 
-The manifest does not convert filenames to camelCase. This keeps keys consistent with content paths and avoids mixed styles such as:
+Hidden files and `.page` markers are not emitted as assets. Avoid files in the same route whose paths normalise to the same asset key, such as `image.jpg` and `image.png`.
 
-```text
-ai-document-insights.architectureExtractDescriptions
-```
+### Asset types
 
-Prefer:
+Types are inferred from file extensions. Common mappings include:
 
-```text
-ai-document-insights.architecture-extract-descriptions
-```
+| Extensions      | Manifest type |
+| --------------- | ------------- |
+| `.md`, `.mdx`   | `markdown`    |
+| `.json`         | `json`        |
+| `.csv`          | `csv`         |
+| `.svg`          | `svg`         |
+| `.png`          | `png`         |
+| `.jpg`, `.jpeg` | `jpg`         |
+| `.gif`          | `gif`         |
+| `.webp`         | `webp`        |
+| `.xlsx`, `.xls` | `xlsx`, `xls` |
+| `.txt`          | `text`        |
+| `.html`         | `html`        |
+| `.xml`          | `xml`         |
+| `.pdf`          | `pdf`         |
 
-## Route Requirements
+Unknown extensions use the extension as the type. A file without an extension uses `binary`.
 
-### 1. A route requires `.page`
+## Environment-specific content
 
-Only directories containing `.page` become page entries in the manifest.
-
-### 2. Nested route directories are excluded from parent routes
-
-If a directory inside a route also contains `.page`, it becomes its own route. Its files are not included in the parent route's assets.
-
-Example:
-
-```text
-pages/
-  research/
-    .page
-    main.md
-    articles/
-      .page
-      index.md
-```
-
-This produces separate page entries for:
-
-```text
-/research
-/research/articles
-```
-
-### 3. Asset keys are flat
-
-Older manifests used a nested `files` object.
-
-New manifests use a flat `assets` object.
-
-Old shape:
+[`site.json`](site.json) currently declares three environments:
 
 ```json
 {
-	"files": {
-		"articles": {
-			"ai-document-insights": {
-				"metadata": "research/articles/ai-document-insights/metadata.json"
-			}
-		}
-	}
+	"environments": ["production", "development", "testing"]
 }
 ```
 
-New shape:
+The Generate Manifests workflow writes one manifest for each value.
 
-```json
-{
-	"assets": {
-		"articles.ai-document-insights.metadata": {
-			"path": "research/articles/ai-document-insights/metadata.json",
-			"type": "json"
-		}
-	}
-}
-```
-
-### 4. Asset values are descriptors
-
-Older manifests mapped keys directly to file paths.
-
-Old shape:
-
-```json
-{
-	"settings": "apps/uprn-service/settings.json"
-}
-```
-
-New shape:
-
-```json
-{
-	"settings": {
-		"path": "apps/uprn-service/settings.json",
-		"type": "json"
-	}
-}
-```
-
-## Environments
-
-The generator builds one manifest per environment.
-
-Environments are defined in `site.json`.
-
-For example:
-
-```json
-{
-	"environments": ["testing", "production"]
-}
-```
-
-This generates:
-
-- `manifest.testing.json`
-- `manifest.production.json`
-
-If `environments` is not present, the generator falls back to `currentenvironment`:
-
-```json
-{
-	"currentenvironment": "development"
-}
-```
-
-This generates:
-
-- `manifest.development.json`
-
-## Environment-Specific Files
-
-A file is considered environment-specific when its name matches this pattern:
+A filename is environment-specific when it follows:
 
 ```text
 <name>.<environment>.<extension>
 ```
 
-Examples:
+For example:
 
 ```text
-settings.testing.json
-settings.production.json
-introduction.development.md
+settings/settings.json
+settings/settings.development.json
+settings/settings.testing.json
+settings/settings.production.json
 ```
 
-A file without an environment segment is treated as the default version and is included for all environments.
+All of these files map to the `settings.settings` asset key:
 
-Example:
+- An environment-specific file overrides the default file for its matching environment.
+- The default file is used when there is no matching override.
+- An environment-specific file without a default is included only in its matching environment.
 
-```text
-settings.json
-```
+| Manifest                    | Selected path                        |
+| --------------------------- | ------------------------------------ |
+| `manifest.development.json` | `settings/settings.development.json` |
+| `manifest.testing.json`     | `settings/settings.testing.json`     |
+| `manifest.production.json`  | `settings/settings.production.json`  |
 
-## Override Behaviour
+Generated manifests should not be edited manually. They are maintained automatically by the Generate Manifests workflow after content reaches `main`.
 
-For the same asset key:
+## How website repositories consume content
 
-- the default file is used for all environments
-- an environment-specific file overrides the default for that environment
+A website selects the manifest matching its configured environment, finds a page by its stable ID or route, and resolves assets by their stable keys.
 
-Example directory:
-
-```text
-pages/
-  research/
-    .page
-    settings.json
-    settings.testing.json
-    settings.production.json
-```
-
-Generated behaviour:
-
-- `manifest.testing.json` uses `settings.testing.json`
-- `manifest.production.json` uses `settings.production.json`
-- other environments use `settings.json`, if generated
-
-The asset key remains the same:
-
-```json
-{
-	"settings": {
-		"path": "research/settings.production.json",
-		"type": "json"
-	}
-}
-```
-
-Only the selected file path changes by environment.
-
-## Example Folder Layout
-
-```text
-pages/
-  research/
-    .page
-    main.md
-    main.testing.md
-    articles/
-      ai-document-insights/
-        article.md
-        metadata.json
-        architecture-extract-descriptions.svg
-```
-
-## Example Result for `production`
-
-```json
-{
-	"schemaVersion": 1,
-	"version": "2026-05-08T10:47:25Z",
-	"generatedAt": "2026-05-08T10:47:25Z",
-	"environment": "production",
-	"pages": {
-		"research": {
-			"route": "/research",
-			"assets": {
-				"main": {
-					"path": "research/main.md",
-					"type": "markdown"
-				},
-				"articles.ai-document-insights.article": {
-					"path": "research/articles/ai-document-insights/article.md",
-					"type": "markdown"
-				},
-				"articles.ai-document-insights.metadata": {
-					"path": "research/articles/ai-document-insights/metadata.json",
-					"type": "json"
-				},
-				"articles.ai-document-insights.architecture-extract-descriptions": {
-					"path": "research/articles/ai-document-insights/architecture-extract-descriptions.svg",
-					"type": "svg"
-				}
-			}
-		}
-	}
-}
-```
-
-## Example Result for `testing`
-
-```json
-{
-	"schemaVersion": 1,
-	"version": "2026-05-08T10:47:25Z",
-	"generatedAt": "2026-05-08T10:47:25Z",
-	"environment": "testing",
-	"pages": {
-		"research": {
-			"route": "/research",
-			"assets": {
-				"main": {
-					"path": "research/main.testing.md",
-					"type": "markdown"
-				},
-				"articles.ai-document-insights.article": {
-					"path": "research/articles/ai-document-insights/article.md",
-					"type": "markdown"
-				},
-				"articles.ai-document-insights.metadata": {
-					"path": "research/articles/ai-document-insights/metadata.json",
-					"type": "json"
-				},
-				"articles.ai-document-insights.architecture-extract-descriptions": {
-					"path": "research/articles/ai-document-insights/architecture-extract-descriptions.svg",
-					"type": "svg"
-				}
-			}
-		}
-	}
-}
-```
-
-Note that:
-
-- `main.testing.md` overrides `main.md` only for `testing`
-- the asset key stays as `main`
-- the asset descriptor changes by environment
-
-## Example UPRN Page
-
-Example folder layout:
-
-```text
-pages/
-  apps/
-    uprn-service/
-      .page
-      introduction.development.md
-      settings.development.json
-      climatejust-renderers.json
-      generated/
-        csv/
-          config/
-            datasets.csv
-            domains.csv
-            folders.csv
-            variables.csv
-        manifest.json
-```
-
-Example `.page` file:
-
-```json
-{
-	"id": "uprn-service"
-}
-```
-
-Example manifest output:
-
-```json
-{
-	"schemaVersion": 1,
-	"version": "2026-05-08T10:47:25Z",
-	"generatedAt": "2026-05-08T10:47:25Z",
-	"environment": "development",
-	"pages": {
-		"uprn-service": {
-			"route": "/apps/uprn-service",
-			"assets": {
-				"climatejust-renderers": {
-					"path": "apps/uprn-service/climatejust-renderers.json",
-					"type": "json"
-				},
-				"generated.csv.config.datasets": {
-					"path": "apps/uprn-service/generated/csv/config/datasets.csv",
-					"type": "csv"
-				},
-				"generated.csv.config.domains": {
-					"path": "apps/uprn-service/generated/csv/config/domains.csv",
-					"type": "csv"
-				},
-				"generated.csv.config.folders": {
-					"path": "apps/uprn-service/generated/csv/config/folders.csv",
-					"type": "csv"
-				},
-				"generated.csv.config.variables": {
-					"path": "apps/uprn-service/generated/csv/config/variables.csv",
-					"type": "csv"
-				},
-				"generated.manifest": {
-					"path": "apps/uprn-service/generated/manifest.json",
-					"type": "json"
-				},
-				"introduction": {
-					"path": "apps/uprn-service/introduction.development.md",
-					"type": "markdown"
-				},
-				"settings": {
-					"path": "apps/uprn-service/settings.development.json",
-					"type": "json"
-				}
-			}
-		}
-	}
-}
-```
-
-## Consuming the Manifest
-
-A consuming application should treat the manifest as the source of truth for content locations.
-
-Instead of hardcoding paths such as:
+For example, website code can read the root settings without knowing which environment-specific file was selected:
 
 ```ts
-const url = `${baseUrl}/apps/uprn-service/settings.production.json`;
+const source = createContentSource({
+	environment: process.env.PUBLIC_DSH_ENVIRONMENT,
+});
+
+const page = await source.getPage('/');
+const settings = await source.readJson(page, 'settings.settings');
 ```
 
-use the manifest:
-
-```ts
-const page = source.page('uprn-service');
-const settings = await page.asset('settings').json();
-```
-
-For build-time content retrieval in SvelteKit, use the content source from server-side load code and prerender the route:
-
-```ts
-import type { PageServerLoad } from './$types';
-import { createContentSource } from '$lib/server/content-source';
-
-export const prerender = true;
-
-export const load: PageServerLoad = async ({ fetch }) => {
-	const source = await createContentSource({ fetch });
-	const page = source.page('uprn-service');
-
-	return {
-		introduction: await page.asset('introduction').text(),
-		settings: await page.asset('settings').json(),
-	};
-};
-```
-
-This allows the content repository layout to change without requiring application code to be refactored, as long as page IDs and asset keys remain stable.
+This keeps website code independent of environment suffixes and the physical content directory layout, provided page IDs, routes, and asset keys remain stable.

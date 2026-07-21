@@ -1,4 +1,4 @@
-name: Notify Target Repo
+name: Notify UPRN Chatbot Repo
 
 on:
   push:
