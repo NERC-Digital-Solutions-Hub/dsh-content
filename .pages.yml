@@ -313,6 +313,7 @@ content:
           rename: false
           delete: false
         view:
+          layout: tree
           fields: [name, body]
           primary: name
           sort: [name]
@@ -340,7 +341,6 @@ content:
           rename: false
           delete: false
         view:
-          layout: "tree"
           fields: [name, enableIntroductionPopup]
           primary: name
           sort: [name]
