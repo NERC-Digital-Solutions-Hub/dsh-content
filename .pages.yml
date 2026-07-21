@@ -5,9 +5,9 @@ media:
 # Environment-managed content is configured as collections so editors can
 # create additional environment files through the Pages CMS UI.
 #
-# Collections are folder-scoped, so content types with different schemas are
-# kept in separate directories. Move the existing files to the paths shown
-# below when adopting this configuration.
+# The built-in collection entry name is displayed in each environment
+# collection so editors can identify the underlying filename without
+# opening the entry.
 
 content:
   # ─────────────────────────────────────────────
@@ -30,6 +30,13 @@ content:
           create: true
           rename: false
           delete: false
+        view:
+          fields: [name, body]
+          primary: name
+          sort: [name]
+          default:
+            sort: name
+            order: asc
         fields:
           - name: body
             label: Body
@@ -50,6 +57,13 @@ content:
           create: true
           rename: false
           delete: false
+        view:
+          fields: [name, title, version]
+          primary: name
+          sort: [name, title, version]
+          default:
+            sort: name
+            order: asc
         fields:
           - name: title
             label: Title
@@ -83,6 +97,13 @@ content:
               create: true
               rename: false
               delete: false
+            view:
+              fields: [name]
+              primary: name
+              sort: [name]
+              default:
+                sort: name
+                order: asc
             fields:
               - name: items
                 label: Navigation Items
@@ -144,6 +165,13 @@ content:
               create: true
               rename: false
               delete: false
+            view:
+              fields: [name, enableIntroductionPopup]
+              primary: name
+              sort: [name]
+              default:
+                sort: name
+                order: asc
             fields:
               - name: enableIntroductionPopup
                 label: Enable Introduction Popup
@@ -170,6 +198,13 @@ content:
           create: true
           rename: false
           delete: false
+        view:
+          fields: [name]
+          primary: name
+          sort: [name]
+          default:
+            sort: name
+            order: asc
         fields:
           - name: items
             label: Apps
@@ -277,6 +312,13 @@ content:
           create: true
           rename: false
           delete: false
+        view:
+          fields: [name, body]
+          primary: name
+          sort: [name]
+          default:
+            sort: name
+            order: asc
         fields:
           - name: body
             label: Body
@@ -297,6 +339,13 @@ content:
           create: true
           rename: false
           delete: false
+        view:
+          fields: [name, enableIntroductionPopup]
+          primary: name
+          sort: [name]
+          default:
+            sort: name
+            order: asc
         fields:
           - name: enableIntroductionPopup
             label: Enable Introduction Popup
