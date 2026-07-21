@@ -2,6 +2,13 @@ media:
   input: pages/images
   output: pages/images
 
+# Environment-managed content is configured as collections so editors can
+# create additional environment files through the Pages CMS UI.
+#
+# Collections are folder-scoped, so content types with different schemas are
+# kept in separate directories. Move the existing files to the paths shown
+# below when adopting this configuration.
+
 content:
   # ─────────────────────────────────────────────
   # Home
@@ -13,101 +20,51 @@ content:
     items:
       - name: home-introduction
         label: Introduction
-        type: group
-        items:
-          - name: home-introduction-production
-            label: Production
-            type: file
-            path: pages/introduction.production.md
-            fields:
-              - name: body
-                label: Body
-                type: rich-text
-                options:
-                  format: markdown
-
-          - name: home-introduction-development
-            label: Development
-            type: file
-            path: pages/introduction.development.md
-            fields:
-              - name: body
-                label: Body
-                type: rich-text
-                options:
-                  format: markdown
-
-          - name: home-introduction-testing
-            label: Testing
-            type: file
-            path: pages/introduction.testing.md
-            fields:
-              - name: body
-                label: Body
-                type: rich-text
-                options:
-                  format: markdown
+        type: collection
+        path: pages/introduction
+        filename:
+          template: introduction.production.md
+          field: create
+        subfolders: false
+        operations:
+          create: true
+          rename: false
+          delete: false
+        fields:
+          - name: body
+            label: Body
+            type: rich-text
+            options:
+              format: markdown
 
       - name: home-content
         label: Content
-        type: group
-        items:
-          - name: home-content-production
-            label: Production
-            type: file
-            path: pages/content.production.json
-            format: json
-            fields:
-              - name: title
-                label: Title
-                type: string
-                required: true
-              - name: version
-                label: Version
-                type: string
-                required: false
-              - name: description
-                label: Description
-                type: string
-                required: false
+        type: collection
+        path: pages/content
+        format: json
+        filename:
+          template: content.production.json
+          field: create
+        subfolders: false
+        operations:
+          create: true
+          rename: false
+          delete: false
+        fields:
+          - name: title
+            label: Title
+            type: string
+            required: true
 
-          - name: home-content-development
-            label: Development
-            type: file
-            path: pages/content.development.json
-            format: json
-            fields:
-              - name: title
-                label: Title
-                type: string
-                required: true
-              - name: version
-                label: Version
-                type: string
-                required: false
-              - name: description
-                label: Description
-                type: string
-                required: false
+          - name: version
+            label: Version
+            type: string
+            required: false
 
-          - name: home-content-testing
-            label: Testing
-            type: file
-            path: pages/content.testing.json
-            format: json
-            fields:
-              - name: title
-                label: Title
-                type: string
-                required: true
-              - name: version
-                label: Version
-                type: string
-                required: false
-              - name: description
-                label: Description
-                type: string
-                required: false
+          - name: description
+            label: Description
+            type: string
+            required: false
 
       - name: home-settings
         label: Settings
@@ -115,16 +72,43 @@ content:
         items:
           - name: home-navigation
             label: Navigation
-            type: group
-            items:
-              - name: home-navigation-production
-                label: Production
-                type: file
-                path: pages/navigation.json
-                format: json
+            type: collection
+            path: pages/navigation
+            format: json
+            filename:
+              template: navigation.json
+              field: create
+            subfolders: false
+            operations:
+              create: true
+              rename: false
+              delete: false
+            fields:
+              - name: items
+                label: Navigation Items
+                type: object
+                list: true
                 fields:
-                  - name: items
-                    label: Navigation Items
+                  - name: type
+                    label: Type
+                    type: string
+                    required: true
+
+                  - name: name
+                    label: Name
+                    type: string
+                    required: true
+
+                  - name: href
+                    label: Link URL
+                    type: string
+
+                  - name: info
+                    label: Description
+                    type: text
+
+                  - name: children
+                    label: Child Links
                     type: object
                     list: true
                     fields:
@@ -141,122 +125,25 @@ content:
                       - name: href
                         label: Link URL
                         type: string
+                        required: true
 
                       - name: info
                         label: Description
                         type: text
 
-                      - name: children
-                        label: Child Links
-                        type: object
-                        list: true
-                        fields:
-                          - name: type
-                            label: Type
-                            type: string
-                            required: true
-
-                          - name: name
-                            label: Name
-                            type: string
-                            required: true
-
-                          - name: href
-                            label: Link URL
-                            type: string
-                            required: true
-
-                          - name: info
-                            label: Description
-                            type: text
-                  - name: home-navigation-development
-                    label: Development
-                    type: file
-                    path: pages/navigation.development.json
-                    format: json
-                    fields:
-                      - name: items
-                        label: Navigation Items
-                        type: object
-                        list: true
-                        fields:
-                          - name: type
-                            label: Type
-                            type: string
-                            required: true
-
-                          - name: name
-                            label: Name
-                            type: string
-                            required: true
-
-                          - name: href
-                            label: Link URL
-                            type: string
-
-                          - name: info
-                            label: Description
-                            type: text
-
-                          - name: children
-                            label: Child Links
-                            type: object
-                            list: true
-                            fields:
-                              - name: type
-                                label: Type
-                                type: string
-                                required: true
-
-                              - name: name
-                                label: Name
-                                type: string
-                                required: true
-
-                              - name: href
-                                label: Link URL
-                                type: string
-                                required: true
-
-                              - name: info
-                                label: Description
-                                type: text
-
-          - name: home-settings-default
-            label: Default
-            type: file
-            path: pages/settings.json
+          - name: home-settings-files
+            label: Site Settings
+            type: collection
+            path: pages/settings
             format: json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-          - name: home-settings-production
-            label: Production
-            type: file
-            path: pages/settings.production.json
-            format: json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-          - name: home-settings-development
-            label: Development
-            type: file
-            path: pages/settings.development.json
-            format: json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-          - name: home-settings-testing
-            label: Testing
-            type: file
-            path: pages/settings.testing.json
-            format: json
+            filename:
+              template: settings.json
+              field: create
+            subfolders: false
+            operations:
+              create: true
+              rename: false
+              delete: false
             fields:
               - name: enableIntroductionPopup
                 label: Enable Introduction Popup
@@ -272,9 +159,17 @@ content:
     items:
       - name: apps-cards
         label: App Cards
-        type: file
-        path: pages/apps/apps.json
+        type: collection
+        path: pages/apps
         format: json
+        filename:
+          template: apps.json
+          field: create
+        subfolders: false
+        operations:
+          create: true
+          rename: false
+          delete: false
         fields:
           - name: items
             label: Apps
@@ -324,7 +219,7 @@ content:
         label: Research Articles
         type: collection
         path: pages/research/articles
-        filename: '{slug}.md'
+        filename: "{slug}.md"
         fields:
           - name: title
             label: Title
@@ -372,133 +267,50 @@ content:
     items:
       - name: uprn-service-introduction
         label: Introduction
-        type: group
-        items:
-          - name: uprn-service-introduction-production
-            label: Production
-            type: file
-            path: pages/apps/uprn-service/introduction.production.md
-            fields:
-              - name: body
-                label: Body
-                type: rich-text
-                options:
-                  format: markdown
-
-          - name: uprn-service-introduction-development
-            label: Development
-            type: file
-            path: pages/apps/uprn-service/introduction.development.md
-            fields:
-              - name: body
-                label: Body
-                type: rich-text
-                options:
-                  format: markdown
-
-          - name: uprn-service-introduction-testing
-            label: Testing
-            type: file
-            path: pages/apps/uprn-service/introduction.testing.md
-            fields:
-              - name: body
-                label: Body
-                type: rich-text
-                options:
-                  format: markdown
+        type: collection
+        path: pages/apps/uprn-service/introduction
+        filename:
+          template: introduction.production.md
+          field: create
+        subfolders: false
+        operations:
+          create: true
+          rename: false
+          delete: false
+        fields:
+          - name: body
+            label: Body
+            type: rich-text
+            options:
+              format: markdown
 
       - name: uprn-service-settings
         label: Settings
-        type: group
-        items:
-          - name: uprn-service-settings-default
-            label: Default
-            type: file
-            path: pages/apps/uprn-service/settings.json
-            format: json
+        type: collection
+        path: pages/apps/uprn-service/settings
+        format: json
+        filename:
+          template: settings.json
+          field: create
+        subfolders: false
+        operations:
+          create: true
+          rename: false
+          delete: false
+        fields:
+          - name: enableIntroductionPopup
+            label: Enable Introduction Popup
+            type: boolean
+
+          - name: chatbot
+            label: Chatbot
+            type: object
             fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
+              - name: initialMessage
+                label: Initial Message
+                type: text
 
-              - name: chatbot
-                label: Chatbot
-                type: object
-                fields:
-                  - name: initialMessage
-                    label: Initial Message
-                    type: text
-
-                  - name: exampleQuestions
-                    label: Example Questions
-                    type: string
-                    list: true
-
-          - name: uprn-service-settings-production
-            label: Production
-            type: file
-            path: pages/apps/uprn-service/settings.production.json
-            format: json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-              - name: chatbot
-                label: Chatbot
-                type: object
-                fields:
-                  - name: initialMessage
-                    label: Initial Message
-                    type: text
-
-                  - name: exampleQuestions
-                    label: Example Questions
-                    type: string
-                    list: true
-
-          - name: uprn-service-settings-development
-            label: Development
-            type: file
-            path: pages/apps/uprn-service/settings.development.json
-            format: json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-              - name: chatbot
-                label: Chatbot
-                type: object
-                fields:
-                  - name: initialMessage
-                    label: Initial Message
-                    type: text
-
-                  - name: exampleQuestions
-                    label: Example Questions
-                    type: string
-                    list: true
-
-          - name: uprn-service-settings-testing
-            label: Testing
-            type: file
-            path: pages/apps/uprn-service/settings.testing.json
-            format: json
-            fields:
-              - name: enableIntroductionPopup
-                label: Enable Introduction Popup
-                type: boolean
-
-              - name: chatbot
-                label: Chatbot
-                type: object
-                fields:
-                  - name: initialMessage
-                    label: Initial Message
-                    type: text
-
-                  - name: exampleQuestions
-                    label: Example Questions
-                    type: string
-                    list: true
+              - name: exampleQuestions
+                label: Example Questions
+                type: string
+                list: true
