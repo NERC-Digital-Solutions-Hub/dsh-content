@@ -313,11 +313,11 @@ content:
           rename: false
           delete: false
         view:
-          fields: [name, body]
-          primary: name
-          sort: [name]
+          fields: [environment, body]
+          primary: environment
+          sort: [environment]
           default:
-            sort: name
+            sort: environment
             order: asc
         fields:
           - name: body
