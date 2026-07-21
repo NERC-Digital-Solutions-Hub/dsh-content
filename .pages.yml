@@ -304,26 +304,28 @@ content:
         label: Introduction
         type: collection
         path: pages/apps/uprn-service/introduction
+      
         filename:
-          template: introduction.{environment}.md
+          template: introduction.production.md
           field: create
+      
         subfolders: false
+      
         operations:
           create: true
           rename: false
           delete: false
+      
         view:
-          fields: [environment, body]
-          primary: environment
-          sort: [environment]
+          fields: [name]
+          primary: name
+          sort: [name]
+          search: [name]
           default:
-            sort: environment
+            sort: name
             order: asc
+      
         fields:
-          - name: environment
-            label: Environment
-            type: string
-            required: true
           - name: body
             label: Body
             type: rich-text
