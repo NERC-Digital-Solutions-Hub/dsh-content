@@ -4,7 +4,7 @@
 
 The expected workflow is as follows:
 
-1. Edit content on the `dev` branch, usually through Pages CMS.
+1. Edit content on the `dev` branch, usually through [Pages CMS](https://app.pagescms.org/).
 2. Review the change and merge the `dev` branch into the `main` branch.
 3. The [Generate Manifests GitHub Actions workflow](.github/workflows/generate-manifests.yml) automatically generates and commits the environment manifests in `main`.
 4. After manifest generation succeeds, the [Trigger DSH Website Rebuild workflow](.github/workflows/trigger-dsh-website-rebuild.yml) requests a rebuild of the [`dsh-dev` repository](https://github.com/NERC-Digital-Solutions-Hub/dsh-dev).
